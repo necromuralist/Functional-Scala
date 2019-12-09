@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+<head>
+<meta charset="utf-8">
+<meta content="Learning Functional Programming With Scala" name="description">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>Functional Scala</title>
+<link href="assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta content="#5670d4" name="theme-color">
+<meta content="Nikola (getnikola.com)" name="generator">
+<link href="rss.xml" rel="alternate" title="RSS" type="application/rss+xml">
+<link href="https://necromuralist.github.io/Functional-Scala/" rel="canonical"><!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link href="apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+<link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+<link href="favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+<link href="site.webmanifest" rel="manifest">
+<link href="posts/exploring/almond-test/" rel="prefetch" type="text/html">
+</head>
+<body>
+<a class="sr-only sr-only-focusable" href="#content">Skip to main content</a> <!-- Menubar -->
+<nav class="navbar navbar-expand-md static-top mb-4 navbar-light bg-light">
+<div class="container"><!-- This keeps the margins nice -->
+ <a class="navbar-brand" href="https://necromuralist.github.io/Functional-Scala/"><span id="blog-title">Functional Scala</span></a> <button aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#bs-navbar" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse" id="bs-navbar">
+<ul class="navbar-nav mr-auto">
+<li class="nav-item"><a class="nav-link" href="archive.html">Archive</a></li>
+<li class="nav-item"><a class="nav-link" href="categories/">Tags</a></li>
+<li class="nav-item"><a class="nav-link" href="rss.xml">RSS feed</a></li>
+<li class="nav-item active"><a class="nav-link" href=".">Cloistered Monkey <span class="sr-only">(active)</span></a></li>
+</ul>
+<!-- Google custom search -->
+<form action="https://www.google.com/search" class="navbar-form navbar-right" method="get" role="search">
+<div class="form-group"><input class="form-control" name="q" placeholder="Search" type="text"></div>
+<!-- 
+<button type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-search"></span>
+</button>
+-->
+<input name="sitesearch" type="hidden" value="https://necromuralist.github.io/Functional-Scala/"></form>
+<!-- End of custom search -->
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse --></div>
+<!-- /.container --></nav>
+<!-- End of Menubar -->
+<div class="container" id="content" role="main">
+<div class="body-content"><!--Body content-->
+<div class="postindex">
+<article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article">
+<header>
+<h1 class="p-name entry-title"><a class="u-url" href="posts/exploring/almond-test/">Almond Test</a></h1>
+<div class="metadata">
+<p class="byline author vcard"><span class="byline-name fn" itemprop="author">Cloistered Monkey</span></p>
+<p class="dateline"><a href="posts/exploring/almond-test/" rel="bookmark"><time class="published dt-published" datetime="2019-12-08T17:44:05-08:00" itemprop="datePublished" title="2019-12-08 17:44">2019-12-08 17:44</time></a></p>
+</div>
+</header>
+<div class="e-content entry-content">
+<div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Scala-In-Jupyter">Scala In Jupyter<a class="anchor-link" href="posts/exploring/almond-test/#Scala-In-Jupyter">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is a Test of <a href="https://almond.sh/">Almond</a> which provides a Jupyter kernel for Scala. In this case I created the notebook as a post in nikola using this command:</p>
+<pre><code>nikola new_post -f ipynb@scala -t "Almond Test"</code></pre>
+<p><code>@scala</code> tells nikola which kernel to set (otherwise it defaults to the Python 3 kernel).</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="A-Pizza-Test">A Pizza Test<a class="anchor-link" href="posts/exploring/almond-test/#A-Pizza-Test">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is from the book <a href="https://alvinalexander.com/scala/hello-scala-introduction-to-scala-book">Hello, Scala</a> by Alvin Alexander. The page I linked to says that it's only available in physical format, but if you look in the "Related" section below it there's currently a post about the book being available as a PDF for free (which is the version I'm using). I bought his <a href="https://alvinalexander.com/scala/functional-programming-simplified-book">Functional Programming Simplified</a> and will probably get his <a href="http://shop.oreilly.com/product/0636920026914.do">Scala Cookbook</a> but since I'm not a Scala programmer I thought I'd start with this book.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Enumerations"><em>Enumerations</em><a class="anchor-link" href="posts/exploring/almond-test/#Enumerations">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-scala">
+<pre><span></span><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">Topping</span>
+<span class="k">case</span> <span class="k">object</span> <span class="nc">CasuMarzu</span> <span class="k">extends</span> <span class="nc">Topping</span>
+<span class="k">case</span> <span class="k">object</span> <span class="nc">JuneBugs</span> <span class="k">extends</span> <span class="nc">Topping</span>
+<span class="k">case</span> <span class="k">object</span> <span class="nc">Chapulines</span> <span class="k">extends</span> <span class="nc">Topping</span>
+<span class="k">case</span> <span class="k">object</span> <span class="nc">Tofu</span> <span class="k">extends</span> <span class="nc">Topping</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[2]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>defined <span class="ansi-green-fg">trait</span> <span class="ansi-cyan-fg">Topping</span>
+defined <span class="ansi-green-fg">object</span> <span class="ansi-cyan-fg">CasuMarzu</span>
+defined <span class="ansi-green-fg">object</span> <span class="ansi-cyan-fg">JuneBugs</span>
+defined <span class="ansi-green-fg">object</span> <span class="ansi-cyan-fg">Chapulines</span>
+defined <span class="ansi-green-fg">object</span> <span class="ansi-cyan-fg">Tofu</span>
+defined <span class="ansi-green-fg">object</span> <span class="ansi-cyan-fg">Anchovies</span></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-scala">
+<pre><span></span><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">CrustSize</span>
+<span class="k">case</span> <span class="k">object</span> <span class="nc">Small</span> <span class="k">extends</span> <span class="nc">CrustSize</span>
+<span class="k">case</span> <span class="k">object</span> <span class="nc">Medium</span> <span class="k">extends</span> <span class="nc">CrustSize</span>
+<span class="k">case</span> <span class="k">object</span> <span class="nc">Large</span> <span class="k">extends</span> <span class="nc">CrustSize</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[3]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>defined <span class="ansi-green-fg">trait</span> <span class="ansi-cyan-fg">CrustSize</span>
+defined <span class="ansi-green-fg">object</span> <span class="ansi-cyan-fg">Small</span>
+defined <span class="ansi-green-fg">object</span> <span class="ansi-cyan-fg">Medium</span>
+defined <span class="ansi-green-fg">object</span> <span class="ansi-cyan-fg">Large</span></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-scala">
+<pre><span></span><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">CrustType</span>
+<span class="k">case</span> <span class="k">object</span> <span class="nc">Neapolitan</span> <span class="k">extends</span> <span class="nc">CrustType</span>
+<span class="k">case</span> <span class="k">object</span> <span class="nc">DeepDish</span> <span class="k">extends</span> <span class="nc">CrustType</span>
+<span class="k">case</span> <span class="k">object</span> <span class="nc">Sicilian</span> <span class="k">extends</span> <span class="nc">CrustType</span>
+<span class="k">case</span> <span class="k">object</span> <span class="nc">Cardboard</span> <span class="k">extends</span> <span class="nc">CrustType</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[5]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>defined <span class="ansi-green-fg">trait</span> <span class="ansi-cyan-fg">CrustType</span>
+defined <span class="ansi-green-fg">object</span> <span class="ansi-cyan-fg">Neapolitan</span>
+defined <span class="ansi-green-fg">object</span> <span class="ansi-cyan-fg">DeepDish</span>
+defined <span class="ansi-green-fg">object</span> <span class="ansi-cyan-fg">Sicilian</span>
+defined <span class="ansi-green-fg">object</span> <span class="ansi-cyan-fg">Cardboard</span></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="The-Pizza-Class">The Pizza Class<a class="anchor-link" href="posts/exploring/almond-test/#The-Pizza-Class">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-scala">
+<pre><span></span><span class="k">class</span> <span class="nc">Pizza</span> <span class="o">(</span><span class="k">var</span> <span class="n">crust_size</span><span class="k">:</span> <span class="kt">CrustSize</span><span class="o">=</span><span class="nc">Medium</span><span class="o">,</span> <span class="n">crust_type</span><span class="k">:</span> <span class="kt">CrustType</span><span class="o">=</span><span class="nc">Cardboard</span> <span class="o">)</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">toppings</span> <span class="k">=</span> <span class="n">scala</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">mutable</span><span class="o">.</span><span class="nc">ArrayBuffer</span><span class="o">[</span><span class="kt">Topping</span><span class="o">]()</span>
+    
+    <span class="k">def</span> <span class="n">add</span><span class="o">(</span><span class="n">topping</span><span class="k">:</span> <span class="kt">Topping</span><span class="o">)</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span> <span class="n">toppings</span> <span class="o">+=</span> <span class="n">topping</span> <span class="o">}</span>
+    <span class="k">def</span> <span class="n">remove</span><span class="o">(</span><span class="n">topping</span><span class="k">:</span> <span class="kt">Topping</span><span class="o">)</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span> <span class="n">toppings</span> <span class="o">-=</span> <span class="n">topping</span> <span class="o">}</span>
+    <span class="k">def</span> <span class="n">clear_toppings</span><span class="o">()</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="n">toppings</span><span class="o">.</span><span class="n">clear</span><span class="o">()</span>
+    <span class="k">override</span> <span class="k">def</span> <span class="n">toString</span><span class="o">()</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="o">{</span>
+        <span class="s">s"""</span>
+<span class="s">        |Crust Size: </span><span class="si">$crust_size</span><span class="s"></span>
+<span class="s">        |Crust Type: </span><span class="si">$crust_type</span><span class="s"></span>
+<span class="s">        |Toppings: </span><span class="si">$toppings</span><span class="s"></span>
+<span class="s">        """</span><span class="o">.</span><span class="n">stripMargin</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[6]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>defined <span class="ansi-green-fg">class</span> <span class="ansi-cyan-fg">Pizza</span></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-scala">
+<pre><span></span><span class="k">val</span> <span class="n">pizza</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Pizza</span><span class="o">(</span><span class="n">crust_type</span><span class="k">=</span><span class="nc">Sicilian</span><span class="o">)</span>
+<span class="n">pizza</span><span class="o">.</span><span class="n">add</span><span class="o">(</span><span class="nc">Chapulines</span><span class="o">)</span>
+<span class="n">pizza</span><span class="o">.</span><span class="n">add</span><span class="o">(</span><span class="nc">CasuMarzu</span><span class="o">)</span>
+<span class="n">pizza</span><span class="o">.</span><span class="n">add</span><span class="o">(</span><span class="nc">Tofu</span><span class="o">)</span>
+<span class="n">println</span><span class="o">(</span><span class="n">pizza</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Crust Size: Medium
+Crust Type: Sicilian
+Toppings: ArrayBuffer(Chapulines, CasuMarzu, Tofu)
+        
+</pre></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[8]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre><span class="ansi-cyan-fg">pizza</span>: <span class="ansi-green-fg">Pizza</span> = 
+Crust Size: Medium
+Crust Type: Sicilian
+Toppings: ArrayBuffer(Chapulines, CasuMarzu, Tofu)
+        </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-scala">
+<pre><span></span><span class="n">pizza</span><span class="o">.</span><span class="n">remove</span><span class="o">(</span><span class="nc">Tofu</span><span class="o">)</span>
+<span class="n">println</span><span class="o">(</span><span class="n">pizza</span><span class="o">)</span>
+<span class="n">pizza</span><span class="o">.</span><span class="n">clear_toppings</span><span class="o">()</span>
+<span class="n">pizza</span><span class="o">.</span><span class="n">crust_size</span> <span class="k">=</span> <span class="nc">Large</span>
+<span class="n">print</span><span class="o">(</span><span class="n">pizza</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Crust Size: Medium
+Crust Type: Sicilian
+Toppings: ArrayBuffer(Chapulines, CasuMarzu)
+        
+
+Crust Size: Large
+Crust Type: Sicilian
+Toppings: ArrayBuffer()
+        </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Conclusion">Conclusion<a class="anchor-link" href="posts/exploring/almond-test/#Conclusion">¶</a></h3>
+<p>This post is my first attempt to get scala into nikola. Along the way I created some enumerations using /sealed traits/ - there appears to be an Enumeration type, but that's not what the book used. I also showed the basicso of creating a class in Scala.</p>
+<p>Although the syntax is similar to the python that I'm used to, in some ways, the definition of the methods is still somewhat odd to me.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt"></div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The next big thing would be to get it to work with <a href="https://github.com/gregsexton/ob-ipython">ob-ipython</a> or maybe <a href="https://github.com/dzop/emacs-jupyter">emacs-jupyter</a>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-scala">
+<pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article">
+<header>
+<h1 class="p-name entry-title"><a class="u-url" href="posts/course-1/recursion/">Recursion</a></h1>
+<div class="metadata">
+<p class="byline author vcard"><span class="byline-name fn" itemprop="author">Cloistered Monkey</span></p>
+<p class="dateline"><a href="posts/course-1/recursion/" rel="bookmark"><time class="published dt-published" datetime="2019-12-07T19:49:38-08:00" itemprop="datePublished" title="2019-12-07 19:49">2019-12-07 19:49</time></a></p>
+</div>
+</header>
+<div class="e-content entry-content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="posts/course-1/recursion/#org3dc27cd">Begin</a></li>
+<li><a href="posts/course-1/recursion/#org6dc4550">Middle</a>
+<ul>
+<li><a href="posts/course-1/recursion/#org2e124a6">Exercise 1: Pascal’s Triangle</a></li>
+<li><a href="posts/course-1/recursion/#org446959e">Exercise 2: Parentheses Balancing</a></li>
+<li><a href="posts/course-1/recursion/#orgf13f96c">Exercise 3: Counting Change</a></li>
+</ul>
+</li>
+<li><a href="posts/course-1/recursion/#orgb6cc923">End</a></li>
+</ul>
+</div>
+</div>
+<div class="outline-2" id="outline-container-org3dc27cd">
+<h2 id="org3dc27cd">Begin</h2>
+</div>
+<div class="outline-2" id="outline-container-org6dc4550">
+<h2 id="org6dc4550">Middle</h2>
+<div class="outline-text-2" id="text-org6dc4550"></div>
+<div class="outline-3" id="outline-container-org2e124a6">
+<h3 id="org2e124a6">Exercise 1: Pascal’s Triangle</h3>
+<div class="outline-text-3" id="text-org2e124a6">
+<p>The following pattern of numbers is called Pascal’s triangle.</p>
+<pre class="example">
+    1
+   1 1
+  1 2 1
+ 1 3 3 1
+1 4 6 4 1
+</pre>
+<p>The numbers at the edge of the triangle are all 1, and each number inside the triangle is the sum of the two numbers above it. Write a function that computes the elements of Pascal’s triangle by means of a recursive process.</p>
+<p>Do this exercise by implementing the pascal function in Main.scala, which takes a column c and a row r, counting from 0 and returns the number at that spot in the triangle. For example, pascal(0,2)=1,pascal(1,2)=2 and pascal(1,3)=3.</p>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="n">pascal</span><span class="o">(</span><span class="n">c</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">r</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span>
+</pre></div>
+</div>
+</div>
+<div class="outline-3" id="outline-container-org446959e">
+<h3 id="org446959e">Exercise 2: Parentheses Balancing</h3>
+<div class="outline-text-3" id="text-org446959e">
+<p>Write a recursive function which verifies the balancing of parentheses in a string, which we represent as a List[Char] not a String. For example, the function should return true for the following strings:</p>
+<ul class="org-ul">
+<li>(if (zero? x) max (/ 1 x))</li>
+<li>I told him (that it’s not (yet) done). (But he wasn’t listening)</li>
+</ul>
+<p>The function should return false for the following strings:</p>
+<ul class="org-ul">
+<li>:-)</li>
+<li>())(</li>
+</ul>
+<p>The last example shows that it’s not enough to verify that a string contains the same number of opening and closing parentheses.</p>
+<p>Do this exercise by implementing the balance function in Main.scala. Its signature is as follows:</p>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="n">balance</span><span class="o">(</span><span class="n">chars</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Char</span><span class="o">])</span><span class="k">:</span> <span class="kt">Boolean</span>
+</pre></div>
+<p>There are three methods on List[Char] that are useful for this exercise:</p>
+<ul class="org-ul">
+<li>chars.isEmpty: Boolean returns whether a list is empty</li>
+<li>chars.head: Char returns the first element of the list</li>
+<li>chars.tail: List[Char] returns the list without the first element</li>
+</ul>
+<p>Hint: you can define an inner function if you need to pass extra parameters to your function.</p>
+<p>Testing: You can use the toList method to convert from a String to aList[Char]: e.g. "(just an) example".toList.</p>
+</div>
+</div>
+<div class="outline-3" id="outline-container-orgf13f96c">
+<h3 id="orgf13f96c">Exercise 3: Counting Change</h3>
+<div class="outline-text-3" id="text-orgf13f96c">
+<p>Write a recursive function that counts how many different ways you can make change for an amount, given a list of coin denominations. For example, there are 3 ways to give change for 4 if you have coins with denomination 1 and 2: 1+1+1+1, 1+1+2, 2+2.</p>
+<p>Do this exercise by implementing the countChange function inMain.scala. This function takes an amount to change, and a list of unique denominations for the coins. Its signature is as follows:</p>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="n">countChange</span><span class="o">(</span><span class="n">money</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">coins</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span><span class="k">:</span> <span class="kt">Int</span>
+</pre></div>
+<p>Once again, you can make use of functions isEmpty, head and tail on the list of integers coins.</p>
+<p><b>Hint</b>: Think of the degenerate cases. How many ways can you give change for 0 CHF(swiss money)? How many ways can you give change for &gt;0 CHF, if you have no coins?</p>
+</div>
+</div>
+</div>
+<div class="outline-2" id="outline-container-orgb6cc923">
+<h2 id="orgb6cc923">End</h2>
+</div>
+</div>
+</article>
+</div>
+<script crossorigin="anonymous" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});
+</script><!--End of body content-->
+<footer id="footer">Contents © 2019 <a href="mailto:necromuralist@protonmail.com">Cloistered Monkey</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a></footer>
+</div>
+</div>
+<script src="assets/js/all-nocdn.js"></script>
+<script>
+
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+</script>
+</body>
+</html>

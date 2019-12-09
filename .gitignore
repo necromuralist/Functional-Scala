@@ -1,2 +1,7 @@
 *.class
 *.log
+.doit.db
+.venv
+__pycache__/
+cache/
+target/

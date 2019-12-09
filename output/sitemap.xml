@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+ <url>
+  <loc>https://necromuralist.github.io/Functional-Scala/</loc>
+  <lastmod>2019-12-09T02:19:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://necromuralist.github.io/Functional-Scala/2019/</loc>
+  <lastmod>2019-12-09T02:19:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://necromuralist.github.io/Functional-Scala/archive.html</loc>
+  <lastmod>2019-12-09T02:26:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://necromuralist.github.io/Functional-Scala/categories/</loc>
+  <lastmod>2019-12-09T02:19:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://necromuralist.github.io/Functional-Scala/categories/cat_course-1assignment/</loc>
+  <lastmod>2019-12-09T02:19:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://necromuralist.github.io/Functional-Scala/categories/course-1/</loc>
+  <lastmod>2019-12-09T02:19:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/</loc>
+  <lastmod>2019-12-09T02:19:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://necromuralist.github.io/Functional-Scala/posts/exploring/almond-test/</loc>
+  <lastmod>2019-12-09T02:19:00Z</lastmod>
+ </url>
+</urlset>
