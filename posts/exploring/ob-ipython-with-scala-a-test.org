@@ -1,0 +1,16 @@
+#+BEGIN_COMMENT
+.. title: OB-Ipython With Scala (a test)
+.. slug: ob-ipython-with-scala-a-test
+.. date: 2019-12-09 12:51:18 UTC-08:00
+.. tags: ob-ipython,scala,setup
+.. category: Set Up
+.. link: 
+.. description: Trying ob-ipython with scala.
+.. type: text
+
+#+END_COMMENT
+#+OPTIONS: ^:{}
+#+TOC: headlines 3
+* Beginning
+* Middle
+* End
