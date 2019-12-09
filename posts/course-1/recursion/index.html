@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+<head>
+<meta charset="utf-8">
+<meta content="Assignment 1 - recursion." name="description">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>Recursion | Functional Scala</title>
+<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta content="#5670d4" name="theme-color">
+<meta content="Nikola (getnikola.com)" name="generator">
+<link href="../../../rss.xml" rel="alternate" title="RSS" type="application/rss+xml">
+<link href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/" rel="canonical"><!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link href="../../../apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+<link href="../../../favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+<link href="../../../favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+<link href="../../../site.webmanifest" rel="manifest">
+<meta content="Cloistered Monkey" name="author">
+<link href="../../exploring/almond-test/" rel="next" title="Almond Test" type="text/html">
+<meta content="Functional Scala" property="og:site_name">
+<meta content="Recursion" property="og:title">
+<meta content="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/" property="og:url">
+<meta content="Assignment 1 - recursion." property="og:description">
+<meta content="article" property="og:type">
+<meta content="2019-12-07T19:49:38-08:00" property="article:published_time">
+<meta content="course 1" property="article:tag">
+</head>
+<body>
+<a class="sr-only sr-only-focusable" href="#content">Skip to main content</a> <!-- Menubar -->
+<nav class="navbar navbar-expand-md static-top mb-4 navbar-light bg-light">
+<div class="container"><!-- This keeps the margins nice -->
+ <a class="navbar-brand" href="https://necromuralist.github.io/Functional-Scala/"><span id="blog-title">Functional Scala</span></a> <button aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#bs-navbar" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse" id="bs-navbar">
+<ul class="navbar-nav mr-auto">
+<li class="nav-item"><a class="nav-link" href="../../../archive.html">Archive</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../categories/">Tags</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../rss.xml">RSS feed</a></li>
+<li class="nav-item"><a class="nav-link" href="https://necromuralist.github.io/">Cloistered Monkey</a></li>
+</ul>
+<!-- Google custom search -->
+<form action="https://www.google.com/search" class="navbar-form navbar-right" method="get" role="search">
+<div class="form-group"><input class="form-control" name="q" placeholder="Search" type="text"></div>
+<!-- 
+<button type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-search"></span>
+</button>
+-->
+<input name="sitesearch" type="hidden" value="https://necromuralist.github.io/Functional-Scala/"></form>
+<!-- End of custom search -->
+<ul class="navbar-nav navbar-right">
+<li class="nav-item"><a class="nav-link" href="index.org" id="sourcelink">Source</a></li>
+</ul>
+</div>
+<!-- /.navbar-collapse --></div>
+<!-- /.container --></nav>
+<!-- End of Menubar -->
+<div class="container" id="content" role="main">
+<div class="body-content"><!--Body content-->
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article">
+<header>
+<h1 class="p-name entry-title" itemprop="headline name"><a class="u-url" href=".">Recursion</a></h1>
+<div class="metadata">
+<p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">Cloistered Monkey</span></p>
+<p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2019-12-07T19:49:38-08:00" itemprop="datePublished" title="2019-12-07 19:49">2019-12-07 19:49</time></a></p>
+<p class="sourceline"><a class="sourcelink" href="index.org">Source</a></p>
+</div>
+</header>
+<div class="e-content entry-content" itemprop="articleBody text">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org3dc27cd">Begin</a></li>
+<li><a href="#org6dc4550">Middle</a>
+<ul>
+<li><a href="#org2e124a6">Exercise 1: Pascal’s Triangle</a></li>
+<li><a href="#org446959e">Exercise 2: Parentheses Balancing</a></li>
+<li><a href="#orgf13f96c">Exercise 3: Counting Change</a></li>
+</ul>
+</li>
+<li><a href="#orgb6cc923">End</a></li>
+</ul>
+</div>
+</div>
+<div class="outline-2" id="outline-container-org3dc27cd">
+<h2 id="org3dc27cd">Begin</h2>
+</div>
+<div class="outline-2" id="outline-container-org6dc4550">
+<h2 id="org6dc4550">Middle</h2>
+<div class="outline-text-2" id="text-org6dc4550"></div>
+<div class="outline-3" id="outline-container-org2e124a6">
+<h3 id="org2e124a6">Exercise 1: Pascal’s Triangle</h3>
+<div class="outline-text-3" id="text-org2e124a6">
+<p>The following pattern of numbers is called Pascal’s triangle.</p>
+<pre class="example">
+    1
+   1 1
+  1 2 1
+ 1 3 3 1
+1 4 6 4 1
+</pre>
+<p>The numbers at the edge of the triangle are all 1, and each number inside the triangle is the sum of the two numbers above it. Write a function that computes the elements of Pascal’s triangle by means of a recursive process.</p>
+<p>Do this exercise by implementing the pascal function in Main.scala, which takes a column c and a row r, counting from 0 and returns the number at that spot in the triangle. For example, pascal(0,2)=1,pascal(1,2)=2 and pascal(1,3)=3.</p>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="n">pascal</span><span class="o">(</span><span class="n">c</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">r</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span>
+</pre></div>
+</div>
+</div>
+<div class="outline-3" id="outline-container-org446959e">
+<h3 id="org446959e">Exercise 2: Parentheses Balancing</h3>
+<div class="outline-text-3" id="text-org446959e">
+<p>Write a recursive function which verifies the balancing of parentheses in a string, which we represent as a List[Char] not a String. For example, the function should return true for the following strings:</p>
+<ul class="org-ul">
+<li>(if (zero? x) max (/ 1 x))</li>
+<li>I told him (that it’s not (yet) done). (But he wasn’t listening)</li>
+</ul>
+<p>The function should return false for the following strings:</p>
+<ul class="org-ul">
+<li>:-)</li>
+<li>())(</li>
+</ul>
+<p>The last example shows that it’s not enough to verify that a string contains the same number of opening and closing parentheses.</p>
+<p>Do this exercise by implementing the balance function in Main.scala. Its signature is as follows:</p>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="n">balance</span><span class="o">(</span><span class="n">chars</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Char</span><span class="o">])</span><span class="k">:</span> <span class="kt">Boolean</span>
+</pre></div>
+<p>There are three methods on List[Char] that are useful for this exercise:</p>
+<ul class="org-ul">
+<li>chars.isEmpty: Boolean returns whether a list is empty</li>
+<li>chars.head: Char returns the first element of the list</li>
+<li>chars.tail: List[Char] returns the list without the first element</li>
+</ul>
+<p>Hint: you can define an inner function if you need to pass extra parameters to your function.</p>
+<p>Testing: You can use the toList method to convert from a String to aList[Char]: e.g. "(just an) example".toList.</p>
+</div>
+</div>
+<div class="outline-3" id="outline-container-orgf13f96c">
+<h3 id="orgf13f96c">Exercise 3: Counting Change</h3>
+<div class="outline-text-3" id="text-orgf13f96c">
+<p>Write a recursive function that counts how many different ways you can make change for an amount, given a list of coin denominations. For example, there are 3 ways to give change for 4 if you have coins with denomination 1 and 2: 1+1+1+1, 1+1+2, 2+2.</p>
+<p>Do this exercise by implementing the countChange function inMain.scala. This function takes an amount to change, and a list of unique denominations for the coins. Its signature is as follows:</p>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="n">countChange</span><span class="o">(</span><span class="n">money</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">coins</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span><span class="k">:</span> <span class="kt">Int</span>
+</pre></div>
+<p>Once again, you can make use of functions isEmpty, head and tail on the list of integers coins.</p>
+<p><b>Hint</b>: Think of the degenerate cases. How many ways can you give change for 0 CHF(swiss money)? How many ways can you give change for &gt;0 CHF, if you have no coins?</p>
+</div>
+</div>
+</div>
+<div class="outline-2" id="outline-container-orgb6cc923">
+<h2 id="orgb6cc923">End</h2>
+</div>
+</div>
+<aside class="postpromonav">
+<nav>
+<ul class="tags" itemprop="keywords">
+<li><a class="tag p-category" href="../../../categories/course-1/" rel="tag">course 1</a></li>
+</ul>
+<ul class="pager hidden-print">
+<li class="next"><a href="../../exploring/almond-test/" rel="next" title="Almond Test">Next post</a></li>
+</ul>
+</nav>
+</aside>
+</article>
+<!--End of body content-->
+<footer id="footer">Contents © 2019 <a href="mailto:necromuralist@protonmail.com">Cloistered Monkey</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a></footer>
+</div>
+</div>
+<script src="../../../assets/js/all-nocdn.js"></script>
+<script>
+
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+</script>
+</body>
+</html>
