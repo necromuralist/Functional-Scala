@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Functional Scala (Posts about traits)</title><link>https://necromuralist.github.io/Functional-Scala/</link><description></description><atom:link href="https://necromuralist.github.io/Functional-Scala/categories/traits.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:necromuralist@protonmail.com"&gt;Cloistered Monkey&lt;/a&gt; </copyright><lastBuildDate>Tue, 10 Dec 2019 00:52:16 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Traits As Interfaces</title><link>https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-as-interfaces/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-as-interfaces/#orge8f3e30"&gt;Beginning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-as-interfaces/#org7e58b83"&gt;Middle&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-as-interfaces/#org9b860ef"&gt;Some Traits&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-as-interfaces/#org5a6c718"&gt;Create a Cow&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-as-interfaces/#orga54de85"&gt;End&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orge8f3e30" class="outline-2"&gt;
+&lt;h2 id="orge8f3e30"&gt;Beginning&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orge8f3e30"&gt;
+&lt;p&gt;
+This is a look at Scala traits. The traits look sort of like abstract base classes, but they are used here to define "parts" for classes that can then be implemented to create a specific type.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org7e58b83" class="outline-2"&gt;
+&lt;h2 id="org7e58b83"&gt;Middle&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7e58b83"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org9b860ef" class="outline-3"&gt;
+&lt;h3 id="org9b860ef"&gt;Some Traits&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org9b860ef"&gt;
+&lt;p&gt;
+These are some traits to make up an animal. Viewed in this context, the name "traits" makes sense - each trait defines a different aspect of the animal class.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;trait Tail {
+  def wag(): Unit
+  def stop_wagging(): Unit
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+&lt;b&gt;&lt;b&gt;Note:&lt;/b&gt;&lt;/b&gt; I originally called those methods &lt;code&gt;start&lt;/code&gt; and &lt;code&gt;stop&lt;/code&gt; but when you create the class all the methods are going to get a concrete definition, so you don't want them to be too generic or they might clash across different traits.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;trait Legs {
+  def move(): Unit
+  def stand(): Unit
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;trait Voice {
+ def speak(): String
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Now when you create the class you can extend one of the traits and add more using the &lt;code&gt;with&lt;/code&gt; keyword, implementing the methods in a way that makes sense for the concrete class.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;class Cow extends Tail with Legs with Voice {
+  // Tail trait
+  def wag(): Unit = {println("I'm wagging my tail")}
+  def stop_wagging(): Unit = {println("my tail is stilled")}
+
+  // Legs trait
+  def move(): Unit = {println("trotting")}
+  def stand(): Unit = {println("standing still")}
+
+  // Voice trait
+  def speak(): String = "moo"
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org5a6c718" class="outline-3"&gt;
+&lt;h3 id="org5a6c718"&gt;Create a Cow&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org5a6c718"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;val cow = new Cow()
+cow.wag
+cow.move
+cow.stop_wagging
+cow.stand
+println(cow.speak)
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+I'm wagging my tail
+trotting
+my tail is stilled
+standing still
+moo
+
+&lt;/pre&gt;
+
+&lt;p&gt;
+One thing to note here is that I had a misspelling in that previous code block and ob-ipython failed to execute the block but didn't tell me what the error was. Luckily if you open the REPL you can start poking around (it opens an ammonite REPL) and maybe figure out what's failing.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orga54de85" class="outline-2"&gt;
+&lt;h2 id="orga54de85"&gt;End&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga54de85"&gt;
+&lt;p&gt;
+So that's traits. There's a lot more to them, I'm sure, but that's enoug for now.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>hello scala</category><category>scala</category><category>traits</category><guid>https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-as-interfaces/</guid><pubDate>Mon, 09 Dec 2019 23:22:52 GMT</pubDate></item></channel></rss>

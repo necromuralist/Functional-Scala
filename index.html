@@ -18,7 +18,7 @@
 <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
 <link href="favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
 <link href="site.webmanifest" rel="manifest">
-<link href="posts/exploring/almond-test/" rel="prefetch" type="text/html">
+<link href="posts/hello-scala/traits-as-interfaces/" rel="prefetch" type="text/html">
 </head>
 <body>
 <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a> <!-- Menubar -->
@@ -50,6 +50,179 @@
 <div class="container" id="content" role="main">
 <div class="body-content"><!--Body content-->
 <div class="postindex">
+<article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article">
+<header>
+<h1 class="p-name entry-title"><a class="u-url" href="posts/hello-scala/traits-as-interfaces/">Traits As Interfaces</a></h1>
+<div class="metadata">
+<p class="byline author vcard"><span class="byline-name fn" itemprop="author">Cloistered Monkey</span></p>
+<p class="dateline"><a href="posts/hello-scala/traits-as-interfaces/" rel="bookmark"><time class="published dt-published" datetime="2019-12-09T15:22:52-08:00" itemprop="datePublished" title="2019-12-09 15:22">2019-12-09 15:22</time></a></p>
+</div>
+</header>
+<div class="e-content entry-content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="posts/hello-scala/traits-as-interfaces/#orge8f3e30">Beginning</a></li>
+<li><a href="posts/hello-scala/traits-as-interfaces/#org7e58b83">Middle</a>
+<ul>
+<li><a href="posts/hello-scala/traits-as-interfaces/#org9b860ef">Some Traits</a></li>
+<li><a href="posts/hello-scala/traits-as-interfaces/#org5a6c718">Create a Cow</a></li>
+</ul>
+</li>
+<li><a href="posts/hello-scala/traits-as-interfaces/#orga54de85">End</a></li>
+</ul>
+</div>
+</div>
+<div class="outline-2" id="outline-container-orge8f3e30">
+<h2 id="orge8f3e30">Beginning</h2>
+<div class="outline-text-2" id="text-orge8f3e30">
+<p>This is a look at Scala traits. The traits look sort of like abstract base classes, but they are used here to define "parts" for classes that can then be implemented to create a specific type.</p>
+</div>
+</div>
+<div class="outline-2" id="outline-container-org7e58b83">
+<h2 id="org7e58b83">Middle</h2>
+<div class="outline-text-2" id="text-org7e58b83"></div>
+<div class="outline-3" id="outline-container-org9b860ef">
+<h3 id="org9b860ef">Some Traits</h3>
+<div class="outline-text-3" id="text-org9b860ef">
+<p>These are some traits to make up an animal. Viewed in this context, the name "traits" makes sense - each trait defines a different aspect of the animal class.</p>
+<div class="highlight">
+<pre><span></span>trait Tail {
+  def wag(): Unit
+  def stop_wagging(): Unit
+}
+</pre></div>
+<p><b>Note:</b> I originally called those methods <code>start</code> and <code>stop</code> but when you create the class all the methods are going to get a concrete definition, so you don't want them to be too generic or they might clash across different traits.</p>
+<div class="highlight">
+<pre><span></span>trait Legs {
+  def move(): Unit
+  def stand(): Unit
+}
+</pre></div>
+<div class="highlight">
+<pre><span></span>trait Voice {
+ def speak(): String
+}
+</pre></div>
+<p>Now when you create the class you can extend one of the traits and add more using the <code>with</code> keyword, implementing the methods in a way that makes sense for the concrete class.</p>
+<div class="highlight">
+<pre><span></span>class Cow extends Tail with Legs with Voice {
+  // Tail trait
+  def wag(): Unit = {println("I'm wagging my tail")}
+  def stop_wagging(): Unit = {println("my tail is stilled")}
+
+  // Legs trait
+  def move(): Unit = {println("trotting")}
+  def stand(): Unit = {println("standing still")}
+
+  // Voice trait
+  def speak(): String = "moo"
+}
+</pre></div>
+</div>
+</div>
+<div class="outline-3" id="outline-container-org5a6c718">
+<h3 id="org5a6c718">Create a Cow</h3>
+<div class="outline-text-3" id="text-org5a6c718">
+<div class="highlight">
+<pre><span></span>val cow = new Cow()
+cow.wag
+cow.move
+cow.stop_wagging
+cow.stand
+println(cow.speak)
+</pre></div>
+<pre class="example">
+I'm wagging my tail
+trotting
+my tail is stilled
+standing still
+moo
+
+</pre>
+<p>One thing to note here is that I had a misspelling in that previous code block and ob-ipython failed to execute the block but didn't tell me what the error was. Luckily if you open the REPL you can start poking around (it opens an ammonite REPL) and maybe figure out what's failing.</p>
+</div>
+</div>
+</div>
+<div class="outline-2" id="outline-container-orga54de85">
+<h2 id="orga54de85">End</h2>
+<div class="outline-text-2" id="text-orga54de85">
+<p>So that's traits. There's a lot more to them, I'm sure, but that's enoug for now.</p>
+</div>
+</div>
+</div>
+</article>
+<article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article">
+<header>
+<h1 class="p-name entry-title"><a class="u-url" href="posts/exploring/ob-ipython-with-scala-a-test/">OB-Ipython With Scala (a test)</a></h1>
+<div class="metadata">
+<p class="byline author vcard"><span class="byline-name fn" itemprop="author">Cloistered Monkey</span></p>
+<p class="dateline"><a href="posts/exploring/ob-ipython-with-scala-a-test/" rel="bookmark"><time class="published dt-published" datetime="2019-12-09T12:51:18-08:00" itemprop="datePublished" title="2019-12-09 12:51">2019-12-09 12:51</time></a></p>
+</div>
+</header>
+<div class="e-content entry-content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#org4d2e75d">Beginning</a></li>
+<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#org85d9e7d">Middle</a>
+<ul>
+<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#org4a5df70">The Traditional Ipython Block</a></li>
+<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#orge6406fb">The Jupyter Block</a></li>
+</ul>
+</li>
+<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#org3c91346">End</a></li>
+</ul>
+</div>
+</div>
+<div class="outline-2" id="outline-container-org4d2e75d">
+<h2 id="org4d2e75d">Beginning</h2>
+<div class="outline-text-2" id="text-org4d2e75d">
+<p>This is a test of using <a href="https://github.com/gregsexton/ob-ipython">ob-ipython</a> with the scala kernel (provided by <a href="https://almond.sh/">Almond</a>, so that has to be installed first).</p>
+</div>
+</div>
+<div class="outline-2" id="outline-container-org85d9e7d">
+<h2 id="org85d9e7d">Middle</h2>
+<div class="outline-text-2" id="text-org85d9e7d"></div>
+<div class="outline-3" id="outline-container-org4a5df70">
+<h3 id="org4a5df70">The Traditional Ipython Block</h3>
+<div class="outline-text-3" id="text-org4a5df70">
+<div class="highlight">
+<pre><span></span>println("testing")
+</pre></div>
+<pre class="example">
+testing
+
+</pre>
+<p>Surprisingly, that worked (although it's very slow).</p>
+</div>
+</div>
+<div class="outline-3" id="outline-container-orge6406fb">
+<h3 id="orge6406fb">The Jupyter Block</h3>
+<div class="outline-text-3" id="text-orge6406fb">
+<p>According to the documentation for <code>ob-ipython</code> it's being transitioned over to using <code>jupyter</code> instead of <code>ipython</code> so there's a new type of source-block to use.</p>
+<div class="highlight">
+<pre><span></span>val x = 5
+println(s"x is $x")
+</pre></div>
+<pre class="example">
+x is 5
+
+</pre>
+<p>This produces the error <code>No org-babel-execute function for jupyter-scala!</code> unless you remove <code>(jupyter . t)</code> from the org-babel setup block in <code>init.el</code>. It looks like it won't co-exist with <a href="https://github.com/dzop/emacs-jupyter">emacs-jupyter</a> I'll have to decide if that project has improved enough to start using it again. I just noticed that ob-ipython hasn't been updated in a couple of years, so this "experimental" support might never be more than that. Still, it's good to know that it works.</p>
+</div>
+</div>
+</div>
+<div class="outline-2" id="outline-container-org3c91346">
+<h2 id="org3c91346">End</h2>
+<div class="outline-text-2" id="text-org3c91346">
+<p>Not very exciting, in what it does (other than work). I'll stick with ob-ipython for now and see if <code>emacs-jupyter</code> works as well - in my previous experiment with it it didn't seem to be quite ready.</p>
+</div>
+</div>
+</div>
+</article>
 <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article">
 <header>
 <h1 class="p-name entry-title"><a class="u-url" href="posts/exploring/almond-test/">Almond Test</a></h1>
@@ -349,27 +522,27 @@ Toppings: ArrayBuffer()
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="posts/course-1/recursion/#orgab56b33">Begin</a></li>
-<li><a href="posts/course-1/recursion/#org47031b1">Middle</a>
+<li><a href="posts/course-1/recursion/#orgdfee535">Begin</a></li>
+<li><a href="posts/course-1/recursion/#orga738b68">Middle</a>
 <ul>
-<li><a href="posts/course-1/recursion/#org822dd59">Exercise 1: Pascal’s Triangle</a></li>
-<li><a href="posts/course-1/recursion/#orgdd8d680">Exercise 2: Parentheses Balancing</a></li>
-<li><a href="posts/course-1/recursion/#orgc2b769e">Exercise 3: Counting Change</a></li>
+<li><a href="posts/course-1/recursion/#orgcc83fe4">Exercise 1: Pascal’s Triangle</a></li>
+<li><a href="posts/course-1/recursion/#org84d21cf">Exercise 2: Parentheses Balancing</a></li>
+<li><a href="posts/course-1/recursion/#orgf96ad56">Exercise 3: Counting Change</a></li>
 </ul>
 </li>
-<li><a href="posts/course-1/recursion/#org3113435">End</a></li>
+<li><a href="posts/course-1/recursion/#orgaf69926">End</a></li>
 </ul>
 </div>
 </div>
-<div class="outline-2" id="outline-container-orgab56b33">
-<h2 id="orgab56b33">Begin</h2>
+<div class="outline-2" id="outline-container-orgdfee535">
+<h2 id="orgdfee535">Begin</h2>
 </div>
-<div class="outline-2" id="outline-container-org47031b1">
-<h2 id="org47031b1">Middle</h2>
-<div class="outline-text-2" id="text-org47031b1"></div>
-<div class="outline-3" id="outline-container-org822dd59">
-<h3 id="org822dd59">Exercise 1: Pascal’s Triangle</h3>
-<div class="outline-text-3" id="text-org822dd59">
+<div class="outline-2" id="outline-container-orga738b68">
+<h2 id="orga738b68">Middle</h2>
+<div class="outline-text-2" id="text-orga738b68"></div>
+<div class="outline-3" id="outline-container-orgcc83fe4">
+<h3 id="orgcc83fe4">Exercise 1: Pascal’s Triangle</h3>
+<div class="outline-text-3" id="text-orgcc83fe4">
 <p>The following pattern of numbers is called Pascal’s triangle.</p>
 <pre class="example">
     1
@@ -385,9 +558,9 @@ Toppings: ArrayBuffer()
 </pre></div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-orgdd8d680">
-<h3 id="orgdd8d680">Exercise 2: Parentheses Balancing</h3>
-<div class="outline-text-3" id="text-orgdd8d680">
+<div class="outline-3" id="outline-container-org84d21cf">
+<h3 id="org84d21cf">Exercise 2: Parentheses Balancing</h3>
+<div class="outline-text-3" id="text-org84d21cf">
 <p>Write a recursive function which verifies the balancing of parentheses in a string, which we represent as a List[Char] not a String. For example, the function should return true for the following strings:</p>
 <ul class="org-ul">
 <li>(if (zero? x) max (/ 1 x))</li>
@@ -413,9 +586,9 @@ Toppings: ArrayBuffer()
 <p>Testing: You can use the toList method to convert from a String to aList[Char]: e.g. "(just an) example".toList.</p>
 </div>
 </div>
-<div class="outline-3" id="outline-container-orgc2b769e">
-<h3 id="orgc2b769e">Exercise 3: Counting Change</h3>
-<div class="outline-text-3" id="text-orgc2b769e">
+<div class="outline-3" id="outline-container-orgf96ad56">
+<h3 id="orgf96ad56">Exercise 3: Counting Change</h3>
+<div class="outline-text-3" id="text-orgf96ad56">
 <p>Write a recursive function that counts how many different ways you can make change for an amount, given a list of coin denominations. For example, there are 3 ways to give change for 4 if you have coins with denomination 1 and 2: 1+1+1+1, 1+1+2, 2+2.</p>
 <p>Do this exercise by implementing the countChange function inMain.scala. This function takes an amount to change, and a list of unique denominations for the coins. Its signature is as follows:</p>
 <div class="highlight">
@@ -426,8 +599,8 @@ Toppings: ArrayBuffer()
 </div>
 </div>
 </div>
-<div class="outline-2" id="outline-container-org3113435">
-<h2 id="org3113435">End</h2>
+<div class="outline-2" id="outline-container-orgaf69926">
+<h2 id="orgaf69926">End</h2>
 </div>
 </div>
 </article>
