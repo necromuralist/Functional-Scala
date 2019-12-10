@@ -18,7 +18,7 @@
 <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
 <link href="favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
 <link href="site.webmanifest" rel="manifest">
-<link href="posts/hello-scala/traits-as-interfaces/" rel="prefetch" type="text/html">
+<link href="posts/hello-scala/traits-are-closer-to-abstract-classes/" rel="prefetch" type="text/html">
 </head>
 <body>
 <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a> <!-- Menubar -->
@@ -50,6 +50,135 @@
 <div class="container" id="content" role="main">
 <div class="body-content"><!--Body content-->
 <div class="postindex">
+<article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article">
+<header>
+<h1 class="p-name entry-title"><a class="u-url" href="posts/hello-scala/traits-are-closer-to-abstract-classes/">Traits Are Closer To Abstract Classes</a></h1>
+<div class="metadata">
+<p class="byline author vcard"><span class="byline-name fn" itemprop="author">Cloistered Monkey</span></p>
+<p class="dateline"><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/" rel="bookmark"><time class="published dt-published" datetime="2019-12-09T16:53:28-08:00" itemprop="datePublished" title="2019-12-09 16:53">2019-12-09 16:53</time></a></p>
+</div>
+</header>
+<div class="e-content entry-content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#orgae49a6a">Beginning</a></li>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#orgabd3a9a">Middle</a>
+<ul>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org9c1efaf">Abstract and Concrete Methods</a>
+<ul>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org81a17a9">Traits</a></li>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org5c308e2">Boy</a></li>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org301eafe">A Girl</a></li>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org3dbceb2">A Werewolf</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org81d65fa">End</a></li>
+</ul>
+</div>
+</div>
+<div class="outline-2" id="outline-container-orgae49a6a">
+<h2 id="orgae49a6a">Beginning</h2>
+<div class="outline-text-2" id="text-orgae49a6a">
+<p>Traits are both similar and different from <a href="https://docs.oracle.com/javase/tutorial/java/concepts/interface.html">Interfaces</a> and <a href="https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html">Abstract Classes</a>. Like Interfaces, traits don't take arguments, but unlike interfaces and like Abstract Classes, traits can implement some methods and leave others abstract. Traits also support multiple inheritance and you can add them to objects that are created from Classes that don't extend them in their definition.</p>
+</div>
+</div>
+<div class="outline-2" id="outline-container-orgabd3a9a">
+<h2 id="orgabd3a9a">Middle</h2>
+<div class="outline-text-2" id="text-orgabd3a9a"></div>
+<div class="outline-3" id="outline-container-org9c1efaf">
+<h3 id="org9c1efaf">Abstract and Concrete Methods</h3>
+<div class="outline-text-3" id="text-org9c1efaf"></div>
+<div class="outline-4" id="outline-container-org81a17a9">
+<h4 id="org81a17a9">Traits</h4>
+<div class="outline-text-4" id="text-org81a17a9">
+<div class="highlight">
+<pre><span></span>trait Child {
+  def speak(): Unit = println("Never. I must be seen but not heard.")
+  def come_to_me(): Unit
+}
+</pre></div>
+<p>This trait has a concrete method (<code>speak</code>) and an abstract method <code>come_to_me</code>.</p>
+</div>
+</div>
+<div class="outline-4" id="outline-container-org5c308e2">
+<h4 id="org5c308e2">Boy</h4>
+<div class="outline-text-4" id="text-org5c308e2">
+<p>If you don't implement the <code>come_to_me</code> method then the next definition will be rejected by the compiler.</p>
+<div class="highlight">
+<pre><span></span>class Boy(name: String) extends Child {
+  def come_to_me(): Unit = println(s"I, $name, will be there at once.")
+}
+</pre></div>
+<div class="highlight">
+<pre><span></span>val boy = new Boy("Alphonse")
+boy.speak()
+boy.come_to_me()
+</pre></div>
+<pre class="example">
+Never. I must be seen but not heard.
+I, Alphonse, will be there at once.
+
+</pre></div>
+</div>
+<div class="outline-4" id="outline-container-org301eafe">
+<h4 id="org301eafe">A Girl</h4>
+<div class="outline-text-4" id="text-org301eafe">
+<p>You can also implement the <code>speak</code> method, but since it's concrete you need to override it instead of just implement it.</p>
+<div class="highlight">
+<pre><span></span>class Girl extends Child {
+  override def speak(): Unit = println("Whatever...")
+  def come_to_me(): Unit = println("As if.")
+}
+</pre></div>
+<div class="highlight">
+<pre><span></span>val girl = new Girl
+girl.speak
+girl.come_to_me
+</pre></div>
+<pre class="example">
+Whatever...
+As if.
+
+</pre></div>
+</div>
+<div class="outline-4" id="outline-container-org3dbceb2">
+<h4 id="org3dbceb2">A Werewolf</h4>
+<div class="outline-text-4" id="text-org3dbceb2">
+<p>You can also add a trait to an existing class.</p>
+<div class="highlight">
+<pre><span></span>trait Tail {
+  def wag(): Unit = println("I'm quite happy.")
+}
+</pre></div>
+<p>Now we can add it to a Boy object using <code>with</code> (because it already <code>extends</code> <code>Child</code>).</p>
+<div class="highlight">
+<pre><span></span>val wolfboy = new Boy("Benji") with Tail
+
+wolfboy.speak
+wolfboy.come_to_me
+wolfboy.wag
+</pre></div>
+<pre class="example">
+Never. I must be seen but not heard.
+I, Benji, will be there at once.
+I'm quite happy.
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="outline-2" id="outline-container-org81d65fa">
+<h2 id="org81d65fa">End</h2>
+<div class="outline-text-2" id="text-org81d65fa">
+<p>Being mostly a python programmer I'm not totally certain what Interfaces are for, but luckily, with traits, we can have the best of both Interfaces and Abstract Classes together.</p>
+</div>
+</div>
+</div>
+</article>
 <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article">
 <header>
 <h1 class="p-name entry-title"><a class="u-url" href="posts/hello-scala/traits-as-interfaces/">Traits As Interfaces</a></h1>
