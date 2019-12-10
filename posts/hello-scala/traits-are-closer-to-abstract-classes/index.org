@@ -83,6 +83,12 @@ wolfboy.wag
 : I, Benji, will be there at once.
 : I'm quite happy.
 
+** But There's Also An Abstract Class
+   Scala also provides an Abstract Class, this is to handle two cases:
+   - You want to define arguments to the constructor in the base class
+   - You want to call scala code from Java
+
+One thing to note about traits is that they don't take arguments to the constructor so if you want to define some in the base class you need to use the =abstract class= type instead of a trait. The trade-off is that Abstract Classes don't support multiple inheritance the way that traits do (so our wolfboy would need a separate abstract class since it has both Child and Tail traits), so you'll lose something if you choose to use them.
 * End
 
 Being mostly a python programmer I'm not totally certain what Interfaces are for, but luckily, with traits, we can have the best of both Interfaces and Abstract Classes together.
