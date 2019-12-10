@@ -1,5 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Functional Scala (Posts about hello scala)</title><link>https://necromuralist.github.io/Functional-Scala/</link><description></description><atom:link href="https://necromuralist.github.io/Functional-Scala/categories/hello-scala.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:necromuralist@protonmail.com"&gt;Cloistered Monkey&lt;/a&gt; </copyright><lastBuildDate>Tue, 10 Dec 2019 00:52:16 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Traits As Interfaces</title><link>https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-as-interfaces/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Functional Scala (Posts about hello scala)</title><link>https://necromuralist.github.io/Functional-Scala/</link><description></description><atom:link href="https://necromuralist.github.io/Functional-Scala/categories/hello-scala.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:necromuralist@protonmail.com"&gt;Cloistered Monkey&lt;/a&gt; </copyright><lastBuildDate>Tue, 10 Dec 2019 02:19:06 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Traits Are Closer To Abstract Classes</title><link>https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#orgae49a6a"&gt;Beginning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#orgabd3a9a"&gt;Middle&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#org9c1efaf"&gt;Abstract and Concrete Methods&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#org81a17a9"&gt;Traits&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#org5c308e2"&gt;Boy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#org301eafe"&gt;A Girl&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#org3dbceb2"&gt;A Werewolf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#org81d65fa"&gt;End&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgae49a6a" class="outline-2"&gt;
+&lt;h2 id="orgae49a6a"&gt;Beginning&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgae49a6a"&gt;
+&lt;p&gt;
+Traits are both similar and different from &lt;a href="https://docs.oracle.com/javase/tutorial/java/concepts/interface.html"&gt;Interfaces&lt;/a&gt; and &lt;a href="https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html"&gt;Abstract Classes&lt;/a&gt;. Like Interfaces, traits don't take arguments, but unlike interfaces and like Abstract Classes, traits can implement some methods and leave others abstract. Traits also support multiple inheritance and you can add them to objects that are created from Classes that don't extend them in their definition.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgabd3a9a" class="outline-2"&gt;
+&lt;h2 id="orgabd3a9a"&gt;Middle&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgabd3a9a"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org9c1efaf" class="outline-3"&gt;
+&lt;h3 id="org9c1efaf"&gt;Abstract and Concrete Methods&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org9c1efaf"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org81a17a9" class="outline-4"&gt;
+&lt;h4 id="org81a17a9"&gt;Traits&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org81a17a9"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;trait Child {
+  def speak(): Unit = println("Never. I must be seen but not heard.")
+  def come_to_me(): Unit
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+This trait has a concrete method (&lt;code&gt;speak&lt;/code&gt;) and an abstract method &lt;code&gt;come_to_me&lt;/code&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org5c308e2" class="outline-4"&gt;
+&lt;h4 id="org5c308e2"&gt;Boy&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org5c308e2"&gt;
+&lt;p&gt;
+If you don't implement the &lt;code&gt;come_to_me&lt;/code&gt; method then the next definition will be rejected by the compiler.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;class Boy(name: String) extends Child {
+  def come_to_me(): Unit = println(s"I, $name, will be there at once.")
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;val boy = new Boy("Alphonse")
+boy.speak()
+boy.come_to_me()
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+Never. I must be seen but not heard.
+I, Alphonse, will be there at once.
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org301eafe" class="outline-4"&gt;
+&lt;h4 id="org301eafe"&gt;A Girl&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org301eafe"&gt;
+&lt;p&gt;
+You can also implement the &lt;code&gt;speak&lt;/code&gt; method, but since it's concrete you need to override it instead of just implement it.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;class Girl extends Child {
+  override def speak(): Unit = println("Whatever...")
+  def come_to_me(): Unit = println("As if.")
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;val girl = new Girl
+girl.speak
+girl.come_to_me
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+Whatever...
+As if.
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org3dbceb2" class="outline-4"&gt;
+&lt;h4 id="org3dbceb2"&gt;A Werewolf&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org3dbceb2"&gt;
+&lt;p&gt;
+You can also add a trait to an existing class.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;trait Tail {
+  def wag(): Unit = println("I'm quite happy.")
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Now we can add it to a Boy object using &lt;code&gt;with&lt;/code&gt; (because it already &lt;code&gt;extends&lt;/code&gt; &lt;code&gt;Child&lt;/code&gt;).
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;val wolfboy = new Boy("Benji") with Tail
+
+wolfboy.speak
+wolfboy.come_to_me
+wolfboy.wag
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+Never. I must be seen but not heard.
+I, Benji, will be there at once.
+I'm quite happy.
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org81d65fa" class="outline-2"&gt;
+&lt;h2 id="org81d65fa"&gt;End&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org81d65fa"&gt;
+&lt;p&gt;
+Being mostly a python programmer I'm not totally certain what Interfaces are for, but luckily, with traits, we can have the best of both Interfaces and Abstract Classes together.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>hello scala</category><category>scala</category><category>traits</category><guid>https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/</guid><pubDate>Tue, 10 Dec 2019 00:53:28 GMT</pubDate></item><item><title>Traits As Interfaces</title><link>https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-as-interfaces/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
 &lt;h2&gt;Table of Contents&lt;/h2&gt;
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;

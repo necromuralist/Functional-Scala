@@ -15,11 +15,11 @@
  </url>
  <url>
   <loc>https://necromuralist.github.io/Functional-Scala/archive.html</loc>
-  <lastmod>2019-12-10T00:52:00Z</lastmod>
+  <lastmod>2019-12-10T02:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://necromuralist.github.io/Functional-Scala/categories/</loc>
-  <lastmod>2019-12-10T00:52:00Z</lastmod>
+  <lastmod>2019-12-10T02:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://necromuralist.github.io/Functional-Scala/categories/cat_course-1assignment/</loc>
@@ -32,6 +32,10 @@
  <url>
   <loc>https://necromuralist.github.io/Functional-Scala/categories/cat_set-up/</loc>
   <lastmod>2019-12-10T00:52:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://necromuralist.github.io/Functional-Scala/categories/cat_traits/</loc>
+  <lastmod>2019-12-10T02:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://necromuralist.github.io/Functional-Scala/categories/course-1/</loc>
@@ -68,6 +72,10 @@
  <url>
   <loc>https://necromuralist.github.io/Functional-Scala/posts/exploring/ob-ipython-with-scala-a-test/</loc>
   <lastmod>2019-12-10T00:52:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/</loc>
+  <lastmod>2019-12-10T02:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-as-interfaces/</loc>

@@ -1,0 +1,88 @@
+#+BEGIN_COMMENT
+.. title: Traits Are Closer To Abstract Classes
+.. slug: traits-are-closer-to-abstract-classes
+.. date: 2019-12-09 16:53:28 UTC-08:00
+.. tags: traits,scala,hello scala
+.. category: Traits
+.. link: 
+.. description: Looking at more features of traits.
+.. type: text
+
+#+END_COMMENT
+#+OPTIONS: ^:{}
+#+TOC: headlines 3
+* Beginning
+  Traits are both similar and different from [[https://docs.oracle.com/javase/tutorial/java/concepts/interface.html][Interfaces]] and [[https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html][Abstract Classes]]. Like Interfaces, traits don't take arguments, but unlike interfaces and like Abstract Classes, traits can implement some methods and leave others abstract. Traits also support multiple inheritance and you can add them to objects that are created from Classes that don't extend them in their definition.
+* Middle
+** Abstract and Concrete Methods 
+*** Traits
+#+begin_src jupyter-scala :results none
+trait Child {
+  def speak(): Unit = println("Never. I must be seen but not heard.")
+  def come_to_me(): Unit
+}
+#+end_src
+
+This trait has a concrete method (=speak=) and an abstract method =come_to_me=.
+*** Boy
+    If you don't implement the =come_to_me= method then the next definition will be rejected by the compiler.
+
+#+begin_src jupyter-scala :results none
+class Boy(name: String) extends Child {
+  def come_to_me(): Unit = println(s"I, $name, will be there at once.")
+}
+#+end_src
+
+#+begin_src jupyter-scala :results output :exports both
+val boy = new Boy("Alphonse")
+boy.speak()
+boy.come_to_me()
+#+end_src
+
+#+RESULTS:
+: Never. I must be seen but not heard.
+: I, Alphonse, will be there at once.
+*** A Girl
+    You can also implement the =speak= method, but since it's concrete you need to override it instead of just implement it.
+
+#+begin_src jupyter-scala :results none
+class Girl extends Child {
+  override def speak(): Unit = println("Whatever...")
+  def come_to_me(): Unit = println("As if.")
+}
+#+end_src
+
+#+begin_src jupyter-scala :results output :exports both
+val girl = new Girl
+girl.speak
+girl.come_to_me
+#+end_src
+
+#+RESULTS:
+: Whatever...
+: As if.
+*** A Werewolf
+    You can also add a trait to an existing class.
+#+begin_src jupyter-scala :results none
+trait Tail {
+  def wag(): Unit = println("I'm quite happy.")
+}
+#+end_src
+
+   Now we can add it to a Boy object using =with= (because it already =extends= =Child=).
+#+begin_src jupyter-scala :results output :exports both
+val wolfboy = new Boy("Benji") with Tail
+
+wolfboy.speak
+wolfboy.come_to_me
+wolfboy.wag
+#+end_src
+
+#+RESULTS:
+: Never. I must be seen but not heard.
+: I, Benji, will be there at once.
+: I'm quite happy.
+
+* End
+
+Being mostly a python programmer I'm not totally certain what Interfaces are for, but luckily, with traits, we can have the best of both Interfaces and Abstract Classes together.
