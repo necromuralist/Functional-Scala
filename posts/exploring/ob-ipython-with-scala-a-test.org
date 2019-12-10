@@ -12,5 +12,27 @@
 #+OPTIONS: ^:{}
 #+TOC: headlines 3
 * Beginning
+  This is a test of using [[https://github.com/gregsexton/ob-ipython][ob-ipython]] with the scala kernel (provided by [[https://almond.sh/][Almond]], so that has to be installed first).
 * Middle
+** The Traditional Ipython Block
+#+begin_src ipython :session :kernel scala :results output :exports both
+println("testing")
+#+end_src
+
+#+RESULTS:
+: testing
+
+Surprisingly, that worked (although it's very slow).
+** The Jupyter Block
+   According to the documentation for =ob-ipython= it's being transitioned over to using =jupyter= instead of =ipython= so there's a new type of source-block to use.
+#+begin_src jupyter-scala :results output :exports both
+val x = 5
+println(s"x is $x")
+#+end_src
+
+#+RESULTS:
+: x is 5
+
+This produces the error =No org-babel-execute function for jupyter-scala!= unless you remove =(jupyter . t)= from the org-babel setup block in =init.el=. It looks like it won't co-exist with [[https://github.com/dzop/emacs-jupyter][emacs-jupyter]] I'll have to decide if that project has improved enough to start using it again. I just noticed that ob-ipython hasn't been updated in a couple of years, so this "experimental" support might never be more than that. Still, it's good to know that it works.
 * End
+Not very exciting, in what it does (other than work). I'll stick with ob-ipython for now and see if =emacs-jupyter= works as well - in my previous experiment with it it didn't seem to be quite ready.

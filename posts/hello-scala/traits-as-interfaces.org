@@ -1,0 +1,75 @@
+#+BEGIN_COMMENT
+.. title: Traits As Interfaces
+.. slug: traits-as-interfaces
+.. date: 2019-12-09 15:22:52 UTC-08:00
+.. tags: scala,traits,hello scala
+.. category: Hello Scala
+.. link: 
+.. description: Class traits as interfaces.
+.. type: text
+
+#+END_COMMENT
+#+OPTIONS: ^:{}
+#+TOC: headlines 3
+* Beginning
+  This is a look at Scala traits. The traits look sort of like abstract base classes, but they are used here to define "parts" for classes that can then be implemented to create a specific type.
+* Middle
+** Some Traits
+   These are some traits to make up an animal. Viewed in this context, the name "traits" makes sense - each trait defines a different aspect of the animal class.
+#+begin_src jupyter-scala :results none
+trait Tail {
+  def wag(): Unit
+  def stop_wagging(): Unit
+}
+#+end_src
+**Note:** I originally called those methods =start= and =stop= but when you create the class all the methods are going to get a concrete definition, so you don't want them to be too generic or they might clash across different traits.
+
+#+begin_src jupyter-scala :results none
+trait Legs {
+  def move(): Unit
+  def stand(): Unit
+}
+#+end_src
+
+#+begin_src jupyter-scala :results none
+trait Voice {
+ def speak(): String
+}
+#+end_src
+
+Now when you create the class you can extend one of the traits and add more using the =with= keyword, implementing the methods in a way that makes sense for the concrete class.
+
+#+begin_src jupyter-scala :results none
+class Cow extends Tail with Legs with Voice {
+  // Tail trait
+  def wag(): Unit = {println("I'm wagging my tail")}
+  def stop_wagging(): Unit = {println("my tail is stilled")}
+
+  // Legs trait
+  def move(): Unit = {println("trotting")}
+  def stand(): Unit = {println("standing still")}
+
+  // Voice trait
+  def speak(): String = "moo"
+}
+#+end_src
+** Create a Cow
+#+begin_src jupyter-scala :results output :exports both
+val cow = new Cow()
+cow.wag
+cow.move
+cow.stop_wagging
+cow.stand
+println(cow.speak)
+#+end_src
+
+#+RESULTS:
+: I'm wagging my tail
+: trotting
+: my tail is stilled
+: standing still
+: moo
+
+One thing to note here is that I had a misspelling in that previous code block and ob-ipython failed to execute the block but didn't tell me what the error was. Luckily if you open the REPL you can start poking around (it opens an ammonite REPL) and maybe figure out what's failing.
+* End
+So that's traits. There's a lot more to them, I'm sure, but that's enoug for now.
