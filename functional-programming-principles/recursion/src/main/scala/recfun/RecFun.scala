@@ -14,7 +14,12 @@ object RecFun extends RecFunInterface {
   /**
    * Exercise 1
    */
-  def pascal(c: Int, r: Int): Int = ???
+  def pascal(c: Int, r: Int): Int = {
+    require(c <= r)
+    require(c >= 0)
+    if (c == 0) 1
+    else pascal(c - 1, r) * (r + 1 - c)/c    
+  }
 
   /**
    * Exercise 2

@@ -5,7 +5,7 @@ import org.junit.Assert.assertEquals
 
 class RecFunSuite {
   import RecFun._
-
+  /**
   // ------ balance tests -----------------------------------------------------
 
   @Test def `balance: '(if (zero? x) max (/ 1 x))' is balanced`: Unit =
@@ -33,17 +33,33 @@ class RecFunSuite {
 
   @Test def `countChange: unsorted CHF`: Unit =
     assertEquals(1022, countChange(300,List(500,5,50,100,20,200,10)))
-
+    **/
   // ------ pascal tests ------------------------------------------------------
 
-  @Test def `pascal: col=0,row=2`: Unit =
-    assertEquals(1, pascal(0, 2))
-
-  @Test def `pascal: col=1,row=2`: Unit =
-    assertEquals(2, pascal(1, 2))
+  @Test def `pascal: col=3,row=5`: Unit =
+    assertEquals(10, pascal(3, 5))
 
   @Test def `pascal: col=1,row=3`: Unit =
     assertEquals(3, pascal(1, 3))
+
+  @Test def `pascal: col=1,row=2`: Unit =
+    assertEquals(2, pascal(1, 2))
+  
+  @Test def `pascal: col=0,row=2`: Unit =
+    assertEquals(1, pascal(0, 2))
+  
+  @Test(expected=classOf[IllegalArgumentException]) def `pascal: col=-1,row=0`: Unit =
+      pascal(-1, 0)
+
+
+  @Test(expected=classOf[IllegalArgumentException]) def `pascal: col=-2,row=1`: Unit =
+      pascal(-2, 1)
+
+  @Test(expected=classOf[IllegalArgumentException]) def `pascal: col=1,row=0`: Unit =
+    pascal(1, 0)
+
+  @Test def `pascal: col=0, row=0`: Unit =
+    assertEquals(1, pascal(0, 0))
 
   @Rule def individualTestTimeout = new org.junit.rules.Timeout(10 * 1000)
 }

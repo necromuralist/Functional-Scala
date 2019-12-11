@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Functional Scala (Posts about course 1)</title><link>https://necromuralist.github.io/Functional-Scala/</link><description></description><atom:link href="https://necromuralist.github.io/Functional-Scala/categories/course-1.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:necromuralist@protonmail.com"&gt;Cloistered Monkey&lt;/a&gt; </copyright><lastBuildDate>Tue, 10 Dec 2019 00:52:16 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Recursion</title><link>https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Functional Scala (Posts about course 1)</title><link>https://necromuralist.github.io/Functional-Scala/</link><description></description><atom:link href="https://necromuralist.github.io/Functional-Scala/categories/course-1.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:necromuralist@protonmail.com"&gt;Cloistered Monkey&lt;/a&gt; </copyright><lastBuildDate>Wed, 11 Dec 2019 00:16:57 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Recursion</title><link>https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
 &lt;h2&gt;Table of Contents&lt;/h2&gt;
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#orgdfee535"&gt;Begin&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#orga738b68"&gt;Middle&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#org0ab4dd7"&gt;Begin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#org8fb90a1"&gt;Middle&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#orgcc83fe4"&gt;Exercise 1: Pascal’s Triangle&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#org84d21cf"&gt;Exercise 2: Parentheses Balancing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#orgf96ad56"&gt;Exercise 3: Counting Change&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#org72aa677"&gt;Exercise 1: Pascal’s Triangle&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#org3d49ffc"&gt;Exercise 2: Parentheses Balancing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#orgab52b37"&gt;Exercise 3: Counting Change&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#orgaf69926"&gt;End&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#org41742a4"&gt;End&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgdfee535" class="outline-2"&gt;
-&lt;h2 id="orgdfee535"&gt;Begin&lt;/h2&gt;
+&lt;div id="outline-container-org0ab4dd7" class="outline-2"&gt;
+&lt;h2 id="org0ab4dd7"&gt;Begin&lt;/h2&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orga738b68" class="outline-2"&gt;
-&lt;h2 id="orga738b68"&gt;Middle&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orga738b68"&gt;
+&lt;div id="outline-container-org8fb90a1" class="outline-2"&gt;
+&lt;h2 id="org8fb90a1"&gt;Middle&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8fb90a1"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgcc83fe4" class="outline-3"&gt;
-&lt;h3 id="orgcc83fe4"&gt;Exercise 1: Pascal’s Triangle&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgcc83fe4"&gt;
+&lt;div id="outline-container-org72aa677" class="outline-3"&gt;
+&lt;h3 id="org72aa677"&gt;Exercise 1: Pascal’s Triangle&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org72aa677"&gt;
 &lt;p&gt;
 The following pattern of numbers is called Pascal’s triangle.
 &lt;/p&gt;
@@ -45,14 +45,49 @@ The numbers at the edge of the triangle are all 1, and each number inside the tr
 Do this exercise by implementing the pascal function in Main.scala, which takes a column c and a row r, counting from 0 and returns the number at that spot in the triangle. For example, &lt;code&gt;pascal(0,2)=1&lt;/code&gt;, &lt;code&gt;pascal(1,2)=2&lt;/code&gt;, and &lt;code&gt;pascal(1,3)=3&lt;/code&gt;.
 &lt;/p&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="n"&gt;pascal&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="k"&gt;:&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="k"&gt;:&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="k"&gt;:&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;def pascal(c: Int, r: Int): Int = {
+  require(r &amp;gt;= 0)
+  require(c &amp;gt;= 0)
+  require(c &amp;lt;= r)
+  1
+}
 &lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;assert(pascal(0, 0) == 1)
+try {
+  pascal(1, 0)
+  throw new AssertionError
+} catch {
+  case e: IllegalArgumentException =&amp;gt; println("Passed pascal(0, 1)")
+}
+
+try {
+  pascal(-2, -1)
+  throw new AssertionError
+} catch {
+  case e: IllegalArgumentException =&amp;gt; println("Passed pascal(0, -1)")
+}
+
+try {
+  pascal(-1, 0)
+  throw new AssertionError
+} catch {
+  case e: IllegalArgumentException =&amp;gt; println("Passed pascal(0, -1)")
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+Passed pascal(0, 1)
+Passed pascal(0, -1)
+Passed pascal(0, -1)
+
+&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org84d21cf" class="outline-3"&gt;
-&lt;h3 id="org84d21cf"&gt;Exercise 2: Parentheses Balancing&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org84d21cf"&gt;
+&lt;div id="outline-container-org3d49ffc" class="outline-3"&gt;
+&lt;h3 id="org3d49ffc"&gt;Exercise 2: Parentheses Balancing&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org3d49ffc"&gt;
 &lt;p&gt;
 Write a recursive function which verifies the balancing of parentheses in a string, which we represent as a List[Char] not a String. For example, the function should return true for the following strings:
 &lt;/p&gt;
@@ -101,9 +136,9 @@ Testing: You can use the toList method to convert from a String to aList[Char]: 
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgf96ad56" class="outline-3"&gt;
-&lt;h3 id="orgf96ad56"&gt;Exercise 3: Counting Change&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgf96ad56"&gt;
+&lt;div id="outline-container-orgab52b37" class="outline-3"&gt;
+&lt;h3 id="orgab52b37"&gt;Exercise 3: Counting Change&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgab52b37"&gt;
 &lt;p&gt;
 Write a recursive function that counts how many different ways you can make change for an amount, given a list of coin denominations. For example, there are 3 ways to give change for 4 if you have coins with denomination 1 and 2: 1+1+1+1, 1+1+2, 2+2.
 &lt;/p&gt;
@@ -125,6 +160,6 @@ Once again, you can make use of functions isEmpty, head and tail on the list of 
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgaf69926" class="outline-2"&gt;
-&lt;h2 id="orgaf69926"&gt;End&lt;/h2&gt;
+&lt;div id="outline-container-org41742a4" class="outline-2"&gt;
+&lt;h2 id="org41742a4"&gt;End&lt;/h2&gt;
 &lt;/div&gt;</description><category>course 1</category><guid>https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/</guid><pubDate>Sun, 08 Dec 2019 03:49:38 GMT</pubDate></item></channel></rss>
