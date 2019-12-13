@@ -13,12 +13,18 @@ object RecFun extends RecFunInterface {
 
   /**
    * Exercise 1
-   */
-  def pascal(c: Int, r: Int): Int = {
-    require(c <= r)
-    require(c >= 0)
-    if (c == 0) 1
-    else pascal(c - 1, r) * (r + 1 - c)/c    
+    */
+  // @annotation.tailrec
+  def pascal(c: Int, r: Int): Int = c match {
+    case 0 => {
+      require( c<= r)
+      1
+    }
+    case _ => {
+      require(c <= r)
+      require(c >= 0)
+      pascal(c - 1, r) * (r + 1 - c)/c
+    }
   }
 
   /**
