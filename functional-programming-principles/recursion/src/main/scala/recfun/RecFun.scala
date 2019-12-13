@@ -14,18 +14,21 @@ object RecFun extends RecFunInterface {
   /**
    * Exercise 1
     */
-  // @annotation.tailrec
-  def pascal(c: Int, r: Int): Int = c match {
-    case 0 => {
-      require( c<= r)
-      1
-    }
-    case _ => {
-      require(c <= r)
-      require(c >= 0)
-      pascal(c - 1, r) * (r + 1 - c)/c
-    }
-  }
+  def pascal(c: Int, r: Int): Int = {
+    @annotation.tailrec
+    def pascal_accumulated(column: Int, row: Int, accumulator: Int): Int = column match{
+      case 0 => {
+        require(column <= row)
+        accumulator
+      }
+      case _ => {
+        require(column <= row)
+        require(column >= 0)
+        pascal_accumulated(column - 1, row, accumulator * (row + 1 - column)/column)
+      }
+    } // pascal_accumulated
+    pascal_accumulated(c, r, 1)
+  } // pascal
 
   /**
    * Exercise 2
