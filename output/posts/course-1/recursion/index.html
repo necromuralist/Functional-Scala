@@ -73,27 +73,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0ab4dd7">Begin</a></li>
-<li><a href="#org8fb90a1">Middle</a>
+<li><a href="#org1460da1">Begin</a></li>
+<li><a href="#orgcb27636">Middle</a>
 <ul>
-<li><a href="#org72aa677">Exercise 1: Pascal’s Triangle</a></li>
-<li><a href="#org3d49ffc">Exercise 2: Parentheses Balancing</a></li>
-<li><a href="#orgab52b37">Exercise 3: Counting Change</a></li>
+<li><a href="#orge5438b0">Exercise 1: Pascal’s Triangle</a></li>
+<li><a href="#org4bea9bf">Exercise 2: Parentheses Balancing</a></li>
+<li><a href="#orge5c3452">Exercise 3: Counting Change</a></li>
 </ul>
 </li>
-<li><a href="#org41742a4">End</a></li>
+<li><a href="#org7cc2955">End</a></li>
 </ul>
 </div>
 </div>
-<div class="outline-2" id="outline-container-org0ab4dd7">
-<h2 id="org0ab4dd7">Begin</h2>
+<div class="outline-2" id="outline-container-org1460da1">
+<h2 id="org1460da1">Begin</h2>
 </div>
-<div class="outline-2" id="outline-container-org8fb90a1">
-<h2 id="org8fb90a1">Middle</h2>
-<div class="outline-text-2" id="text-org8fb90a1"></div>
-<div class="outline-3" id="outline-container-org72aa677">
-<h3 id="org72aa677">Exercise 1: Pascal’s Triangle</h3>
-<div class="outline-text-3" id="text-org72aa677">
+<div class="outline-2" id="outline-container-orgcb27636">
+<h2 id="orgcb27636">Middle</h2>
+<div class="outline-text-2" id="text-orgcb27636"></div>
+<div class="outline-3" id="outline-container-orge5438b0">
+<h3 id="orge5438b0">Exercise 1: Pascal’s Triangle</h3>
+<div class="outline-text-3" id="text-orge5438b0">
 <p>The following pattern of numbers is called Pascal’s triangle.</p>
 <pre class="example">
     1
@@ -106,10 +106,19 @@
 <p>Do this exercise by implementing the pascal function in Main.scala, which takes a column c and a row r, counting from 0 and returns the number at that spot in the triangle. For example, <code>pascal(0,2)=1</code>, <code>pascal(1,2)=2</code>, and <code>pascal(1,3)=3</code>.</p>
 <div class="highlight">
 <pre><span></span>def pascal(c: Int, r: Int): Int = {
-  require(r &gt;= 0)
-  require(c &gt;= 0)
-  require(c &lt;= r)
-  1
+    @annotation.tailrec
+    def pascal_accumulated(column: Int, row: Int, accumulator: Int): Int = column match{
+      case 0 =&gt; {
+        require(column &lt;= row)
+        accumulator
+      }
+      case _ =&gt; {
+        require(column &lt;= row)
+        require(column &gt;= 0)
+        pascal_accumulated(column - 1, row, accumulator * (row + 1 - column)/column)
+      }
+    } // pascal_accumulated
+    pascal_accumulated(c, r, 1)
 }
 </pre></div>
 <div class="highlight">
@@ -132,19 +141,22 @@ try {
   pascal(-1, 0)
   throw new AssertionError
 } catch {
-  case e: IllegalArgumentException =&gt; println("Passed pascal(0, -1)")
+  case e: IllegalArgumentException =&gt; println("Passed pascal(-1, 0)")
 }
+
+assert(pascal(0, 2) == 1)
+assert(pascal(1, 2) == 2)
+assert(pascal(1, 3) == 3)
+assert(pascal(3, 5) == 10)
 </pre></div>
 <pre class="example">
-Passed pascal(0, 1)
-Passed pascal(0, -1)
-Passed pascal(0, -1)
+3 - f145e977-a9fc-49a6-9a46-428cd6193fa4
 
 </pre></div>
 </div>
-<div class="outline-3" id="outline-container-org3d49ffc">
-<h3 id="org3d49ffc">Exercise 2: Parentheses Balancing</h3>
-<div class="outline-text-3" id="text-org3d49ffc">
+<div class="outline-3" id="outline-container-org4bea9bf">
+<h3 id="org4bea9bf">Exercise 2: Parentheses Balancing</h3>
+<div class="outline-text-3" id="text-org4bea9bf">
 <p>Write a recursive function which verifies the balancing of parentheses in a string, which we represent as a List[Char] not a String. For example, the function should return true for the following strings:</p>
 <ul class="org-ul">
 <li>(if (zero? x) max (/ 1 x))</li>
@@ -170,9 +182,9 @@ Passed pascal(0, -1)
 <p>Testing: You can use the toList method to convert from a String to aList[Char]: e.g. "(just an) example".toList.</p>
 </div>
 </div>
-<div class="outline-3" id="outline-container-orgab52b37">
-<h3 id="orgab52b37">Exercise 3: Counting Change</h3>
-<div class="outline-text-3" id="text-orgab52b37">
+<div class="outline-3" id="outline-container-orge5c3452">
+<h3 id="orge5c3452">Exercise 3: Counting Change</h3>
+<div class="outline-text-3" id="text-orge5c3452">
 <p>Write a recursive function that counts how many different ways you can make change for an amount, given a list of coin denominations. For example, there are 3 ways to give change for 4 if you have coins with denomination 1 and 2: 1+1+1+1, 1+1+2, 2+2.</p>
 <p>Do this exercise by implementing the countChange function inMain.scala. This function takes an amount to change, and a list of unique denominations for the coins. Its signature is as follows:</p>
 <div class="highlight">
@@ -183,8 +195,8 @@ Passed pascal(0, -1)
 </div>
 </div>
 </div>
-<div class="outline-2" id="outline-container-org41742a4">
-<h2 id="org41742a4">End</h2>
+<div class="outline-2" id="outline-container-org7cc2955">
+<h2 id="org7cc2955">End</h2>
 </div>
 </div>
 <aside class="postpromonav">
