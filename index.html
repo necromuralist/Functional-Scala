@@ -63,39 +63,39 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org0f7f227">Beginning</a></li>
-<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#orgfa17e06">Middle</a>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#orgeca601e">Beginning</a></li>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#orgd981bdb">Middle</a>
 <ul>
-<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org8517477">Abstract and Concrete Methods</a>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#orgf36649b">Abstract and Concrete Methods</a>
 <ul>
-<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#orgd66fb2a">Traits</a></li>
-<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org853af7b">Boy</a></li>
-<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org209603c">A Girl</a></li>
-<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#orga85b5b7">A Werewolf</a></li>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org95d79d1">Traits</a></li>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org3248c07">Boy</a></li>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#orgce876df">A Girl</a></li>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org37d7d6a">A Werewolf</a></li>
 </ul>
 </li>
-<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#orgcb5a846">But There's Also An Abstract Class</a></li>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org564ea48">But There's Also An Abstract Class</a></li>
 </ul>
 </li>
-<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#orgf36b26a">End</a></li>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org2d4a4cd">End</a></li>
 </ul>
 </div>
 </div>
-<div class="outline-2" id="outline-container-org0f7f227">
-<h2 id="org0f7f227">Beginning</h2>
-<div class="outline-text-2" id="text-org0f7f227">
+<div class="outline-2" id="outline-container-orgeca601e">
+<h2 id="orgeca601e">Beginning</h2>
+<div class="outline-text-2" id="text-orgeca601e">
 <p>Traits are both similar and different from <a href="https://docs.oracle.com/javase/tutorial/java/concepts/interface.html">Interfaces</a> and <a href="https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html">Abstract Classes</a>. Like Interfaces, traits don't take arguments, but unlike interfaces and like Abstract Classes, traits can implement some methods and leave others abstract. Traits also support multiple inheritance and you can add them to objects that are created from Classes that don't extend them in their definition.</p>
 </div>
 </div>
-<div class="outline-2" id="outline-container-orgfa17e06">
-<h2 id="orgfa17e06">Middle</h2>
-<div class="outline-text-2" id="text-orgfa17e06"></div>
-<div class="outline-3" id="outline-container-org8517477">
-<h3 id="org8517477">Abstract and Concrete Methods</h3>
-<div class="outline-text-3" id="text-org8517477"></div>
-<div class="outline-4" id="outline-container-orgd66fb2a">
-<h4 id="orgd66fb2a">Traits</h4>
-<div class="outline-text-4" id="text-orgd66fb2a">
+<div class="outline-2" id="outline-container-orgd981bdb">
+<h2 id="orgd981bdb">Middle</h2>
+<div class="outline-text-2" id="text-orgd981bdb"></div>
+<div class="outline-3" id="outline-container-orgf36649b">
+<h3 id="orgf36649b">Abstract and Concrete Methods</h3>
+<div class="outline-text-3" id="text-orgf36649b"></div>
+<div class="outline-4" id="outline-container-org95d79d1">
+<h4 id="org95d79d1">Traits</h4>
+<div class="outline-text-4" id="text-org95d79d1">
 <div class="highlight">
 <pre><span></span>trait Child {
   def speak(): Unit = println("Never. I must be seen but not heard.")
@@ -105,9 +105,9 @@
 <p>This trait has a concrete method (<code>speak</code>) and an abstract method <code>come_to_me</code>.</p>
 </div>
 </div>
-<div class="outline-4" id="outline-container-org853af7b">
-<h4 id="org853af7b">Boy</h4>
-<div class="outline-text-4" id="text-org853af7b">
+<div class="outline-4" id="outline-container-org3248c07">
+<h4 id="org3248c07">Boy</h4>
+<div class="outline-text-4" id="text-org3248c07">
 <p>If you don't implement the <code>come_to_me</code> method then the next definition will be rejected by the compiler.</p>
 <div class="highlight">
 <pre><span></span>class Boy(name: String) extends Child {
@@ -125,9 +125,9 @@ I, Alphonse, will be there at once.
 
 </pre></div>
 </div>
-<div class="outline-4" id="outline-container-org209603c">
-<h4 id="org209603c">A Girl</h4>
-<div class="outline-text-4" id="text-org209603c">
+<div class="outline-4" id="outline-container-orgce876df">
+<h4 id="orgce876df">A Girl</h4>
+<div class="outline-text-4" id="text-orgce876df">
 <p>You can also implement the <code>speak</code> method, but since it's concrete you need to override it instead of just implement it.</p>
 <div class="highlight">
 <pre><span></span>class Girl extends Child {
@@ -146,9 +146,9 @@ As if.
 
 </pre></div>
 </div>
-<div class="outline-4" id="outline-container-orga85b5b7">
-<h4 id="orga85b5b7">A Werewolf</h4>
-<div class="outline-text-4" id="text-orga85b5b7">
+<div class="outline-4" id="outline-container-org37d7d6a">
+<h4 id="org37d7d6a">A Werewolf</h4>
+<div class="outline-text-4" id="text-org37d7d6a">
 <p>You can also add a trait to an existing class.</p>
 <div class="highlight">
 <pre><span></span>trait Tail {
@@ -171,9 +171,9 @@ I'm quite happy.
 </pre></div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-orgcb5a846">
-<h3 id="orgcb5a846">But There's Also An Abstract Class</h3>
-<div class="outline-text-3" id="text-orgcb5a846">
+<div class="outline-3" id="outline-container-org564ea48">
+<h3 id="org564ea48">But There's Also An Abstract Class</h3>
+<div class="outline-text-3" id="text-org564ea48">
 <p>Scala also provides an Abstract Class, this is to handle two cases:</p>
 <ul class="org-ul">
 <li>You want to define arguments to the constructor in the base class</li>
@@ -183,9 +183,9 @@ I'm quite happy.
 </div>
 </div>
 </div>
-<div class="outline-2" id="outline-container-orgf36b26a">
-<h2 id="orgf36b26a">End</h2>
-<div class="outline-text-2" id="text-orgf36b26a">
+<div class="outline-2" id="outline-container-org2d4a4cd">
+<h2 id="org2d4a4cd">End</h2>
+<div class="outline-text-2" id="text-org2d4a4cd">
 <p>Being mostly a python programmer I'm not totally certain what Interfaces are for, but luckily, with traits, we can have the best of both Interfaces and Abstract Classes together.</p>
 </div>
 </div>
@@ -204,29 +204,29 @@ I'm quite happy.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="posts/hello-scala/traits-as-interfaces/#orge8f3e30">Beginning</a></li>
-<li><a href="posts/hello-scala/traits-as-interfaces/#org7e58b83">Middle</a>
+<li><a href="posts/hello-scala/traits-as-interfaces/#orgbef3b7b">Beginning</a></li>
+<li><a href="posts/hello-scala/traits-as-interfaces/#org2938dee">Middle</a>
 <ul>
-<li><a href="posts/hello-scala/traits-as-interfaces/#org9b860ef">Some Traits</a></li>
-<li><a href="posts/hello-scala/traits-as-interfaces/#org5a6c718">Create a Cow</a></li>
+<li><a href="posts/hello-scala/traits-as-interfaces/#org2e16d1c">Some Traits</a></li>
+<li><a href="posts/hello-scala/traits-as-interfaces/#org7dfa6f9">Create a Cow</a></li>
 </ul>
 </li>
-<li><a href="posts/hello-scala/traits-as-interfaces/#orga54de85">End</a></li>
+<li><a href="posts/hello-scala/traits-as-interfaces/#orgde84147">End</a></li>
 </ul>
 </div>
 </div>
-<div class="outline-2" id="outline-container-orge8f3e30">
-<h2 id="orge8f3e30">Beginning</h2>
-<div class="outline-text-2" id="text-orge8f3e30">
+<div class="outline-2" id="outline-container-orgbef3b7b">
+<h2 id="orgbef3b7b">Beginning</h2>
+<div class="outline-text-2" id="text-orgbef3b7b">
 <p>This is a look at Scala traits. The traits look sort of like abstract base classes, but they are used here to define "parts" for classes that can then be implemented to create a specific type.</p>
 </div>
 </div>
-<div class="outline-2" id="outline-container-org7e58b83">
-<h2 id="org7e58b83">Middle</h2>
-<div class="outline-text-2" id="text-org7e58b83"></div>
-<div class="outline-3" id="outline-container-org9b860ef">
-<h3 id="org9b860ef">Some Traits</h3>
-<div class="outline-text-3" id="text-org9b860ef">
+<div class="outline-2" id="outline-container-org2938dee">
+<h2 id="org2938dee">Middle</h2>
+<div class="outline-text-2" id="text-org2938dee"></div>
+<div class="outline-3" id="outline-container-org2e16d1c">
+<h3 id="org2e16d1c">Some Traits</h3>
+<div class="outline-text-3" id="text-org2e16d1c">
 <p>These are some traits to make up an animal. Viewed in this context, the name "traits" makes sense - each trait defines a different aspect of the animal class.</p>
 <div class="highlight">
 <pre><span></span>trait Tail {
@@ -263,9 +263,9 @@ I'm quite happy.
 </pre></div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-org5a6c718">
-<h3 id="org5a6c718">Create a Cow</h3>
-<div class="outline-text-3" id="text-org5a6c718">
+<div class="outline-3" id="outline-container-org7dfa6f9">
+<h3 id="org7dfa6f9">Create a Cow</h3>
+<div class="outline-text-3" id="text-org7dfa6f9">
 <div class="highlight">
 <pre><span></span>val cow = new Cow()
 cow.wag
@@ -286,9 +286,9 @@ moo
 </div>
 </div>
 </div>
-<div class="outline-2" id="outline-container-orga54de85">
-<h2 id="orga54de85">End</h2>
-<div class="outline-text-2" id="text-orga54de85">
+<div class="outline-2" id="outline-container-orgde84147">
+<h2 id="orgde84147">End</h2>
+<div class="outline-text-2" id="text-orgde84147">
 <p>So that's traits. There's a lot more to them, I'm sure, but that's enoug for now.</p>
 </div>
 </div>
@@ -307,29 +307,29 @@ moo
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#org4d2e75d">Beginning</a></li>
-<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#org85d9e7d">Middle</a>
+<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#org4f0e613">Beginning</a></li>
+<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#org1e0ad97">Middle</a>
 <ul>
-<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#org4a5df70">The Traditional Ipython Block</a></li>
-<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#orge6406fb">The Jupyter Block</a></li>
+<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#org53627f3">The Traditional Ipython Block</a></li>
+<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#org59868a6">The Jupyter Block</a></li>
 </ul>
 </li>
-<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#org3c91346">End</a></li>
+<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#orgbeae471">End</a></li>
 </ul>
 </div>
 </div>
-<div class="outline-2" id="outline-container-org4d2e75d">
-<h2 id="org4d2e75d">Beginning</h2>
-<div class="outline-text-2" id="text-org4d2e75d">
+<div class="outline-2" id="outline-container-org4f0e613">
+<h2 id="org4f0e613">Beginning</h2>
+<div class="outline-text-2" id="text-org4f0e613">
 <p>This is a test of using <a href="https://github.com/gregsexton/ob-ipython">ob-ipython</a> with the scala kernel (provided by <a href="https://almond.sh/">Almond</a>, so that has to be installed first).</p>
 </div>
 </div>
-<div class="outline-2" id="outline-container-org85d9e7d">
-<h2 id="org85d9e7d">Middle</h2>
-<div class="outline-text-2" id="text-org85d9e7d"></div>
-<div class="outline-3" id="outline-container-org4a5df70">
-<h3 id="org4a5df70">The Traditional Ipython Block</h3>
-<div class="outline-text-3" id="text-org4a5df70">
+<div class="outline-2" id="outline-container-org1e0ad97">
+<h2 id="org1e0ad97">Middle</h2>
+<div class="outline-text-2" id="text-org1e0ad97"></div>
+<div class="outline-3" id="outline-container-org53627f3">
+<h3 id="org53627f3">The Traditional Ipython Block</h3>
+<div class="outline-text-3" id="text-org53627f3">
 <div class="highlight">
 <pre><span></span>println("testing")
 </pre></div>
@@ -340,9 +340,9 @@ testing
 <p>Surprisingly, that worked (although it's very slow).</p>
 </div>
 </div>
-<div class="outline-3" id="outline-container-orge6406fb">
-<h3 id="orge6406fb">The Jupyter Block</h3>
-<div class="outline-text-3" id="text-orge6406fb">
+<div class="outline-3" id="outline-container-org59868a6">
+<h3 id="org59868a6">The Jupyter Block</h3>
+<div class="outline-text-3" id="text-org59868a6">
 <p>According to the documentation for <code>ob-ipython</code> it's being transitioned over to using <code>jupyter</code> instead of <code>ipython</code> so there's a new type of source-block to use.</p>
 <div class="highlight">
 <pre><span></span>val x = 5
@@ -356,9 +356,9 @@ x is 5
 </div>
 </div>
 </div>
-<div class="outline-2" id="outline-container-org3c91346">
-<h2 id="org3c91346">End</h2>
-<div class="outline-text-2" id="text-org3c91346">
+<div class="outline-2" id="outline-container-orgbeae471">
+<h2 id="orgbeae471">End</h2>
+<div class="outline-text-2" id="text-orgbeae471">
 <p>Not very exciting, in what it does (other than work). I'll stick with ob-ipython for now and see if <code>emacs-jupyter</code> works as well - in my previous experiment with it it didn't seem to be quite ready.</p>
 </div>
 </div>
@@ -663,27 +663,27 @@ Toppings: ArrayBuffer()
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="posts/course-1/recursion/#orgdfee535">Begin</a></li>
-<li><a href="posts/course-1/recursion/#orga738b68">Middle</a>
+<li><a href="posts/course-1/recursion/#org1460da1">Begin</a></li>
+<li><a href="posts/course-1/recursion/#orgcb27636">Middle</a>
 <ul>
-<li><a href="posts/course-1/recursion/#orgcc83fe4">Exercise 1: Pascal’s Triangle</a></li>
-<li><a href="posts/course-1/recursion/#org84d21cf">Exercise 2: Parentheses Balancing</a></li>
-<li><a href="posts/course-1/recursion/#orgf96ad56">Exercise 3: Counting Change</a></li>
+<li><a href="posts/course-1/recursion/#orge5438b0">Exercise 1: Pascal’s Triangle</a></li>
+<li><a href="posts/course-1/recursion/#org4bea9bf">Exercise 2: Parentheses Balancing</a></li>
+<li><a href="posts/course-1/recursion/#orge5c3452">Exercise 3: Counting Change</a></li>
 </ul>
 </li>
-<li><a href="posts/course-1/recursion/#orgaf69926">End</a></li>
+<li><a href="posts/course-1/recursion/#org7cc2955">End</a></li>
 </ul>
 </div>
 </div>
-<div class="outline-2" id="outline-container-orgdfee535">
-<h2 id="orgdfee535">Begin</h2>
+<div class="outline-2" id="outline-container-org1460da1">
+<h2 id="org1460da1">Begin</h2>
 </div>
-<div class="outline-2" id="outline-container-orga738b68">
-<h2 id="orga738b68">Middle</h2>
-<div class="outline-text-2" id="text-orga738b68"></div>
-<div class="outline-3" id="outline-container-orgcc83fe4">
-<h3 id="orgcc83fe4">Exercise 1: Pascal’s Triangle</h3>
-<div class="outline-text-3" id="text-orgcc83fe4">
+<div class="outline-2" id="outline-container-orgcb27636">
+<h2 id="orgcb27636">Middle</h2>
+<div class="outline-text-2" id="text-orgcb27636"></div>
+<div class="outline-3" id="outline-container-orge5438b0">
+<h3 id="orge5438b0">Exercise 1: Pascal’s Triangle</h3>
+<div class="outline-text-3" id="text-orge5438b0">
 <p>The following pattern of numbers is called Pascal’s triangle.</p>
 <pre class="example">
     1
@@ -695,13 +695,58 @@ Toppings: ArrayBuffer()
 <p>The numbers at the edge of the triangle are all 1, and each number inside the triangle is the sum of the two numbers above it. Write a function that computes the elements of Pascal’s triangle by means of a recursive process.</p>
 <p>Do this exercise by implementing the pascal function in Main.scala, which takes a column c and a row r, counting from 0 and returns the number at that spot in the triangle. For example, <code>pascal(0,2)=1</code>, <code>pascal(1,2)=2</code>, and <code>pascal(1,3)=3</code>.</p>
 <div class="highlight">
-<pre><span></span><span class="k">def</span> <span class="n">pascal</span><span class="o">(</span><span class="n">c</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">r</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span>
+<pre><span></span>def pascal(c: Int, r: Int): Int = {
+    @annotation.tailrec
+    def pascal_accumulated(column: Int, row: Int, accumulator: Int): Int = column match{
+      case 0 =&gt; {
+        require(column &lt;= row)
+        accumulator
+      }
+      case _ =&gt; {
+        require(column &lt;= row)
+        require(column &gt;= 0)
+        pascal_accumulated(column - 1, row, accumulator * (row + 1 - column)/column)
+      }
+    } // pascal_accumulated
+    pascal_accumulated(c, r, 1)
+}
+</pre></div>
+<div class="highlight">
+<pre><span></span>assert(pascal(0, 0) == 1)
+try {
+  pascal(1, 0)
+  throw new AssertionError
+} catch {
+  case e: IllegalArgumentException =&gt; println("Passed pascal(0, 1)")
+}
+
+try {
+  pascal(-2, -1)
+  throw new AssertionError
+} catch {
+  case e: IllegalArgumentException =&gt; println("Passed pascal(0, -1)")
+}
+
+try {
+  pascal(-1, 0)
+  throw new AssertionError
+} catch {
+  case e: IllegalArgumentException =&gt; println("Passed pascal(-1, 0)")
+}
+
+assert(pascal(0, 2) == 1)
+assert(pascal(1, 2) == 2)
+assert(pascal(1, 3) == 3)
+assert(pascal(3, 5) == 10)
+</pre></div>
+<pre class="example">
+3 - f145e977-a9fc-49a6-9a46-428cd6193fa4
+
 </pre></div>
 </div>
-</div>
-<div class="outline-3" id="outline-container-org84d21cf">
-<h3 id="org84d21cf">Exercise 2: Parentheses Balancing</h3>
-<div class="outline-text-3" id="text-org84d21cf">
+<div class="outline-3" id="outline-container-org4bea9bf">
+<h3 id="org4bea9bf">Exercise 2: Parentheses Balancing</h3>
+<div class="outline-text-3" id="text-org4bea9bf">
 <p>Write a recursive function which verifies the balancing of parentheses in a string, which we represent as a List[Char] not a String. For example, the function should return true for the following strings:</p>
 <ul class="org-ul">
 <li>(if (zero? x) max (/ 1 x))</li>
@@ -727,9 +772,9 @@ Toppings: ArrayBuffer()
 <p>Testing: You can use the toList method to convert from a String to aList[Char]: e.g. "(just an) example".toList.</p>
 </div>
 </div>
-<div class="outline-3" id="outline-container-orgf96ad56">
-<h3 id="orgf96ad56">Exercise 3: Counting Change</h3>
-<div class="outline-text-3" id="text-orgf96ad56">
+<div class="outline-3" id="outline-container-orge5c3452">
+<h3 id="orge5c3452">Exercise 3: Counting Change</h3>
+<div class="outline-text-3" id="text-orge5c3452">
 <p>Write a recursive function that counts how many different ways you can make change for an amount, given a list of coin denominations. For example, there are 3 ways to give change for 4 if you have coins with denomination 1 and 2: 1+1+1+1, 1+1+2, 2+2.</p>
 <p>Do this exercise by implementing the countChange function inMain.scala. This function takes an amount to change, and a list of unique denominations for the coins. Its signature is as follows:</p>
 <div class="highlight">
@@ -740,8 +785,8 @@ Toppings: ArrayBuffer()
 </div>
 </div>
 </div>
-<div class="outline-2" id="outline-container-orgaf69926">
-<h2 id="orgaf69926">End</h2>
+<div class="outline-2" id="outline-container-org7cc2955">
+<h2 id="org7cc2955">End</h2>
 </div>
 </div>
 </article>
