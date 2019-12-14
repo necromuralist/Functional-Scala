@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Functional Scala</title><link>https://necromuralist.github.io/Functional-Scala/</link><description>Learning Functional Programming With Scala</description><atom:link href="https://necromuralist.github.io/Functional-Scala/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:necromuralist@protonmail.com"&gt;Cloistered Monkey&lt;/a&gt; </copyright><lastBuildDate>Fri, 13 Dec 2019 05:25:29 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Traits Are Closer To Abstract Classes</title><link>https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Functional Scala</title><link>https://necromuralist.github.io/Functional-Scala/</link><description>Learning Functional Programming With Scala</description><atom:link href="https://necromuralist.github.io/Functional-Scala/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:necromuralist@protonmail.com"&gt;Cloistered Monkey&lt;/a&gt; </copyright><lastBuildDate>Sat, 14 Dec 2019 00:49:05 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Traits Are Closer To Abstract Classes</title><link>https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
 &lt;h2&gt;Table of Contents&lt;/h2&gt;
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#orgeca601e"&gt;Beginning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#orgd981bdb"&gt;Middle&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#org0f7f227"&gt;Beginning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#orgfa17e06"&gt;Middle&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#orgf36649b"&gt;Abstract and Concrete Methods&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#org8517477"&gt;Abstract and Concrete Methods&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#org95d79d1"&gt;Traits&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#org3248c07"&gt;Boy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#orgce876df"&gt;A Girl&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#org37d7d6a"&gt;A Werewolf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#orgd66fb2a"&gt;Traits&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#org853af7b"&gt;Boy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#org209603c"&gt;A Girl&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#orga85b5b7"&gt;A Werewolf&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#org564ea48"&gt;But There's Also An Abstract Class&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#orgcb5a846"&gt;But There's Also An Abstract Class&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#org2d4a4cd"&gt;End&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-are-closer-to-abstract-classes/#orgf36b26a"&gt;End&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgeca601e" class="outline-2"&gt;
-&lt;h2 id="orgeca601e"&gt;Beginning&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgeca601e"&gt;
+&lt;div id="outline-container-org0f7f227" class="outline-2"&gt;
+&lt;h2 id="org0f7f227"&gt;Beginning&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0f7f227"&gt;
 &lt;p&gt;
 Traits are both similar and different from &lt;a href="https://docs.oracle.com/javase/tutorial/java/concepts/interface.html"&gt;Interfaces&lt;/a&gt; and &lt;a href="https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html"&gt;Abstract Classes&lt;/a&gt;. Like Interfaces, traits don't take arguments, but unlike interfaces and like Abstract Classes, traits can implement some methods and leave others abstract. Traits also support multiple inheritance and you can add them to objects that are created from Classes that don't extend them in their definition.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgd981bdb" class="outline-2"&gt;
-&lt;h2 id="orgd981bdb"&gt;Middle&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd981bdb"&gt;
+&lt;div id="outline-container-orgfa17e06" class="outline-2"&gt;
+&lt;h2 id="orgfa17e06"&gt;Middle&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgfa17e06"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgf36649b" class="outline-3"&gt;
-&lt;h3 id="orgf36649b"&gt;Abstract and Concrete Methods&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgf36649b"&gt;
+&lt;div id="outline-container-org8517477" class="outline-3"&gt;
+&lt;h3 id="org8517477"&gt;Abstract and Concrete Methods&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org8517477"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org95d79d1" class="outline-4"&gt;
-&lt;h4 id="org95d79d1"&gt;Traits&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org95d79d1"&gt;
+&lt;div id="outline-container-orgd66fb2a" class="outline-4"&gt;
+&lt;h4 id="orgd66fb2a"&gt;Traits&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgd66fb2a"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;trait Child {
   def speak(): Unit = println("Never. I must be seen but not heard.")
   def come_to_me(): Unit
@@ -51,9 +51,9 @@ This trait has a concrete method (&lt;code&gt;speak&lt;/code&gt;) and an abstrac
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org3248c07" class="outline-4"&gt;
-&lt;h4 id="org3248c07"&gt;Boy&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org3248c07"&gt;
+&lt;div id="outline-container-org853af7b" class="outline-4"&gt;
+&lt;h4 id="org853af7b"&gt;Boy&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org853af7b"&gt;
 &lt;p&gt;
 If you don't implement the &lt;code&gt;come_to_me&lt;/code&gt; method then the next definition will be rejected by the compiler.
 &lt;/p&gt;
@@ -75,9 +75,9 @@ I, Alphonse, will be there at once.
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgce876df" class="outline-4"&gt;
-&lt;h4 id="orgce876df"&gt;A Girl&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgce876df"&gt;
+&lt;div id="outline-container-org209603c" class="outline-4"&gt;
+&lt;h4 id="org209603c"&gt;A Girl&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org209603c"&gt;
 &lt;p&gt;
 You can also implement the &lt;code&gt;speak&lt;/code&gt; method, but since it's concrete you need to override it instead of just implement it.
 &lt;/p&gt;
@@ -100,9 +100,9 @@ As if.
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org37d7d6a" class="outline-4"&gt;
-&lt;h4 id="org37d7d6a"&gt;A Werewolf&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org37d7d6a"&gt;
+&lt;div id="outline-container-orga85b5b7" class="outline-4"&gt;
+&lt;h4 id="orga85b5b7"&gt;A Werewolf&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orga85b5b7"&gt;
 &lt;p&gt;
 You can also add a trait to an existing class.
 &lt;/p&gt;
@@ -131,9 +131,9 @@ I'm quite happy.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org564ea48" class="outline-3"&gt;
-&lt;h3 id="org564ea48"&gt;But There's Also An Abstract Class&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org564ea48"&gt;
+&lt;div id="outline-container-orgcb5a846" class="outline-3"&gt;
+&lt;h3 id="orgcb5a846"&gt;But There's Also An Abstract Class&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgcb5a846"&gt;
 &lt;p&gt;
 Scala also provides an Abstract Class, this is to handle two cases:
 &lt;/p&gt;
@@ -148,9 +148,9 @@ One thing to note about traits is that they don't take arguments to the construc
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org2d4a4cd" class="outline-2"&gt;
-&lt;h2 id="org2d4a4cd"&gt;End&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org2d4a4cd"&gt;
+&lt;div id="outline-container-orgf36b26a" class="outline-2"&gt;
+&lt;h2 id="orgf36b26a"&gt;End&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgf36b26a"&gt;
 &lt;p&gt;
 Being mostly a python programmer I'm not totally certain what Interfaces are for, but luckily, with traits, we can have the best of both Interfaces and Abstract Classes together.
 &lt;/p&gt;
@@ -159,32 +159,32 @@ Being mostly a python programmer I'm not totally certain what Interfaces are for
 &lt;h2&gt;Table of Contents&lt;/h2&gt;
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-as-interfaces/#orgbef3b7b"&gt;Beginning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-as-interfaces/#org2938dee"&gt;Middle&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-as-interfaces/#orge8f3e30"&gt;Beginning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-as-interfaces/#org7e58b83"&gt;Middle&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-as-interfaces/#org2e16d1c"&gt;Some Traits&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-as-interfaces/#org7dfa6f9"&gt;Create a Cow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-as-interfaces/#org9b860ef"&gt;Some Traits&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-as-interfaces/#org5a6c718"&gt;Create a Cow&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-as-interfaces/#orgde84147"&gt;End&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/hello-scala/traits-as-interfaces/#orga54de85"&gt;End&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgbef3b7b" class="outline-2"&gt;
-&lt;h2 id="orgbef3b7b"&gt;Beginning&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgbef3b7b"&gt;
+&lt;div id="outline-container-orge8f3e30" class="outline-2"&gt;
+&lt;h2 id="orge8f3e30"&gt;Beginning&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orge8f3e30"&gt;
 &lt;p&gt;
 This is a look at Scala traits. The traits look sort of like abstract base classes, but they are used here to define "parts" for classes that can then be implemented to create a specific type.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org2938dee" class="outline-2"&gt;
-&lt;h2 id="org2938dee"&gt;Middle&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org2938dee"&gt;
+&lt;div id="outline-container-org7e58b83" class="outline-2"&gt;
+&lt;h2 id="org7e58b83"&gt;Middle&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7e58b83"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org2e16d1c" class="outline-3"&gt;
-&lt;h3 id="org2e16d1c"&gt;Some Traits&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org2e16d1c"&gt;
+&lt;div id="outline-container-org9b860ef" class="outline-3"&gt;
+&lt;h3 id="org9b860ef"&gt;Some Traits&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org9b860ef"&gt;
 &lt;p&gt;
 These are some traits to make up an animal. Viewed in this context, the name "traits" makes sense - each trait defines a different aspect of the animal class.
 &lt;/p&gt;
@@ -227,9 +227,9 @@ Now when you create the class you can extend one of the traits and add more usin
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org7dfa6f9" class="outline-3"&gt;
-&lt;h3 id="org7dfa6f9"&gt;Create a Cow&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org7dfa6f9"&gt;
+&lt;div id="outline-container-org5a6c718" class="outline-3"&gt;
+&lt;h3 id="org5a6c718"&gt;Create a Cow&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org5a6c718"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;val cow = new Cow()
 cow.wag
 cow.move
@@ -253,9 +253,9 @@ One thing to note here is that I had a misspelling in that previous code block a
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgde84147" class="outline-2"&gt;
-&lt;h2 id="orgde84147"&gt;End&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgde84147"&gt;
+&lt;div id="outline-container-orga54de85" class="outline-2"&gt;
+&lt;h2 id="orga54de85"&gt;End&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga54de85"&gt;
 &lt;p&gt;
 So that's traits. There's a lot more to them, I'm sure, but that's enoug for now.
 &lt;/p&gt;
@@ -264,32 +264,32 @@ So that's traits. There's a lot more to them, I'm sure, but that's enoug for now
 &lt;h2&gt;Table of Contents&lt;/h2&gt;
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/exploring/ob-ipython-with-scala-a-test/#org4f0e613"&gt;Beginning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/exploring/ob-ipython-with-scala-a-test/#org1e0ad97"&gt;Middle&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/exploring/ob-ipython-with-scala-a-test/#org4d2e75d"&gt;Beginning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/exploring/ob-ipython-with-scala-a-test/#org85d9e7d"&gt;Middle&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/exploring/ob-ipython-with-scala-a-test/#org53627f3"&gt;The Traditional Ipython Block&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/exploring/ob-ipython-with-scala-a-test/#org59868a6"&gt;The Jupyter Block&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/exploring/ob-ipython-with-scala-a-test/#org4a5df70"&gt;The Traditional Ipython Block&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/exploring/ob-ipython-with-scala-a-test/#orge6406fb"&gt;The Jupyter Block&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/exploring/ob-ipython-with-scala-a-test/#orgbeae471"&gt;End&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/exploring/ob-ipython-with-scala-a-test/#org3c91346"&gt;End&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org4f0e613" class="outline-2"&gt;
-&lt;h2 id="org4f0e613"&gt;Beginning&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org4f0e613"&gt;
+&lt;div id="outline-container-org4d2e75d" class="outline-2"&gt;
+&lt;h2 id="org4d2e75d"&gt;Beginning&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org4d2e75d"&gt;
 &lt;p&gt;
 This is a test of using &lt;a href="https://github.com/gregsexton/ob-ipython"&gt;ob-ipython&lt;/a&gt; with the scala kernel (provided by &lt;a href="https://almond.sh/"&gt;Almond&lt;/a&gt;, so that has to be installed first).
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org1e0ad97" class="outline-2"&gt;
-&lt;h2 id="org1e0ad97"&gt;Middle&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org1e0ad97"&gt;
+&lt;div id="outline-container-org85d9e7d" class="outline-2"&gt;
+&lt;h2 id="org85d9e7d"&gt;Middle&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org85d9e7d"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org53627f3" class="outline-3"&gt;
-&lt;h3 id="org53627f3"&gt;The Traditional Ipython Block&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org53627f3"&gt;
+&lt;div id="outline-container-org4a5df70" class="outline-3"&gt;
+&lt;h3 id="org4a5df70"&gt;The Traditional Ipython Block&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org4a5df70"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;println("testing")
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -303,9 +303,9 @@ Surprisingly, that worked (although it's very slow).
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org59868a6" class="outline-3"&gt;
-&lt;h3 id="org59868a6"&gt;The Jupyter Block&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org59868a6"&gt;
+&lt;div id="outline-container-orge6406fb" class="outline-3"&gt;
+&lt;h3 id="orge6406fb"&gt;The Jupyter Block&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orge6406fb"&gt;
 &lt;p&gt;
 According to the documentation for &lt;code&gt;ob-ipython&lt;/code&gt; it's being transitioned over to using &lt;code&gt;jupyter&lt;/code&gt; instead of &lt;code&gt;ipython&lt;/code&gt; so there's a new type of source-block to use.
 &lt;/p&gt;
@@ -324,9 +324,9 @@ This produces the error &lt;code&gt;No org-babel-execute function for jupyter-sc
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgbeae471" class="outline-2"&gt;
-&lt;h2 id="orgbeae471"&gt;End&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgbeae471"&gt;
+&lt;div id="outline-container-org3c91346" class="outline-2"&gt;
+&lt;h2 id="org3c91346"&gt;End&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org3c91346"&gt;
 &lt;p&gt;
 Not very exciting, in what it does (other than work). I'll stick with ob-ipython for now and see if &lt;code&gt;emacs-jupyter&lt;/code&gt; works as well - in my previous experiment with it it didn't seem to be quite ready.
 &lt;/p&gt;
@@ -678,28 +678,34 @@ Toppings: ArrayBuffer()
 &lt;h2&gt;Table of Contents&lt;/h2&gt;
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#org1460da1"&gt;Begin&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#orgcb27636"&gt;Middle&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#orgc6fa570"&gt;Begin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#orgf600e7a"&gt;Middle&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#orge5438b0"&gt;Exercise 1: Pascal’s Triangle&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#org4bea9bf"&gt;Exercise 2: Parentheses Balancing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#orge5c3452"&gt;Exercise 3: Counting Change&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#org05a78ba"&gt;Exercise 1: Pascal’s Triangle&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#org7da4975"&gt;Pascal Tester&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#orgdda39cb"&gt;Naively Recursive Version&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#orgd9398cf"&gt;Tail-Recursion Version&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#org7cc2955"&gt;End&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#orgca65819"&gt;Exercise 2: Parentheses Balancing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#orgacd4528"&gt;Exercise 3: Counting Change&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/#orgd8ae7dd"&gt;End&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org1460da1" class="outline-2"&gt;
-&lt;h2 id="org1460da1"&gt;Begin&lt;/h2&gt;
+&lt;div id="outline-container-orgc6fa570" class="outline-2"&gt;
+&lt;h2 id="orgc6fa570"&gt;Begin&lt;/h2&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgcb27636" class="outline-2"&gt;
-&lt;h2 id="orgcb27636"&gt;Middle&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgcb27636"&gt;
+&lt;div id="outline-container-orgf600e7a" class="outline-2"&gt;
+&lt;h2 id="orgf600e7a"&gt;Middle&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgf600e7a"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orge5438b0" class="outline-3"&gt;
-&lt;h3 id="orge5438b0"&gt;Exercise 1: Pascal’s Triangle&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orge5438b0"&gt;
+&lt;div id="outline-container-org05a78ba" class="outline-3"&gt;
+&lt;h3 id="org05a78ba"&gt;Exercise 1: Pascal’s Triangle&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org05a78ba"&gt;
 &lt;p&gt;
 The following pattern of numbers is called Pascal’s triangle.
 &lt;/p&gt;
@@ -719,7 +725,72 @@ The numbers at the edge of the triangle are all 1, and each number inside the tr
 &lt;p&gt;
 Do this exercise by implementing the pascal function in Main.scala, which takes a column c and a row r, counting from 0 and returns the number at that spot in the triangle. For example, &lt;code&gt;pascal(0,2)=1&lt;/code&gt;, &lt;code&gt;pascal(1,2)=2&lt;/code&gt;, and &lt;code&gt;pascal(1,3)=3&lt;/code&gt;.
 &lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org7da4975" class="outline-4"&gt;
+&lt;h4 id="org7da4975"&gt;Pascal Tester&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org7da4975"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;def test_pascal(function_under_test: (Int, Int) =&amp;gt; Int): Unit = {  
+  assert(function_under_test(0, 0) == 1)
+  try {
+    function_under_test(1, 0)
+    throw new AssertionError
+  } catch {
+    case e: IllegalArgumentException =&amp;gt; println("Passed pascal(0, 1)")
+  }
 
+  try {
+    function_under_test(-2, -1)
+    throw new AssertionError
+  } catch {
+    case e: IllegalArgumentException =&amp;gt; println("Passed pascal(0, -1)")
+  }
+
+  try {
+    function_under_test(-1, 0)
+    throw new AssertionError
+  } catch {
+    case e: IllegalArgumentException =&amp;gt; println("Passed pascal(-1, 0)")
+  }
+
+  assert(function_under_test(0, 2) == 1)
+  assert(function_under_test(1, 2) == 2)
+  assert(function_under_test(1, 3) == 3)
+  assert(function_under_test(3, 5) == 10)
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgdda39cb" class="outline-4"&gt;
+&lt;h4 id="orgdda39cb"&gt;Naively Recursive Version&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgdda39cb"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;def pascal_1(c: Int, r: Int): Int = c match {
+      case 0 =&amp;gt; {
+	require(c &amp;lt;= r)
+	1
+      }
+      case _ =&amp;gt; {
+	require(c &amp;lt;= r)
+	require(c &amp;gt;= 0)
+	pascal(c - 1, r) * (r + 1 - c)/c
+      }
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;test_pascal(pascal_1)
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+Passed pascal(0, 1)
+Passed pascal(0, -1)
+Passed pascal(-1, 0)
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgd9398cf" class="outline-4"&gt;
+&lt;h4 id="orgd9398cf"&gt;Tail-Recursion Version&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgd9398cf"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;def pascal(c: Int, r: Int): Int = {
     @annotation.tailrec
     def pascal_accumulated(column: Int, row: Int, accumulator: Int): Int = column match{
@@ -737,44 +808,22 @@ Do this exercise by implementing the pascal function in Main.scala, which takes 
 }
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;assert(pascal(0, 0) == 1)
-try {
-  pascal(1, 0)
-  throw new AssertionError
-} catch {
-  case e: IllegalArgumentException =&amp;gt; println("Passed pascal(0, 1)")
-}
-
-try {
-  pascal(-2, -1)
-  throw new AssertionError
-} catch {
-  case e: IllegalArgumentException =&amp;gt; println("Passed pascal(0, -1)")
-}
-
-try {
-  pascal(-1, 0)
-  throw new AssertionError
-} catch {
-  case e: IllegalArgumentException =&amp;gt; println("Passed pascal(-1, 0)")
-}
-
-assert(pascal(0, 2) == 1)
-assert(pascal(1, 2) == 2)
-assert(pascal(1, 3) == 3)
-assert(pascal(3, 5) == 10)
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;test_pascal(pascal)
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;pre class="example"&gt;
-3 - f145e977-a9fc-49a6-9a46-428cd6193fa4
+Passed pascal(0, 1)
+Passed pascal(0, -1)
+Passed pascal(-1, 0)
 
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div id="outline-container-org4bea9bf" class="outline-3"&gt;
-&lt;h3 id="org4bea9bf"&gt;Exercise 2: Parentheses Balancing&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org4bea9bf"&gt;
+&lt;div id="outline-container-orgca65819" class="outline-3"&gt;
+&lt;h3 id="orgca65819"&gt;Exercise 2: Parentheses Balancing&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgca65819"&gt;
 &lt;p&gt;
 Write a recursive function which verifies the balancing of parentheses in a string, which we represent as a List[Char] not a String. For example, the function should return true for the following strings:
 &lt;/p&gt;
@@ -823,9 +872,9 @@ Testing: You can use the toList method to convert from a String to aList[Char]: 
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orge5c3452" class="outline-3"&gt;
-&lt;h3 id="orge5c3452"&gt;Exercise 3: Counting Change&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orge5c3452"&gt;
+&lt;div id="outline-container-orgacd4528" class="outline-3"&gt;
+&lt;h3 id="orgacd4528"&gt;Exercise 3: Counting Change&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgacd4528"&gt;
 &lt;p&gt;
 Write a recursive function that counts how many different ways you can make change for an amount, given a list of coin denominations. For example, there are 3 ways to give change for 4 if you have coins with denomination 1 and 2: 1+1+1+1, 1+1+2, 2+2.
 &lt;/p&gt;
@@ -847,6 +896,6 @@ Once again, you can make use of functions isEmpty, head and tail on the list of 
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org7cc2955" class="outline-2"&gt;
-&lt;h2 id="org7cc2955"&gt;End&lt;/h2&gt;
+&lt;div id="outline-container-orgd8ae7dd" class="outline-2"&gt;
+&lt;h2 id="orgd8ae7dd"&gt;End&lt;/h2&gt;
 &lt;/div&gt;</description><category>course 1</category><guid>https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/</guid><pubDate>Sun, 08 Dec 2019 03:49:38 GMT</pubDate></item></channel></rss>
