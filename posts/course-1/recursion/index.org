@@ -12,6 +12,9 @@
 #+OPTIONS: ^:{}
 #+TOC: headlines 3
 * Begin
+#+begin_src jupyter-scala :session recursion :results none
+import scala.collection.mutable.Stack
+#+end_src
 * Middle
 ** Exercise 1: Pascal’s Triangle
 
@@ -29,7 +32,7 @@ The numbers at the edge of the triangle are all 1, and each number inside the tr
 
 Do this exercise by implementing the pascal function in Main.scala, which takes a column c and a row r, counting from 0 and returns the number at that spot in the triangle. For example, ~pascal(0,2)=1~, ~pascal(1,2)=2~, and ~pascal(1,3)=3~.
 *** Pascal Tester
-#+begin_src jupyter-scala :results none
+#+begin_src jupyter-scala :session recursion :results none
 def test_pascal(function_under_test: (Int, Int) => Int): Unit = {  
   assert(function_under_test(0, 0) == 1)
   try {
@@ -60,7 +63,7 @@ def test_pascal(function_under_test: (Int, Int) => Int): Unit = {
 }
 #+end_src
 *** Naively Recursive Version
-#+begin_src jupyter-scala :results none
+#+begin_src jupyter-scala :session recursion :results none
 def pascal_1(c: Int, r: Int): Int = c match {
       case 0 => {
         require(c <= r)
@@ -74,18 +77,16 @@ def pascal_1(c: Int, r: Int): Int = c match {
 }
 #+end_src
 
-#+begin_src jupyter-scala :results output :exports both
+#+begin_src jupyter-scala :session recursion :results output :exports both
 test_pascal(pascal_1)
 #+end_src
 
 #+RESULTS:
-: Passed pascal(0, 1)
-: Passed pascal(0, -1)
-: Passed pascal(-1, 0)
+: 6 - 7a489557-893d-47dd-9459-92a57291515b
 
 *** Tail-Recursion Version
 
-#+begin_src jupyter-scala :results none
+#+begin_src jupyter-scala :session recursion :results none
 def pascal(c: Int, r: Int): Int = {
     @annotation.tailrec
     def pascal_accumulated(column: Int, row: Int, accumulator: Int): Int = column match{
@@ -103,14 +104,12 @@ def pascal(c: Int, r: Int): Int = {
 }
 #+end_src
 
-#+begin_src jupyter-scala :results output :exports both
+#+begin_src jupyter-scala :session recursion :results output :exports both
 test_pascal(pascal)
 #+end_src
 
 #+RESULTS:
-: Passed pascal(0, 1)
-: Passed pascal(0, -1)
-: Passed pascal(-1, 0)
+: 8 - 9656bc37-fd80-4110-9d6f-f7e77b546f8f
 
 ** Exercise 2: Parentheses Balancing
 
@@ -125,11 +124,37 @@ The function should return false for the following strings:
     - ())(
 
 The last example shows that it’s not enough to verify that a string contains the same number of opening and closing parentheses.
-
+#+begin_src jupyter-scala :session recursion :results none
+def test_balance(function_under_test: (List[Char]) => Boolean): Unit = {
+    assert(function_under_test("".toList))
+    println("Passed Empty List")
+    assert(!function_under_test("(".toList))
+    println("Passed left bracket only")
+    assert(balance("(if (zero? x) max (/ 1 x))".toList))
+    assert(balance("I told him (that it's not (yet) done).\n(But he wasn't listening)".toList))
+    assert(!balance(":-)".toList))
+    assert(!balance("())(".toList))
+}
+#+end_src
 Do this exercise by implementing the balance function in Main.scala. Its signature is as follows:
 
-#+begin_src scala
-def balance(chars: List[Char]): Boolean
+#+begin_src jupyter-scala :session recursion :results none
+def balance(chars: List[Char]): Boolean = {
+  @annotation.tailrec
+  def balance_accumulated(chars: List[Char], lefts: Int, rights: Int): Boolean = chars match {
+    case Nil => lefts == rights
+    case head :: tail => {
+      val left = if (head == '(') 1 else 0
+      val right = if (head == ')') 1 else 0
+      if (right + rights > left + lefts)
+        false
+      else
+        balance_accumulated(tail, lefts + left, rights + right)
+
+    }
+  } // balance_accumulated
+  balance_accumulated(chars, 0, 0)
+}
 #+end_src
 
 There are three methods on List[Char] that are useful for this exercise:
@@ -141,6 +166,11 @@ There are three methods on List[Char] that are useful for this exercise:
 Hint: you can define an inner function if you need to pass extra parameters to your function.
 
 Testing: You can use the toList method to convert from a String to aList[Char]: e.g. "(just an) example".toList.
+
+#+begin_src jupyter-scala :session recursion :results none
+test_balance(balance)
+#+end_src
+
 ** Exercise 3: Counting Change
 
 Write a recursive function that counts how many different ways you can make change for an amount, given a list of coin denominations. For example, there are 3 ways to give change for 4 if you have coins with denomination 1 and 2: 1+1+1+1, 1+1+2, 2+2.
