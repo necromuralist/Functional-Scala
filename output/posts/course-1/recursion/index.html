@@ -73,33 +73,38 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc6fa570">Begin</a></li>
-<li><a href="#orgf600e7a">Middle</a>
+<li><a href="#org3e45d89">Begin</a></li>
+<li><a href="#org3bb9c97">Middle</a>
 <ul>
-<li><a href="#org05a78ba">Exercise 1: Pascal’s Triangle</a>
+<li><a href="#org83afb1a">Exercise 1: Pascal’s Triangle</a>
 <ul>
-<li><a href="#org7da4975">Pascal Tester</a></li>
-<li><a href="#orgdda39cb">Naively Recursive Version</a></li>
-<li><a href="#orgd9398cf">Tail-Recursion Version</a></li>
+<li><a href="#org4b0ea9a">Pascal Tester</a></li>
+<li><a href="#org3e82d44">Naively Recursive Version</a></li>
+<li><a href="#org3a420d3">Tail-Recursion Version</a></li>
 </ul>
 </li>
-<li><a href="#orgca65819">Exercise 2: Parentheses Balancing</a></li>
-<li><a href="#orgacd4528">Exercise 3: Counting Change</a></li>
+<li><a href="#org69faa94">Exercise 2: Parentheses Balancing</a></li>
+<li><a href="#org9139507">Exercise 3: Counting Change</a></li>
 </ul>
 </li>
-<li><a href="#orgd8ae7dd">End</a></li>
+<li><a href="#orgb26bd85">End</a></li>
 </ul>
 </div>
 </div>
-<div class="outline-2" id="outline-container-orgc6fa570">
-<h2 id="orgc6fa570">Begin</h2>
+<div class="outline-2" id="outline-container-org3e45d89">
+<h2 id="org3e45d89">Begin</h2>
+<div class="outline-text-2" id="text-org3e45d89">
+<div class="highlight">
+<pre><span></span>import scala.collection.mutable.Stack
+</pre></div>
 </div>
-<div class="outline-2" id="outline-container-orgf600e7a">
-<h2 id="orgf600e7a">Middle</h2>
-<div class="outline-text-2" id="text-orgf600e7a"></div>
-<div class="outline-3" id="outline-container-org05a78ba">
-<h3 id="org05a78ba">Exercise 1: Pascal’s Triangle</h3>
-<div class="outline-text-3" id="text-org05a78ba">
+</div>
+<div class="outline-2" id="outline-container-org3bb9c97">
+<h2 id="org3bb9c97">Middle</h2>
+<div class="outline-text-2" id="text-org3bb9c97"></div>
+<div class="outline-3" id="outline-container-org83afb1a">
+<h3 id="org83afb1a">Exercise 1: Pascal’s Triangle</h3>
+<div class="outline-text-3" id="text-org83afb1a">
 <p>The following pattern of numbers is called Pascal’s triangle.</p>
 <pre class="example">
     1
@@ -111,9 +116,9 @@
 <p>The numbers at the edge of the triangle are all 1, and each number inside the triangle is the sum of the two numbers above it. Write a function that computes the elements of Pascal’s triangle by means of a recursive process.</p>
 <p>Do this exercise by implementing the pascal function in Main.scala, which takes a column c and a row r, counting from 0 and returns the number at that spot in the triangle. For example, <code>pascal(0,2)=1</code>, <code>pascal(1,2)=2</code>, and <code>pascal(1,3)=3</code>.</p>
 </div>
-<div class="outline-4" id="outline-container-org7da4975">
-<h4 id="org7da4975">Pascal Tester</h4>
-<div class="outline-text-4" id="text-org7da4975">
+<div class="outline-4" id="outline-container-org4b0ea9a">
+<h4 id="org4b0ea9a">Pascal Tester</h4>
+<div class="outline-text-4" id="text-org4b0ea9a">
 <div class="highlight">
 <pre><span></span>def test_pascal(function_under_test: (Int, Int) =&gt; Int): Unit = {  
   assert(function_under_test(0, 0) == 1)
@@ -146,9 +151,9 @@
 </pre></div>
 </div>
 </div>
-<div class="outline-4" id="outline-container-orgdda39cb">
-<h4 id="orgdda39cb">Naively Recursive Version</h4>
-<div class="outline-text-4" id="text-orgdda39cb">
+<div class="outline-4" id="outline-container-org3e82d44">
+<h4 id="org3e82d44">Naively Recursive Version</h4>
+<div class="outline-text-4" id="text-org3e82d44">
 <div class="highlight">
 <pre><span></span>def pascal_1(c: Int, r: Int): Int = c match {
       case 0 =&gt; {
@@ -166,15 +171,13 @@
 <pre><span></span>test_pascal(pascal_1)
 </pre></div>
 <pre class="example">
-Passed pascal(0, 1)
-Passed pascal(0, -1)
-Passed pascal(-1, 0)
+6 - 7a489557-893d-47dd-9459-92a57291515b
 
 </pre></div>
 </div>
-<div class="outline-4" id="outline-container-orgd9398cf">
-<h4 id="orgd9398cf">Tail-Recursion Version</h4>
-<div class="outline-text-4" id="text-orgd9398cf">
+<div class="outline-4" id="outline-container-org3a420d3">
+<h4 id="org3a420d3">Tail-Recursion Version</h4>
+<div class="outline-text-4" id="text-org3a420d3">
 <div class="highlight">
 <pre><span></span>def pascal(c: Int, r: Int): Int = {
     @annotation.tailrec
@@ -196,16 +199,14 @@ Passed pascal(-1, 0)
 <pre><span></span>test_pascal(pascal)
 </pre></div>
 <pre class="example">
-Passed pascal(0, 1)
-Passed pascal(0, -1)
-Passed pascal(-1, 0)
+8 - 9656bc37-fd80-4110-9d6f-f7e77b546f8f
 
 </pre></div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-orgca65819">
-<h3 id="orgca65819">Exercise 2: Parentheses Balancing</h3>
-<div class="outline-text-3" id="text-orgca65819">
+<div class="outline-3" id="outline-container-org69faa94">
+<h3 id="org69faa94">Exercise 2: Parentheses Balancing</h3>
+<div class="outline-text-3" id="text-org69faa94">
 <p>Write a recursive function which verifies the balancing of parentheses in a string, which we represent as a List[Char] not a String. For example, the function should return true for the following strings:</p>
 <ul class="org-ul">
 <li>(if (zero? x) max (/ 1 x))</li>
@@ -217,9 +218,36 @@ Passed pascal(-1, 0)
 <li>())(</li>
 </ul>
 <p>The last example shows that it’s not enough to verify that a string contains the same number of opening and closing parentheses.</p>
+<div class="highlight">
+<pre><span></span>def test_balance(function_under_test: (List[Char]) =&gt; Boolean): Unit = {
+    assert(function_under_test("".toList))
+    println("Passed Empty List")
+    assert(!function_under_test("(".toList))
+    println("Passed left bracket only")
+    assert(balance("(if (zero? x) max (/ 1 x))".toList))
+    assert(balance("I told him (that it's not (yet) done).\n(But he wasn't listening)".toList))
+    assert(!balance(":-)".toList))
+    assert(!balance("())(".toList))
+}
+</pre></div>
 <p>Do this exercise by implementing the balance function in Main.scala. Its signature is as follows:</p>
 <div class="highlight">
-<pre><span></span><span class="k">def</span> <span class="n">balance</span><span class="o">(</span><span class="n">chars</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Char</span><span class="o">])</span><span class="k">:</span> <span class="kt">Boolean</span>
+<pre><span></span>def balance(chars: List[Char]): Boolean = {
+  @annotation.tailrec
+  def balance_accumulated(chars: List[Char], lefts: Int, rights: Int): Boolean = chars match {
+    case Nil =&gt; lefts == rights
+    case head :: tail =&gt; {
+      val left = if (head == '(') 1 else 0
+      val right = if (head == ')') 1 else 0
+      if (right + rights &gt; left + lefts)
+        false
+      else
+        balance_accumulated(tail, lefts + left, rights + right)
+
+    }
+  } // balance_accumulated
+  balance_accumulated(chars, 0, 0)
+}
 </pre></div>
 <p>There are three methods on List[Char] that are useful for this exercise:</p>
 <ul class="org-ul">
@@ -229,11 +257,14 @@ Passed pascal(-1, 0)
 </ul>
 <p>Hint: you can define an inner function if you need to pass extra parameters to your function.</p>
 <p>Testing: You can use the toList method to convert from a String to aList[Char]: e.g. "(just an) example".toList.</p>
+<div class="highlight">
+<pre><span></span>test_balance(balance)
+</pre></div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-orgacd4528">
-<h3 id="orgacd4528">Exercise 3: Counting Change</h3>
-<div class="outline-text-3" id="text-orgacd4528">
+<div class="outline-3" id="outline-container-org9139507">
+<h3 id="org9139507">Exercise 3: Counting Change</h3>
+<div class="outline-text-3" id="text-org9139507">
 <p>Write a recursive function that counts how many different ways you can make change for an amount, given a list of coin denominations. For example, there are 3 ways to give change for 4 if you have coins with denomination 1 and 2: 1+1+1+1, 1+1+2, 2+2.</p>
 <p>Do this exercise by implementing the countChange function inMain.scala. This function takes an amount to change, and a list of unique denominations for the coins. Its signature is as follows:</p>
 <div class="highlight">
@@ -244,8 +275,8 @@ Passed pascal(-1, 0)
 </div>
 </div>
 </div>
-<div class="outline-2" id="outline-container-orgd8ae7dd">
-<h2 id="orgd8ae7dd">End</h2>
+<div class="outline-2" id="outline-container-orgb26bd85">
+<h2 id="orgb26bd85">End</h2>
 </div>
 </div>
 <aside class="postpromonav">

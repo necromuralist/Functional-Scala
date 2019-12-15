@@ -5,8 +5,13 @@ import org.junit.Assert.assertEquals
 
 class RecFunSuite {
   import RecFun._
-  /**
   // ------ balance tests -----------------------------------------------------
+
+  @Test def `balance: '' is balanced`: Unit =
+    assert(balance("".toList))
+
+  @Test def `balance: "(" is not balanced`: Unit =
+    assert(!balance("(".toList))
 
   @Test def `balance: '(if (zero? x) max (/ 1 x))' is balanced`: Unit =
     assert(balance("(if (zero? x) max (/ 1 x))".toList))
@@ -22,6 +27,9 @@ class RecFunSuite {
 
   // ------ countChange tests -------------------------------------------------
 
+  @Test def `countChange: is Implemented`: Unit =
+    countChange(4,List(1,2))
+
   @Test def `countChange: example given in instructions`: Unit =
     assertEquals(3, countChange(4,List(1,2)))
 
@@ -33,7 +41,7 @@ class RecFunSuite {
 
   @Test def `countChange: unsorted CHF`: Unit =
     assertEquals(1022, countChange(300,List(500,5,50,100,20,200,10)))
-    **/
+
   // ------ pascal tests ------------------------------------------------------
 
   @Test def `pascal: col=3,row=5`: Unit =

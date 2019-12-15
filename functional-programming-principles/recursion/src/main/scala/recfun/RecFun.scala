@@ -12,7 +12,12 @@ object RecFun extends RecFunInterface {
   }
 
   /**
-   * Exercise 1
+    * Exercise 1
+    * Calculates values in Pascal's Triangle
+    * 
+    * @param c The column number (0-based)
+    * @param r The row number (0-based)
+    * @return Element of Pascal's Triangle at column c and row r
     */
   def pascal(c: Int, r: Int): Int = {
     @annotation.tailrec
@@ -31,12 +36,39 @@ object RecFun extends RecFunInterface {
   } // pascal
 
   /**
-   * Exercise 2
-   */
-  def balance(chars: List[Char]): Boolean = ???
+    * Exercise 2
+    * Checks if a string contains a balanced set of parentheses
+    * @param chars list of characters to check
+    */
+  def balance(chars: List[Char]): Boolean = {
+    @annotation.tailrec
+    def balance_accumulated(chars: List[Char], lefts: Int, rights: Int): Boolean = chars match {
+      case Nil => lefts == rights
+      case head :: tail => {
+        val left = if (head == '(') 1 else 0
+        val right = if (head == ')') 1 else 0
+        if (right + rights > left + lefts)
+          false
+        else
+          balance_accumulated(tail, lefts + left, rights + right)
+
+      }
+    } // balance_accumulated
+    balance_accumulated(chars, 0, 0)
+  }
 
   /**
    * Exercise 3
    */
-  def countChange(money: Int, coins: List[Int]): Int = ???
+  def countChange(money: Int, coins: List[Int]): Int = {
+    if (money < 0)
+      0
+   else if (money == 0)
+      1
+    else 
+    coins match {
+      case Nil => 0
+      case head :: tail => countChange(money - head, head :: tail) + countChange(money, tail)
+    }
+  }
 }
