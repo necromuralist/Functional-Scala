@@ -57,21 +57,36 @@ def singletonSet(elem: Int): FunSet = {
 
 Now that we have a way to create singleton sets, we want to define a function that allow us to build bigger sets from smaller ones.
 
-2. Define the functions union,intersect, and diff, which takes two sets, and return, respectively, their union, intersection and differences. diff(s, t) returns a set which contains all the elements of the set s that are not in the set t. These functions have the following signatures:
+** Define the functions union, intersect, and diff, which takes two sets, and return, respectively, their union, intersection and differences. diff(s, t) returns a set which contains all the elements of the set s that are not in the set t. These functions have the following signatures:
+
+*** Union
+    This took me a while to figure out, but what you're returning here is a =FunSet= which is a function that takes an integer and returns a boolean, so you aren't actually returning a union of the sets, but a function which tells you whether an element is in the union of the two sets.
 
 #+begin_src scala
-def union(s: FunSet, t: FunSet): FunSet
+/**
+  ,* Returns a function that decides if an element is in 
+  ,*  the either of the given sets (is it in `s`, or `t` or both)
+  ,* 
+  ,* @param s a function that decides if an integer is in its set
+  ,* @param t a function that decides if an integer is in its set
+  ,* @returns a function that decides if an integer is in a union of s and t
+  ,*/
+def union(s: FunSet, t: FunSet): FunSet =
+  (element: Int) => s(element) || t(element)
+#+end_src
+
+#+begin_src scala
 def intersect(s: FunSet, t: FunSet): FunSet
 def diff(s: FunSet, t: FunSet): FunSet
 #+end_src
 
-3. Define the function filter which selects only the elements of a set that are accepted by a given predicate p. The filtered elements are returned as a new set. The signature of filter is as follows:
+*** Define the function filter which selects only the elements of a set that are accepted by a given predicate p. The filtered elements are returned as a new set. The signature of filter is as follows:
 
 #+begin_src scala
 def filter(s: FunSet, p: Int => Boolean): FunSet
 #+end_src
 
-2.2 Queries and Transformations on Sets
+** Queries and Transformations on Sets
 
 In this part, we are interested in functions used to make requests on elements of a set. The first function tests whether a given predicate is true for all elements of the set. This forall function has the following signature:
 

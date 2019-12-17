@@ -18,16 +18,17 @@ trait FunSets extends FunSetsInterface {
   /**
    * Returns the set of the one given element.
    */
-  def singletonSet(elem: Int): FunSet = ???
+  def singletonSet(elem: Int): FunSet = {
+    Set(elem)
+  }
 
 
   /**
    * Returns the union of the two given sets,
    * the sets of all elements that are in either `s` or `t`.
    */
-  def union(s: FunSet, t: FunSet): FunSet = {
-    s.union(t)
-  }
+  def union(s: FunSet, t: FunSet): FunSet =
+    (element: Int) => s(element) || t(element)
 
   /**
    * Returns the intersection of the two given sets,
