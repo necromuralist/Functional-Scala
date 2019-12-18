@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>Object-Oriented Sets | Functional Scala</title>
+<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta content="#5670d4" name="theme-color">
+<meta content="Nikola (getnikola.com)" name="generator">
+<link href="../../../rss.xml" rel="alternate" title="RSS" type="application/rss+xml">
+<link href="https://necromuralist.github.io/Functional-Scala/posts/course-1/object-oriented-sets/" rel="canonical"><!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link href="../../../apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+<link href="../../../favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+<link href="../../../favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+<link href="../../../site.webmanifest" rel="manifest">
+<meta content="Cloistered Monkey" name="author">
+<link href="../sets/" rel="prev" title="Sets" type="text/html">
+<link href="../huffman-coding/" rel="next" title="Huffman Coding" type="text/html">
+<meta content="Functional Scala" property="og:site_name">
+<meta content="Object-Oriented Sets" property="og:title">
+<meta content="https://necromuralist.github.io/Functional-Scala/posts/course-1/object-oriented-sets/" property="og:url">
+<meta content="In this assignment you will work with an object-oriented representations based on binary trees. Object-Oriented Sets For this part, you will earn credit by completing the TweetSet.scala file. This" property="og:description">
+<meta content="article" property="og:type">
+<meta content="2019-12-17T20:47:53-08:00" property="article:published_time">
+</head>
+<body>
+<a class="sr-only sr-only-focusable" href="#content">Skip to main content</a> <!-- Menubar -->
+<nav class="navbar navbar-expand-md static-top mb-4 navbar-light bg-light">
+<div class="container"><!-- This keeps the margins nice -->
+ <a class="navbar-brand" href="https://necromuralist.github.io/Functional-Scala/"><span id="blog-title">Functional Scala</span></a> <button aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#bs-navbar" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse" id="bs-navbar">
+<ul class="navbar-nav mr-auto">
+<li class="nav-item"><a class="nav-link" href="../../../archive.html">Archive</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../categories/">Tags</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../rss.xml">RSS feed</a></li>
+<li class="nav-item"><a class="nav-link" href="https://necromuralist.github.io/">Cloistered Monkey</a></li>
+</ul>
+<!-- Google custom search -->
+<form action="https://www.google.com/search" class="navbar-form navbar-right" method="get" role="search">
+<div class="form-group"><input class="form-control" name="q" placeholder="Search" type="text"></div>
+<!-- 
+<button type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-search"></span>
+</button>
+-->
+<input name="sitesearch" type="hidden" value="https://necromuralist.github.io/Functional-Scala/"></form>
+<!-- End of custom search -->
+<ul class="navbar-nav navbar-right">
+<li class="nav-item"><a class="nav-link" href="index.org" id="sourcelink">Source</a></li>
+</ul>
+</div>
+<!-- /.navbar-collapse --></div>
+<!-- /.container --></nav>
+<!-- End of Menubar -->
+<div class="container" id="content" role="main">
+<div class="body-content"><!--Body content-->
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article">
+<header>
+<h1 class="p-name entry-title" itemprop="headline name"><a class="u-url" href=".">Object-Oriented Sets</a></h1>
+<div class="metadata">
+<p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">Cloistered Monkey</span></p>
+<p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2019-12-17T20:47:53-08:00" itemprop="datePublished" title="2019-12-17 20:47">2019-12-17 20:47</time></a></p>
+<p class="sourceline"><a class="sourcelink" href="index.org">Source</a></p>
+</div>
+</header>
+<div class="e-content entry-content" itemprop="articleBody text">
+<p>In this assignment you will work with an object-oriented representations based on binary trees. Object-Oriented Sets</p>
+<p>For this part, you will earn credit by completing the TweetSet.scala file. This file defines an abstract class TweetSet with two concrete subclasses,Empty which represents an empty set, and NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet), which represents a non-empty set as a binary tree rooted at elem. The tweets are indexed by their text bodies: the bodies of all tweets on the left are lexicographically smaller than elem and all bodies of elements on the right are lexicographically greater.</p>
+<p>Note also that these classes are immutable: the set-theoretic operations do not modify this but should return a new set.</p>
+<p>Before tackling this assignment, we suggest you first study the already implemented methods contains and incl for inspiration. 1 Filtering</p>
+<p>Implement filtering on tweet sets. Complete the stubs for the methods filter and filterAcc. filter takes as argument a function, the predicate, which takes a tweet and returns a boolean. filter then returns the subset of all the tweets in the original set for which the predicate is true. For example, the following call:</p>
+<div class="highlight">
+<pre><span></span>tweets.filter(tweet =&gt; tweet.retweets &gt; 10)
+</pre></div>
+<p>applied to a set tweets of two tweets, say, where the first tweet was not retweeted and the second tweet was retweeted 20 times should return a set containing only the second tweet.</p>
+<p>Hint: start by defining the helper method filterAcc which takes an accumulator set as a second argument. This accumulator contains the ongoing result of the filtering.</p>
+<div class="highlight">
+<pre><span></span>/** This method takes a predicate and returns a subset of all the elements
+ *  in the original set for which the predicate is true.
+ */
+def filter(p: Tweet =&gt; Boolean): TweetSet
+def filterAcc(p: Tweet =&gt; Boolean, acc: TweetSet): TweetSet
+</pre></div>
+<p>The definition of filter in terms of filterAcc should then be straightforward. 2 Taking Unions</p>
+<p>Implement union on tweet sets. Complete the stub for the method union. The method union takes another set that, and computes a new set which is the union of this and that, i.e. a set that contains exactly the elements that are either in this or in that, or in both.</p>
+<div class="highlight">
+<pre><span></span>def union(that: TweetSet): TweetSet
+</pre></div>
+<p>Note that in this exercise it is your task to find out in which class(es) to define the union method (should it be abstract in class TweetSet?).</p>
+<p>Warning : This method is a crucial part of the assignment. There are many ways to correctly code it, however some implementations run in an exponential time, so be careful, an inefficient implementation might result in a timeout during the grading process. 3 Sorting Tweets by Their Influence</p>
+<p>The more often a tweet is “re-tweeted” (that is, repeated by a different user with or without additions), the more influential it is.</p>
+<p>The goal of this part of the exercise is to add a method descendingByRetweet to TweetSet which should produce a linear sequence of tweets (as an instance of class TweetList), ordered by their number of retweets:</p>
+<div class="highlight">
+<pre><span></span>def descendingByRetweet: TweetList
+</pre></div>
+<p>This method reflects a common pattern when transforming data structures. While traversing one data structure (in this case, a TweetSet), we’re building a second data structure (here, an instance of class TweetList). The idea is to start with the empty list Nil (containing no tweets), and to find the tweet with the most retweets in the input TweetSet. This tweet is removed from the TweetSet (that is, we obtain a new TweetSet that has all the tweets of the original set except for the tweet that was “removed”; this immutable set operation, remove, is already implemented for you), and added to the result list by creating a new Cons. After that, the process repeats itself, but now we are searching through a TweetSet with one less tweet.</p>
+<p>Hint: start by implementing the method mostRetweeted which returns the most popular tweet of a TweetSet. 4 Tying everything together</p>
+<p>In the last step of this assignment your task is to detect influential tweets in a set of recent tweets. We are providing you with a TweetSet containing several hundred tweets from popular tech news sites in the past few days, located in the TweetReader object (file “TweetReader.scala”).TweetReader.allTweets returns an instance of TweetSet containing a set of all available tweets.</p>
+<p>Furthermore, you are given two lists of keywords. The first list corresponds to keywords associated with Google and Android smartphones, while the second list corresponds to keywords associated with Apple and iOS devices. Your objective is to detect which platform has generated more interest or activity in the past few days.</p>
+<p>As a first step, use the functionality you implemented in the first parts of this assignment to create two different TweetSets, googleTweets andappleTweets. The first TweetSet, googleTweets, should contain all tweets that mention (in their “text”) one of the keywords in the google list. The second TweetSet, appleTweets, should contain all tweets that mention one of the keyword in the apple list. Their signature is as follows:</p>
+<div class="highlight">
+<pre><span></span>lazy val googleTweets: TweetSet
+lazy val appleTweets: TweetSet
+</pre></div>
+<p>Hint: use the exists method of List and contains method of classjava.lang.String.</p>
+<p>From the union of those two TweetSets, produce trending, an instance of class TweetList representing a sequence of tweets ordered by their number of retweets:</p>
+<div class="highlight">
+<pre><span></span>lazy val trending: TweetList
+</pre></div>
+</div>
+<aside class="postpromonav">
+<nav>
+<ul class="pager hidden-print">
+<li class="previous"><a href="../sets/" rel="prev" title="Sets">Previous post</a></li>
+<li class="next"><a href="../huffman-coding/" rel="next" title="Huffman Coding">Next post</a></li>
+</ul>
+</nav>
+</aside>
+</article>
+<!--End of body content-->
+<footer id="footer">Contents © 2019 <a href="mailto:necromuralist@protonmail.com">Cloistered Monkey</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a></footer>
+</div>
+</div>
+<script src="../../../assets/js/all-nocdn.js"></script>
+<script>
+
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+</script>
+</body>
+</html>
