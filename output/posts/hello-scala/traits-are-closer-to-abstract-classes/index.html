@@ -76,39 +76,39 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgeca601e">Beginning</a></li>
-<li><a href="#orgd981bdb">Middle</a>
+<li><a href="#org0f7f227">Beginning</a></li>
+<li><a href="#orgfa17e06">Middle</a>
 <ul>
-<li><a href="#orgf36649b">Abstract and Concrete Methods</a>
+<li><a href="#org8517477">Abstract and Concrete Methods</a>
 <ul>
-<li><a href="#org95d79d1">Traits</a></li>
-<li><a href="#org3248c07">Boy</a></li>
-<li><a href="#orgce876df">A Girl</a></li>
-<li><a href="#org37d7d6a">A Werewolf</a></li>
+<li><a href="#orgd66fb2a">Traits</a></li>
+<li><a href="#org853af7b">Boy</a></li>
+<li><a href="#org209603c">A Girl</a></li>
+<li><a href="#orga85b5b7">A Werewolf</a></li>
 </ul>
 </li>
-<li><a href="#org564ea48">But There's Also An Abstract Class</a></li>
+<li><a href="#orgcb5a846">But There's Also An Abstract Class</a></li>
 </ul>
 </li>
-<li><a href="#org2d4a4cd">End</a></li>
+<li><a href="#orgf36b26a">End</a></li>
 </ul>
 </div>
 </div>
-<div class="outline-2" id="outline-container-orgeca601e">
-<h2 id="orgeca601e">Beginning</h2>
-<div class="outline-text-2" id="text-orgeca601e">
+<div class="outline-2" id="outline-container-org0f7f227">
+<h2 id="org0f7f227">Beginning</h2>
+<div class="outline-text-2" id="text-org0f7f227">
 <p>Traits are both similar and different from <a href="https://docs.oracle.com/javase/tutorial/java/concepts/interface.html">Interfaces</a> and <a href="https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html">Abstract Classes</a>. Like Interfaces, traits don't take arguments, but unlike interfaces and like Abstract Classes, traits can implement some methods and leave others abstract. Traits also support multiple inheritance and you can add them to objects that are created from Classes that don't extend them in their definition.</p>
 </div>
 </div>
-<div class="outline-2" id="outline-container-orgd981bdb">
-<h2 id="orgd981bdb">Middle</h2>
-<div class="outline-text-2" id="text-orgd981bdb"></div>
-<div class="outline-3" id="outline-container-orgf36649b">
-<h3 id="orgf36649b">Abstract and Concrete Methods</h3>
-<div class="outline-text-3" id="text-orgf36649b"></div>
-<div class="outline-4" id="outline-container-org95d79d1">
-<h4 id="org95d79d1">Traits</h4>
-<div class="outline-text-4" id="text-org95d79d1">
+<div class="outline-2" id="outline-container-orgfa17e06">
+<h2 id="orgfa17e06">Middle</h2>
+<div class="outline-text-2" id="text-orgfa17e06"></div>
+<div class="outline-3" id="outline-container-org8517477">
+<h3 id="org8517477">Abstract and Concrete Methods</h3>
+<div class="outline-text-3" id="text-org8517477"></div>
+<div class="outline-4" id="outline-container-orgd66fb2a">
+<h4 id="orgd66fb2a">Traits</h4>
+<div class="outline-text-4" id="text-orgd66fb2a">
 <div class="highlight">
 <pre><span></span>trait Child {
   def speak(): Unit = println("Never. I must be seen but not heard.")
@@ -118,9 +118,9 @@
 <p>This trait has a concrete method (<code>speak</code>) and an abstract method <code>come_to_me</code>.</p>
 </div>
 </div>
-<div class="outline-4" id="outline-container-org3248c07">
-<h4 id="org3248c07">Boy</h4>
-<div class="outline-text-4" id="text-org3248c07">
+<div class="outline-4" id="outline-container-org853af7b">
+<h4 id="org853af7b">Boy</h4>
+<div class="outline-text-4" id="text-org853af7b">
 <p>If you don't implement the <code>come_to_me</code> method then the next definition will be rejected by the compiler.</p>
 <div class="highlight">
 <pre><span></span>class Boy(name: String) extends Child {
@@ -138,9 +138,9 @@ I, Alphonse, will be there at once.
 
 </pre></div>
 </div>
-<div class="outline-4" id="outline-container-orgce876df">
-<h4 id="orgce876df">A Girl</h4>
-<div class="outline-text-4" id="text-orgce876df">
+<div class="outline-4" id="outline-container-org209603c">
+<h4 id="org209603c">A Girl</h4>
+<div class="outline-text-4" id="text-org209603c">
 <p>You can also implement the <code>speak</code> method, but since it's concrete you need to override it instead of just implement it.</p>
 <div class="highlight">
 <pre><span></span>class Girl extends Child {
@@ -159,9 +159,9 @@ As if.
 
 </pre></div>
 </div>
-<div class="outline-4" id="outline-container-org37d7d6a">
-<h4 id="org37d7d6a">A Werewolf</h4>
-<div class="outline-text-4" id="text-org37d7d6a">
+<div class="outline-4" id="outline-container-orga85b5b7">
+<h4 id="orga85b5b7">A Werewolf</h4>
+<div class="outline-text-4" id="text-orga85b5b7">
 <p>You can also add a trait to an existing class.</p>
 <div class="highlight">
 <pre><span></span>trait Tail {
@@ -184,9 +184,9 @@ I'm quite happy.
 </pre></div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-org564ea48">
-<h3 id="org564ea48">But There's Also An Abstract Class</h3>
-<div class="outline-text-3" id="text-org564ea48">
+<div class="outline-3" id="outline-container-orgcb5a846">
+<h3 id="orgcb5a846">But There's Also An Abstract Class</h3>
+<div class="outline-text-3" id="text-orgcb5a846">
 <p>Scala also provides an Abstract Class, this is to handle two cases:</p>
 <ul class="org-ul">
 <li>You want to define arguments to the constructor in the base class</li>
@@ -196,9 +196,9 @@ I'm quite happy.
 </div>
 </div>
 </div>
-<div class="outline-2" id="outline-container-org2d4a4cd">
-<h2 id="org2d4a4cd">End</h2>
-<div class="outline-text-2" id="text-org2d4a4cd">
+<div class="outline-2" id="outline-container-orgf36b26a">
+<h2 id="orgf36b26a">End</h2>
+<div class="outline-text-2" id="text-orgf36b26a">
 <p>Being mostly a python programmer I'm not totally certain what Interfaces are for, but luckily, with traits, we can have the best of both Interfaces and Abstract Classes together.</p>
 </div>
 </div>

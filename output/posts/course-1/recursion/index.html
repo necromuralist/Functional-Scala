@@ -73,38 +73,36 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3e45d89">Begin</a></li>
-<li><a href="#org3bb9c97">Middle</a>
+<li><a href="#orgc3e7d98">Begin</a></li>
+<li><a href="#orga62b29f">Middle</a>
 <ul>
-<li><a href="#org83afb1a">Exercise 1: Pascal’s Triangle</a>
+<li><a href="#org7e46da3">Exercise 1: Pascal’s Triangle</a>
 <ul>
-<li><a href="#org4b0ea9a">Pascal Tester</a></li>
-<li><a href="#org3e82d44">Naively Recursive Version</a></li>
-<li><a href="#org3a420d3">Tail-Recursion Version</a></li>
+<li><a href="#orgd5c008c">Pascal Tester</a></li>
+<li><a href="#org88858be">Naively Recursive Version</a></li>
+<li><a href="#org6ee6ed0">Tail-Recursion Version</a></li>
 </ul>
 </li>
-<li><a href="#org69faa94">Exercise 2: Parentheses Balancing</a></li>
-<li><a href="#org9139507">Exercise 3: Counting Change</a></li>
+<li><a href="#orgb3eec96">Exercise 2: Parentheses Balancing</a></li>
+<li><a href="#org41ab029">Exercise 3: Counting Change</a></li>
 </ul>
 </li>
-<li><a href="#orgb26bd85">End</a></li>
+<li><a href="#org24e2f42">End</a></li>
 </ul>
 </div>
 </div>
-<div class="outline-2" id="outline-container-org3e45d89">
-<h2 id="org3e45d89">Begin</h2>
-<div class="outline-text-2" id="text-org3e45d89">
-<div class="highlight">
-<pre><span></span>import scala.collection.mutable.Stack
-</pre></div>
+<div class="outline-2" id="outline-container-orgc3e7d98">
+<h2 id="orgc3e7d98">Begin</h2>
+<div class="outline-text-2" id="text-orgc3e7d98">
+<p>This is a set of exercises to implement methods using recursion - and tail recursion when possible.</p>
 </div>
 </div>
-<div class="outline-2" id="outline-container-org3bb9c97">
-<h2 id="org3bb9c97">Middle</h2>
-<div class="outline-text-2" id="text-org3bb9c97"></div>
-<div class="outline-3" id="outline-container-org83afb1a">
-<h3 id="org83afb1a">Exercise 1: Pascal’s Triangle</h3>
-<div class="outline-text-3" id="text-org83afb1a">
+<div class="outline-2" id="outline-container-orga62b29f">
+<h2 id="orga62b29f">Middle</h2>
+<div class="outline-text-2" id="text-orga62b29f"></div>
+<div class="outline-3" id="outline-container-org7e46da3">
+<h3 id="org7e46da3">Exercise 1: Pascal’s Triangle</h3>
+<div class="outline-text-3" id="text-org7e46da3">
 <p>The following pattern of numbers is called Pascal’s triangle.</p>
 <pre class="example">
     1
@@ -116,9 +114,9 @@
 <p>The numbers at the edge of the triangle are all 1, and each number inside the triangle is the sum of the two numbers above it. Write a function that computes the elements of Pascal’s triangle by means of a recursive process.</p>
 <p>Do this exercise by implementing the pascal function in Main.scala, which takes a column c and a row r, counting from 0 and returns the number at that spot in the triangle. For example, <code>pascal(0,2)=1</code>, <code>pascal(1,2)=2</code>, and <code>pascal(1,3)=3</code>.</p>
 </div>
-<div class="outline-4" id="outline-container-org4b0ea9a">
-<h4 id="org4b0ea9a">Pascal Tester</h4>
-<div class="outline-text-4" id="text-org4b0ea9a">
+<div class="outline-4" id="outline-container-orgd5c008c">
+<h4 id="orgd5c008c">Pascal Tester</h4>
+<div class="outline-text-4" id="text-orgd5c008c">
 <div class="highlight">
 <pre><span></span>def test_pascal(function_under_test: (Int, Int) =&gt; Int): Unit = {  
   assert(function_under_test(0, 0) == 1)
@@ -151,9 +149,9 @@
 </pre></div>
 </div>
 </div>
-<div class="outline-4" id="outline-container-org3e82d44">
-<h4 id="org3e82d44">Naively Recursive Version</h4>
-<div class="outline-text-4" id="text-org3e82d44">
+<div class="outline-4" id="outline-container-org88858be">
+<h4 id="org88858be">Naively Recursive Version</h4>
+<div class="outline-text-4" id="text-org88858be">
 <div class="highlight">
 <pre><span></span>def pascal_1(c: Int, r: Int): Int = c match {
       case 0 =&gt; {
@@ -172,12 +170,11 @@
 </pre></div>
 <pre class="example">
 6 - 7a489557-893d-47dd-9459-92a57291515b
-
 </pre></div>
 </div>
-<div class="outline-4" id="outline-container-org3a420d3">
-<h4 id="org3a420d3">Tail-Recursion Version</h4>
-<div class="outline-text-4" id="text-org3a420d3">
+<div class="outline-4" id="outline-container-org6ee6ed0">
+<h4 id="org6ee6ed0">Tail-Recursion Version</h4>
+<div class="outline-text-4" id="text-org6ee6ed0">
 <div class="highlight">
 <pre><span></span>def pascal(c: Int, r: Int): Int = {
     @annotation.tailrec
@@ -200,13 +197,12 @@
 </pre></div>
 <pre class="example">
 8 - 9656bc37-fd80-4110-9d6f-f7e77b546f8f
-
 </pre></div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-org69faa94">
-<h3 id="org69faa94">Exercise 2: Parentheses Balancing</h3>
-<div class="outline-text-3" id="text-org69faa94">
+<div class="outline-3" id="outline-container-orgb3eec96">
+<h3 id="orgb3eec96">Exercise 2: Parentheses Balancing</h3>
+<div class="outline-text-3" id="text-orgb3eec96">
 <p>Write a recursive function which verifies the balancing of parentheses in a string, which we represent as a List[Char] not a String. For example, the function should return true for the following strings:</p>
 <ul class="org-ul">
 <li>(if (zero? x) max (/ 1 x))</li>
@@ -262,9 +258,9 @@
 </pre></div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-org9139507">
-<h3 id="org9139507">Exercise 3: Counting Change</h3>
-<div class="outline-text-3" id="text-org9139507">
+<div class="outline-3" id="outline-container-org41ab029">
+<h3 id="org41ab029">Exercise 3: Counting Change</h3>
+<div class="outline-text-3" id="text-org41ab029">
 <p>Write a recursive function that counts how many different ways you can make change for an amount, given a list of coin denominations. For example, there are 3 ways to give change for 4 if you have coins with denomination 1 and 2: 1+1+1+1, 1+1+2, 2+2.</p>
 <p>Do this exercise by implementing the countChange function inMain.scala. This function takes an amount to change, and a list of unique denominations for the coins. Its signature is as follows:</p>
 <div class="highlight">
@@ -275,8 +271,11 @@
 </div>
 </div>
 </div>
-<div class="outline-2" id="outline-container-orgb26bd85">
-<h2 id="orgb26bd85">End</h2>
+<div class="outline-2" id="outline-container-org24e2f42">
+<h2 id="org24e2f42">End</h2>
+<div class="outline-text-2" id="text-org24e2f42">
+<p>I only got 9/10 for this - there's two test cases that I haven't passed yet.</p>
+</div>
 </div>
 </div>
 <aside class="postpromonav">
