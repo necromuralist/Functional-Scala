@@ -11,59 +11,82 @@
 #+END_COMMENT
 #+OPTIONS: ^:{}
 #+TOC: headlines 3
-In this assignment, you will work with a functional representation of sets based on the mathematical notion of characteristic functions. The goal is to gain practice with higher-order functions.
+In this assignment, you will work with a functional representation of sets based on the mathematical notion of [[https://www.wikiwand.com/en/Characteristic_function][characteristic functions]]. The goal is to gain practice with higher-order functions.
 
-Download the funsets.zip handout archive file and extract it somewhere on your machine. Write your solutions by completing the stubs in the FunSets.scala file.
-
-Write your own tests! For this assignment, we don’t give you tests but instead the FunSetSuite.scala file contains hints on how to write your own tests for the assignment.
-
-Representation
+* Representation
 
 We will work with sets of integers.
 
 As an example to motivate our representation, how would you represent the set of all negative integers? You cannot list them all… one way would be to say: if you give me an integer, I can tell you whether it’s in the set or not: for 3, I say ‘no’; for -1, I say yes.
 
-Mathematically, we call the function which takes an integer as argument and which returns a boolean indicating whether the given integer belongs to a set, the characteristic function of the set. For example, we can characterize the set of negative integers by the characteristic function (x: Int) => x < 0.
+Mathematically, we call the function which takes an integer as argument and which returns a boolean indicating whether the given integer belongs to a set, the /characteristic function/ of the set. For example, we can characterize the set of negative integers by the characteristic function =(x: Int) => x < 0=.
 
 Therefore, we choose to represent a set by its characteristic function and define a type alias for this representation:
 
-#+begin_src scala
+#+begin_src jupyter-scala
 type FunSet = Int => Boolean
 #+end_src
 
+#+RESULTS:
+: # Out[1]:
+: : defined [32mtype[39m [36mFunSet[39m
+
 Using this representation, we define a function that tests for the presence of a value in a set:
 
-#+begin_src scala
+#+begin_src jupyter-scala
 def contains(s: FunSet, elem: Int): Boolean = s(elem)
 #+end_src
 
-2.1 Basic Functions on Sets
+#+RESULTS:
+: # Out[2]:
+: : defined [32mfunction[39m [36mcontains[39m
 
-Let’s start by implementing basic functions on sets.
+** Basic Functions on Sets
 
-    Define a function which creates a singleton set from one integer value: the set represents the set of the one given element. Its signature is as follows:
+Let’s start by implementing basic functions on sets. Define a function which creates a singleton set from one integer value: the set represents the set of the one given element. Its signature is as follows:
 
-#+begin_src scala
-def singletonSet(elem: Int): FunSet
+#+begin_src jupyter-scala
+def singletonSet(elem: Int): FunSet = {
+  Set(elem)
+}
 #+end_src
+
+#+RESULTS:
+: # Out[3]:
+: : defined [32mfunction[39m [36msingletonSet[39m
 
 Now that we have a way to create singleton sets, we want to define a function that allow us to build bigger sets from smaller ones.
 
-2. Define the functions union,intersect, and diff, which takes two sets, and return, respectively, their union, intersection and differences. diff(s, t) returns a set which contains all the elements of the set s that are not in the set t. These functions have the following signatures:
+** Define the functions union, intersect, and diff, which takes two sets, and return, respectively, their union, intersection and differences. diff(s, t) returns a set which contains all the elements of the set s that are not in the set t. These functions have the following signatures:
+
+*** Union
+    This took me a while to figure out, but what you're returning here is a =FunSet= which is a function that takes an integer and returns a boolean, so you aren't actually returning a union of the sets, but a function which tells you whether an element is in the union of the two sets.
 
 #+begin_src scala
-def union(s: FunSet, t: FunSet): FunSet
+/**
+  ,* Returns a function that decides if an element is in 
+  ,*  the either of the given sets (is it in `s`, or `t` or both)
+  ,* 
+  ,* @param s a function that decides if an integer is in its set
+  ,* @param t a function that decides if an integer is in its set
+  ,* @returns a function that decides if an integer is in a union of s and t
+  ,*/
+def union(s: FunSet, t: FunSet): FunSet =
+  (element: Int) => s(element) || t(element)
+#+end_src
+
+#+begin_src scala
 def intersect(s: FunSet, t: FunSet): FunSet
 def diff(s: FunSet, t: FunSet): FunSet
 #+end_src
 
-3. Define the function filter which selects only the elements of a set that are accepted by a given predicate p. The filtered elements are returned as a new set. The signature of filter is as follows:
+*** Define the function filter which selects only the elements of a set that are accepted by a given predicate p. The filtered elements are returned as a new set. The signature of filter is as follows:
 
 #+begin_src scala
 def filter(s: FunSet, p: Int => Boolean): FunSet
 #+end_src
 
-2.2 Queries and Transformations on Sets
+** Queries and Transformations on Sets
 
 In this part, we are interested in functions used to make requests on elements of a set. The first function tests whether a given predicate is true for all elements of the set. This forall function has the following signature:
 

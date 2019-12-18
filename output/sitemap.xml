@@ -15,7 +15,7 @@
  </url>
  <url>
   <loc>https://necromuralist.github.io/Functional-Scala/archive.html</loc>
-  <lastmod>2019-12-15T03:23:00Z</lastmod>
+  <lastmod>2019-12-18T05:10:00Z</lastmod>
  </url>
  <url>
   <loc>https://necromuralist.github.io/Functional-Scala/categories/</loc>
@@ -68,6 +68,18 @@
  <url>
   <loc>https://necromuralist.github.io/Functional-Scala/categories/traits/</loc>
   <lastmod>2019-12-11T04:40:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://necromuralist.github.io/Functional-Scala/posts/course-1/anagrams/</loc>
+  <lastmod>2019-12-18T05:10:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://necromuralist.github.io/Functional-Scala/posts/course-1/huffman-coding/</loc>
+  <lastmod>2019-12-18T05:10:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://necromuralist.github.io/Functional-Scala/posts/course-1/object-oriented-sets/</loc>
+  <lastmod>2019-12-18T05:10:00Z</lastmod>
  </url>
  <url>
   <loc>https://necromuralist.github.io/Functional-Scala/posts/course-1/recursion/</loc>

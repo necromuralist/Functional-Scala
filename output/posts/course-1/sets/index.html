@@ -20,6 +20,7 @@
 <link href="../../../site.webmanifest" rel="manifest">
 <meta content="Cloistered Monkey" name="author">
 <link href="../../hello-scala/traits-are-closer-to-abstract-classes/" rel="prev" title="Traits Are Closer To Abstract Classes" type="text/html">
+<link href="../object-oriented-sets/" rel="next" title="Object-Oriented Sets" type="text/html">
 <meta content="Functional Scala" property="og:site_name">
 <meta content="Sets" property="og:title">
 <meta content="https://necromuralist.github.io/Functional-Scala/posts/course-1/sets/" property="og:url">
@@ -70,43 +71,90 @@
 </div>
 </header>
 <div class="e-content entry-content" itemprop="articleBody text">
-<p>In this assignment, you will work with a functional representation of sets based on the mathematical notion of characteristic functions. The goal is to gain practice with higher-order functions.</p>
-<p>Download the funsets.zip handout archive file and extract it somewhere on your machine. Write your solutions by completing the stubs in the FunSets.scala file.</p>
-<p>Write your own tests! For this assignment, we don’t give you tests but instead the FunSetSuite.scala file contains hints on how to write your own tests for the assignment.</p>
-<p>Representation</p>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org704dba9">Representation</a>
+<ul>
+<li><a href="#orgf7f096d">Basic Functions on Sets</a></li>
+<li><a href="#org20aee4c">Define the functions union, intersect, and diff, which takes two sets, and return, respectively, their union, intersection and differences. diff(s, t) returns a set which contains all the elements of the set s that are not in the set t. These functions have the following signatures:</a>
+<ul>
+<li><a href="#orgef4ef59">Union</a></li>
+<li><a href="#org952d14e">Define the function filter which selects only the elements of a set that are accepted by a given predicate p. The filtered elements are returned as a new set. The signature of filter is as follows:</a></li>
+</ul>
+</li>
+<li><a href="#org3c1c1d3">Queries and Transformations on Sets</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>In this assignment, you will work with a functional representation of sets based on the mathematical notion of <a href="https://www.wikiwand.com/en/Characteristic_function">characteristic functions</a>. The goal is to gain practice with higher-order functions.</p>
+<div class="outline-2" id="outline-container-org704dba9">
+<h2 id="org704dba9">Representation</h2>
+<div class="outline-text-2" id="text-org704dba9">
 <p>We will work with sets of integers.</p>
 <p>As an example to motivate our representation, how would you represent the set of all negative integers? You cannot list them all… one way would be to say: if you give me an integer, I can tell you whether it’s in the set or not: for 3, I say ‘no’; for -1, I say yes.</p>
-<p>Mathematically, we call the function which takes an integer as argument and which returns a boolean indicating whether the given integer belongs to a set, the characteristic function of the set. For example, we can characterize the set of negative integers by the characteristic function (x: Int) =&gt; x &lt; 0.</p>
+<p>Mathematically, we call the function which takes an integer as argument and which returns a boolean indicating whether the given integer belongs to a set, the <i>characteristic function</i> of the set. For example, we can characterize the set of negative integers by the characteristic function <code>(x: Int) =&gt; x &lt; 0</code>.</p>
 <p>Therefore, we choose to represent a set by its characteristic function and define a type alias for this representation:</p>
 <div class="highlight">
-<pre><span></span><span class="k">type</span> <span class="kt">FunSet</span> <span class="o">=</span> <span class="nc">Int</span> <span class="k">=&gt;</span> <span class="nc">Boolean</span>
+<pre><span></span>type FunSet = Int =&gt; Boolean
 </pre></div>
 <p>Using this representation, we define a function that tests for the presence of a value in a set:</p>
 <div class="highlight">
-<pre><span></span><span class="k">def</span> <span class="n">contains</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">elem</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="n">s</span><span class="o">(</span><span class="n">elem</span><span class="o">)</span>
+<pre><span></span>def contains(s: FunSet, elem: Int): Boolean = s(elem)
 </pre></div>
-<p>2.1 Basic Functions on Sets</p>
-<p>Let’s start by implementing basic functions on sets.</p>
-<p>Define a function which creates a singleton set from one integer value: the set represents the set of the one given element. Its signature is as follows:</p>
+</div>
+<div class="outline-3" id="outline-container-orgf7f096d">
+<h3 id="orgf7f096d">Basic Functions on Sets</h3>
+<div class="outline-text-3" id="text-orgf7f096d">
+<p>Let’s start by implementing basic functions on sets. Define a function which creates a singleton set from one integer value: the set represents the set of the one given element. Its signature is as follows:</p>
 <div class="highlight">
-<pre><span></span><span class="k">def</span> <span class="n">singletonSet</span><span class="o">(</span><span class="n">elem</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span>
+<pre><span></span>def singletonSet(elem: Int): FunSet = {
+  Set(elem)
+}
 </pre></div>
 <p>Now that we have a way to create singleton sets, we want to define a function that allow us to build bigger sets from smaller ones.</p>
-<ol class="org-ol">
-<li>Define the functions union,intersect, and diff, which takes two sets, and return, respectively, their union, intersection and differences. diff(s, t) returns a set which contains all the elements of the set s that are not in the set t. These functions have the following signatures:</li>
-</ol>
+</div>
+</div>
+<div class="outline-3" id="outline-container-org20aee4c">
+<h3 id="org20aee4c">Define the functions union, intersect, and diff, which takes two sets, and return, respectively, their union, intersection and differences. diff(s, t) returns a set which contains all the elements of the set s that are not in the set t. These functions have the following signatures:</h3>
+<div class="outline-text-3" id="text-org20aee4c"></div>
+<div class="outline-4" id="outline-container-orgef4ef59">
+<h4 id="orgef4ef59">Union</h4>
+<div class="outline-text-4" id="text-orgef4ef59">
+<p>This took me a while to figure out, but what you're returning here is a <code>FunSet</code> which is a function that takes an integer and returns a boolean, so you aren't actually returning a union of the sets, but a function which tells you whether an element is in the union of the two sets.</p>
 <div class="highlight">
-<pre><span></span><span class="k">def</span> <span class="n">union</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">t</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span>
-<span class="k">def</span> <span class="n">intersect</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">t</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span>
+<pre><span></span><span class="cm">/**</span>
+<span class="cm">  * Returns a function that decides if an element is in </span>
+<span class="cm">  *  the either of the given sets (is it in `s`, or `t` or both)</span>
+<span class="cm">  * </span>
+<span class="cm">  * @param s a function that decides if an integer is in its set</span>
+<span class="cm">  * @param t a function that decides if an integer is in its set</span>
+<span class="cm">  * @returns a function that decides if an integer is in a union of s and t</span>
+<span class="cm">  */</span>
+<span class="k">def</span> <span class="n">union</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">t</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span> <span class="o">=</span>
+  <span class="o">(</span><span class="n">element</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">s</span><span class="o">(</span><span class="n">element</span><span class="o">)</span> <span class="o">||</span> <span class="n">t</span><span class="o">(</span><span class="n">element</span><span class="o">)</span>
+</pre></div>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="n">intersect</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">t</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span>
 <span class="k">def</span> <span class="n">diff</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">t</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span>
 </pre></div>
-<ol class="org-ol">
-<li>Define the function filter which selects only the elements of a set that are accepted by a given predicate p. The filtered elements are returned as a new set. The signature of filter is as follows:</li>
-</ol>
+</div>
+</div>
+<div class="outline-4" id="outline-container-org952d14e">
+<h4 id="org952d14e">Define the function filter which selects only the elements of a set that are accepted by a given predicate p. The filtered elements are returned as a new set. The signature of filter is as follows:</h4>
+<div class="outline-text-4" id="text-org952d14e">
 <div class="highlight">
 <pre><span></span><span class="k">def</span> <span class="n">filter</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">p</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span>
 </pre></div>
-<p>2.2 Queries and Transformations on Sets</p>
+</div>
+</div>
+</div>
+<div class="outline-3" id="outline-container-org3c1c1d3">
+<h3 id="org3c1c1d3">Queries and Transformations on Sets</h3>
+<div class="outline-text-3" id="text-org3c1c1d3">
 <p>In this part, we are interested in functions used to make requests on elements of a set. The first function tests whether a given predicate is true for all elements of the set. This forall function has the following signature:</p>
 <div class="highlight">
 <pre><span></span><span class="k">def</span> <span class="n">forall</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">p</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">Boolean</span>
@@ -138,6 +186,9 @@
 <p>Extra Hints</p>
 <p>Be attentive in the video lectures on how to write anonymous functions in Scala. Sets are represented as functions. Think about what it means for an element to belong to a set, in terms of function evaluation. For example, how do you represent a set that contains all numbers between 1 and 100? Most of the solutions for this assignment can be written as one-liners. If you have more, you probably need to rethink your solution. In other words, this assignment needs more thinking (whiteboard, pen and paper) than coding ;-). If you are having some trouble with terminology, have a look at the <a href="https://docs.scala-lang.org/glossary/">glossary</a>.</p>
 </div>
+</div>
+</div>
+</div>
 <aside class="postpromonav">
 <nav>
 <ul class="tags" itemprop="keywords">
@@ -146,6 +197,7 @@
 </ul>
 <ul class="pager hidden-print">
 <li class="previous"><a href="../../hello-scala/traits-are-closer-to-abstract-classes/" rel="prev" title="Traits Are Closer To Abstract Classes">Previous post</a></li>
+<li class="next"><a href="../object-oriented-sets/" rel="next" title="Object-Oriented Sets">Next post</a></li>
 </ul>
 </nav>
 </aside>
