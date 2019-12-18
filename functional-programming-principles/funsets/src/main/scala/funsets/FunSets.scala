@@ -22,7 +22,6 @@ trait FunSets extends FunSetsInterface {
     Set(elem)
   }
 
-
   /**
    * Returns the union of the two given sets,
    * the sets of all elements that are in either `s` or `t`.
@@ -34,19 +33,21 @@ trait FunSets extends FunSetsInterface {
    * Returns the intersection of the two given sets,
    * the set of all elements that are both in `s` and `t`.
    */
-  def intersect(s: FunSet, t: FunSet): FunSet = ???
+  def intersect(s: FunSet, t: FunSet): FunSet =
+    (element: Int) => s(element) && t(element)
 
   /**
    * Returns the difference of the two given sets,
    * the set of all elements of `s` that are not in `t`.
    */
-  def diff(s: FunSet, t: FunSet): FunSet = ???
+  def diff(s: FunSet, t: FunSet): FunSet =
+    (element: Int) => s(element) && !t(element)
 
   /**
    * Returns the subset of `s` for which `p` holds.
    */
-  def filter(s: FunSet, p: Int => Boolean): FunSet = ???
-
+  def filter(s: FunSet, p: Int => Boolean): FunSet =
+    (element: Int) => s(element) && p(element)
 
   /**
    * The bounds for `forall` and `exists` are +/- 1000.
@@ -58,23 +59,37 @@ trait FunSets extends FunSetsInterface {
    */
   def forall(s: FunSet, p: Int => Boolean): Boolean = {
     def iter(a: Int): Boolean = {
-      if (???) ???
-      else if (???) ???
-      else iter(???)
+      if (a > bound) true
+      else if (s(a) && !p(a)) false
+      else iter(a + 1)
     }
-    iter(???)
+    iter(-bound)
   }
 
   /**
    * Returns whether there exists a bounded integer within `s`
    * that satisfies `p`.
    */
-  def exists(s: FunSet, p: Int => Boolean): Boolean = ???
+  def exists(s: FunSet, p: Int => Boolean): Boolean = {
+    def iter(a: Int): Boolean = {
+      if (a > bound) false
+      else if (s(a) && p(a)) true
+      else iter(a + 1)
+    }
+    iter(-bound)
+  }
 
   /**
    * Returns a set transformed by applying `f` to each element of `s`.
    */
-  def map(s: FunSet, f: Int => Int): FunSet = ???
+  def map(s: FunSet, f: Int => Int): FunSet = {
+    def iter(a: Int, accumulator: Set[Int]): Set[Int] = {
+      if (a > bound) accumulator
+      else if (s(a)) iter(a + 1, accumulator + f(a))
+      else iter(a + 1, accumulator)
+    }
+    iter(-bound, Set(0).empty)
+  }
 
   /**
    * Displays the contents of a set
