@@ -12,9 +12,7 @@
 #+OPTIONS: ^:{}
 #+TOC: headlines 3
 * Begin
-#+begin_src jupyter-scala :session recursion :results none
-import scala.collection.mutable.Stack
-#+end_src
+  This is a set of exercises to implement methods using recursion - and tail recursion when possible.
 * Middle
 ** Exercise 1: Pascal’s Triangle
 
@@ -185,3 +183,4 @@ Once again, you can make use of functions isEmpty, head and tail on the list of 
 
 **Hint**: Think of the degenerate cases. How many ways can you give change for 0 CHF(swiss money)? How many ways can you give change for >0 CHF, if you have no coins?
 * End
+  I only got 9/10 for this - there's two test cases that I haven't passed yet.

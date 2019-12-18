@@ -75,55 +75,65 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org704dba9">Representation</a>
+<li><a href="#org02f6241">Representation</a>
 <ul>
-<li><a href="#orgf7f096d">Basic Functions on Sets</a></li>
-<li><a href="#org20aee4c">Define the functions union, intersect, and diff, which takes two sets, and return, respectively, their union, intersection and differences. diff(s, t) returns a set which contains all the elements of the set s that are not in the set t. These functions have the following signatures:</a>
+<li><a href="#orgd8fd47e">Basic Functions on Sets</a></li>
+<li><a href="#org850a3b1">Define the functions union, intersect, and diff, which takes two sets, and return, respectively, their union, intersection and differences. diff(s, t) returns a set which contains all the elements of the set s that are not in the set t. These functions have the following signatures:</a>
 <ul>
-<li><a href="#orgef4ef59">Union</a></li>
-<li><a href="#org952d14e">Define the function filter which selects only the elements of a set that are accepted by a given predicate p. The filtered elements are returned as a new set. The signature of filter is as follows:</a></li>
+<li><a href="#orgd4f036e">Union</a></li>
+<li><a href="#org970a206">Intersect</a></li>
+<li><a href="#org2582992">Difference</a></li>
+<li><a href="#org974fee9">Filter</a></li>
 </ul>
 </li>
-<li><a href="#org3c1c1d3">Queries and Transformations on Sets</a></li>
+<li><a href="#org530f59a">Queries and Transformations on Sets</a>
+<ul>
+<li><a href="#orgb88e3e0">For All</a></li>
+<li><a href="#orgf51e41b">Exists</a></li>
+<li><a href="#org3fd82dd">Map</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <p>In this assignment, you will work with a functional representation of sets based on the mathematical notion of <a href="https://www.wikiwand.com/en/Characteristic_function">characteristic functions</a>. The goal is to gain practice with higher-order functions.</p>
-<div class="outline-2" id="outline-container-org704dba9">
-<h2 id="org704dba9">Representation</h2>
-<div class="outline-text-2" id="text-org704dba9">
+<div class="outline-2" id="outline-container-org02f6241">
+<h2 id="org02f6241">Representation</h2>
+<div class="outline-text-2" id="text-org02f6241">
 <p>We will work with sets of integers.</p>
 <p>As an example to motivate our representation, how would you represent the set of all negative integers? You cannot list them all… one way would be to say: if you give me an integer, I can tell you whether it’s in the set or not: for 3, I say ‘no’; for -1, I say yes.</p>
 <p>Mathematically, we call the function which takes an integer as argument and which returns a boolean indicating whether the given integer belongs to a set, the <i>characteristic function</i> of the set. For example, we can characterize the set of negative integers by the characteristic function <code>(x: Int) =&gt; x &lt; 0</code>.</p>
 <p>Therefore, we choose to represent a set by its characteristic function and define a type alias for this representation:</p>
 <div class="highlight">
-<pre><span></span>type FunSet = Int =&gt; Boolean
+<pre><span></span><span class="k">type</span> <span class="kt">FunSet</span> <span class="o">=</span> <span class="nc">Int</span> <span class="k">=&gt;</span> <span class="nc">Boolean</span>
 </pre></div>
 <p>Using this representation, we define a function that tests for the presence of a value in a set:</p>
 <div class="highlight">
-<pre><span></span>def contains(s: FunSet, elem: Int): Boolean = s(elem)
+<pre><span></span><span class="k">def</span> <span class="n">contains</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">elem</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="n">s</span><span class="o">(</span><span class="n">elem</span><span class="o">)</span>
 </pre></div>
+<p>This takes a <code>FunSet</code> method and checks if the element is in the set it represents.</p>
 </div>
-<div class="outline-3" id="outline-container-orgf7f096d">
-<h3 id="orgf7f096d">Basic Functions on Sets</h3>
-<div class="outline-text-3" id="text-orgf7f096d">
+<div class="outline-3" id="outline-container-orgd8fd47e">
+<h3 id="orgd8fd47e">Basic Functions on Sets</h3>
+<div class="outline-text-3" id="text-orgd8fd47e">
 <p>Let’s start by implementing basic functions on sets. Define a function which creates a singleton set from one integer value: the set represents the set of the one given element. Its signature is as follows:</p>
 <div class="highlight">
-<pre><span></span>def singletonSet(elem: Int): FunSet = {
-  Set(elem)
-}
+<pre><span></span><span class="k">def</span> <span class="n">singletonSet</span><span class="o">(</span><span class="n">elem</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="nc">Set</span><span class="o">(</span><span class="n">elem</span><span class="o">)</span>
+<span class="o">}</span>
 </pre></div>
+<p>This is not a straight-forward method. Although it looks like we're returning a <code>Set</code>, we're actually returning a <code>FunSet</code>, so the object being returned won't have any set methods (other than the ability to check that an element is a member of it as in the <code>contains</code> method above).</p>
 <p>Now that we have a way to create singleton sets, we want to define a function that allow us to build bigger sets from smaller ones.</p>
 </div>
 </div>
-<div class="outline-3" id="outline-container-org20aee4c">
-<h3 id="org20aee4c">Define the functions union, intersect, and diff, which takes two sets, and return, respectively, their union, intersection and differences. diff(s, t) returns a set which contains all the elements of the set s that are not in the set t. These functions have the following signatures:</h3>
-<div class="outline-text-3" id="text-org20aee4c"></div>
-<div class="outline-4" id="outline-container-orgef4ef59">
-<h4 id="orgef4ef59">Union</h4>
-<div class="outline-text-4" id="text-orgef4ef59">
+<div class="outline-3" id="outline-container-org850a3b1">
+<h3 id="org850a3b1">Define the functions union, intersect, and diff, which takes two sets, and return, respectively, their union, intersection and differences. diff(s, t) returns a set which contains all the elements of the set s that are not in the set t. These functions have the following signatures:</h3>
+<div class="outline-text-3" id="text-org850a3b1"></div>
+<div class="outline-4" id="outline-container-orgd4f036e">
+<h4 id="orgd4f036e">Union</h4>
+<div class="outline-text-4" id="text-orgd4f036e">
 <p>This took me a while to figure out, but what you're returning here is a <code>FunSet</code> which is a function that takes an integer and returns a boolean, so you aren't actually returning a union of the sets, but a function which tells you whether an element is in the union of the two sets.</p>
 <div class="highlight">
 <pre><span></span><span class="cm">/**</span>
@@ -137,54 +147,206 @@
 <span class="k">def</span> <span class="n">union</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">t</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span> <span class="o">=</span>
   <span class="o">(</span><span class="n">element</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">s</span><span class="o">(</span><span class="n">element</span><span class="o">)</span> <span class="o">||</span> <span class="n">t</span><span class="o">(</span><span class="n">element</span><span class="o">)</span>
 </pre></div>
+<p>So to use this you would pass it two <code>FunSet</code> objects and then use the returned object to check if it has elements in it.</p>
 <div class="highlight">
-<pre><span></span><span class="k">def</span> <span class="n">intersect</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">t</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span>
-<span class="k">def</span> <span class="n">diff</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">t</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span>
+<pre><span></span><span class="k">val</span> <span class="n">set_1</span> <span class="k">=</span> <span class="n">singletonSet</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">set_2</span> <span class="k">=</span> <span class="n">singletonSet</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">unionized</span> <span class="k">=</span> <span class="n">union</span><span class="o">(</span><span class="n">set_1</span><span class="o">,</span> <span class="n">set_2</span><span class="o">)</span>
+<span class="n">assert</span><span class="o">(</span><span class="n">contains</span><span class="o">(</span><span class="n">unionized</span><span class="o">,</span> <span class="mi">1</span><span class="o">))</span>
+<span class="n">assert</span><span class="o">(</span><span class="n">contains</span><span class="o">(</span><span class="n">unionized</span><span class="o">,</span> <span class="mi">2</span><span class="o">))</span>
 </pre></div>
 </div>
 </div>
-<div class="outline-4" id="outline-container-org952d14e">
-<h4 id="org952d14e">Define the function filter which selects only the elements of a set that are accepted by a given predicate p. The filtered elements are returned as a new set. The signature of filter is as follows:</h4>
-<div class="outline-text-4" id="text-org952d14e">
+<div class="outline-4" id="outline-container-org970a206">
+<h4 id="org970a206">Intersect</h4>
+<div class="outline-text-4" id="text-org970a206">
+<p>This uses the same trick as the <code>union</code> method - we just need to change the logical operations.</p>
 <div class="highlight">
-<pre><span></span><span class="k">def</span> <span class="n">filter</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">p</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span>
+<pre><span></span><span class="k">def</span> <span class="n">intersect</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">t</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span> <span class="o">=</span>
+  <span class="o">(</span><span class="n">element</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">s</span><span class="o">(</span><span class="n">element</span><span class="o">)</span> <span class="o">&amp;&</span> <span class="n">t</span><span class="o">(</span><span class="n">element</span><span class="o">)</span>
+</pre></div>
+<p>In this case we want to create a method that checks that both set <code>s</code> and set <code>t</code> have the element passed to it.</p>
+</div>
+</div>
+<div class="outline-4" id="outline-container-org2582992">
+<h4 id="org2582992">Difference</h4>
+<div class="outline-text-4" id="text-org2582992">
+<p>With sets, the <code>diff</code> method tells us if an element is in the first set but not in the second.</p>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="n">diff</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">t</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span> <span class="o">=</span>
+  <span class="o">(</span><span class="n">element</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">s</span><span class="o">(</span><span class="n">element</span><span class="o">)</span> <span class="o">&amp;&</span> <span class="o">!</span><span class="n">t</span><span class="o">(</span><span class="n">element</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<div class="outline-4" id="outline-container-org974fee9">
+<h4 id="org974fee9">Filter</h4>
+<div class="outline-text-4" id="text-org974fee9">
+<blockquote>
+<p>Define the function filter which selects only the elements of a set that are accepted by a given predicate p. The filtered elements are returned as a new set.</p>
+</blockquote>
+<p>Once again, despite the way the problem is stated, we aren't returning a set of elements but a function that checks that an element is both in the set and returns <code>true</code> when passed to the function that's given.</p>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="n">filter</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">p</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span> <span class="o">=</span>
+  <span class="o">(</span><span class="n">element</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">s</span><span class="o">(</span><span class="n">element</span><span class="o">)</span> <span class="o">&amp;&</span> <span class="n">p</span><span class="o">(</span><span class="n">element</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-org3c1c1d3">
-<h3 id="org3c1c1d3">Queries and Transformations on Sets</h3>
-<div class="outline-text-3" id="text-org3c1c1d3">
+<div class="outline-3" id="outline-container-org530f59a">
+<h3 id="org530f59a">Queries and Transformations on Sets</h3>
+<div class="outline-text-3" id="text-org530f59a"></div>
+<div class="outline-4" id="outline-container-orgb88e3e0">
+<h4 id="orgb88e3e0">For All</h4>
+<div class="outline-text-4" id="text-orgb88e3e0">
 <p>In this part, we are interested in functions used to make requests on elements of a set. The first function tests whether a given predicate is true for all elements of the set. This forall function has the following signature:</p>
 <div class="highlight">
 <pre><span></span><span class="k">def</span> <span class="n">forall</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">p</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">Boolean</span>
 </pre></div>
-<p>Note that there is no direct way to find which elements are in a set. contains only allows to know whether a given element is included. Thus, if we wish to do something to all elements of a set, then we have to iterate over all integers, testing each time whether it is included in the set, and if so, to do something with it. Here, we consider that an integer x has the property -1000 &lt;= x &lt;= 1000 in order to limit the search space.</p>
-<p>Implement forall using linear recursion. For this, use a helper function nested in forall. Its structure is as follows (replace the ???):</p>
+<p>Note that there is no direct way to find which elements are in a set. <code>contains</code> only allows us to know whether a given element is included. Thus, if we wish to do something to all elements of a set, then we have to iterate over all integers, testing each time whether it is included in the set, and if so, to do something with it. Here, we consider that an integer x has the property -1000 &lt;= x &lt;= 1000 in order to limit the search space.</p>
+</div>
+<ul class="org-ul">
+<li><a id="orgccc570d"></a>Base Case<br>
+<div class="outline-text-5" id="text-orgccc570d">
+<p>Implement forall using linear recursion. For this, use a helper function nested in <code>forall</code>. In the implementation there is a variable named <code>bound</code> which holds the absolute value for the bounds. Our stopping condition is when we've reached the end of the boundary. Since we need for the method <code>p</code> to return true for all elements in <code>s</code>, if we reach the end then we know that it passed all the elements so our base returns <code>true</code>:</p>
+<div class="highlight">
+<pre><span></span><span class="k">if</span><span class="o">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">bound</span><span class="o">)</span> <span class="kc">true</span>
+</pre></div>
+<p>I'm using <code>&gt;</code> because the call to the inner function is going to increment <code>a</code> by one, so the stopping point is one past the bound.</p>
+</div>
+</li>
+<li><a id="orgf2fe102"></a>Failing Case<br>
+<div class="outline-text-5" id="text-orgf2fe102">
+<p>Since all the elements in <code>s</code> have to return true when passed to <code>p</code>, if any element returns false then we can stop and report that the set doesn't pass.</p>
+<div class="highlight">
+<pre><span></span><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">s</span><span class="o">(</span><span class="n">a</span><span class="o">)</span> <span class="o">&amp;&</span> <span class="o">!</span><span class="n">p</span><span class="o">(</span><span class="n">a</span><span class="o">))</span> <span class="kc">false</span>
+</pre></div>
+</div>
+</li>
+<li><a id="orgded84d4"></a>The Recursive Call<br>
+<div class="outline-text-5" id="text-orgded84d4">
+<p>Our final case is when <code>a</code> is still in bounds and passes <code>p</code>, so we need to make the recursive call with the next integer.</p>
+<div class="highlight">
+<pre><span></span><span class="k">else</span> <span class="n">iter</span><span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><a id="org6c09310"></a>Calling Iter<br>
+<div class="outline-text-5" id="text-org6c09310">
+<p>Since our range of integers is from <code>-bound</code> to <code>bound</code>, we kick the whole thing off by calling the <code>iter</code> method with <code>-bound</code>.</p>
+<div class="highlight">
+<pre><span></span><span class="n">iter</span><span class="o">(-</span><span class="n">bound</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><a id="org45dfc12"></a>The Whole Shebang<br>
+<div class="outline-text-5" id="text-org45dfc12">
+<p>Here's the method all together.</p>
 <div class="highlight">
 <pre><span></span><span class="k">def</span> <span class="n">forall</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">p</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="o">{</span>
   <span class="k">def</span> <span class="n">iter</span><span class="o">(</span><span class="n">a</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(???)</span> <span class="o">???</span>
-    <span class="k">else</span> <span class="k">if</span> <span class="o">(???)</span> <span class="o">???</span>
-    <span class="k">else</span> <span class="n">iter</span><span class="o">(???)</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">bound</span><span class="o">)</span> <span class="kc">true</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">s</span><span class="o">(</span><span class="n">a</span><span class="o">)</span> <span class="o">&amp;&</span> <span class="o">!</span><span class="n">p</span><span class="o">(</span><span class="n">a</span><span class="o">))</span> <span class="kc">false</span>
+    <span class="k">else</span> <span class="n">iter</span><span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span>
   <span class="o">}</span>
-  <span class="n">iter</span><span class="o">(???)</span>
+  <span class="n">iter</span><span class="o">(-</span><span class="n">bound</span><span class="o">)</span>
 <span class="o">}</span>
 </pre></div>
-<ol class="org-ol">
-<li>Using forall, implement a function exists which tests whether a set contains at least one element for which the given predicate is true. Note that the functions forall and exists behave like the universal and existential quantifiers of first-order logic.</li>
-</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="outline-4" id="outline-container-orgf51e41b">
+<h4 id="orgf51e41b">Exists</h4>
+<div class="outline-text-4" id="text-orgf51e41b">
+<blockquote>
+<p>Using <code>forall</code>, implement a function exists which tests whether a set contains at least one element for which the given predicate is true. Note that the functions forall and exists behave like the universal and existential quantifiers of first-order logic.</p>
+</blockquote>
+<p>Although the instructions say to use <code>forall</code> I couldn't see an obvious way to do it so I took the statement to mean "Using <code>forall</code> as inspiration" implement <code>exists</code>.</p>
+</div>
+<ul class="org-ul">
+<li><a id="org9960d0c"></a>The Base Case<br>
+<div class="outline-text-5" id="text-org9960d0c">
+<p>In this case, our method will quit as soon as any element passes so if we reach the end that means that none of them did so we need to return false.</p>
 <div class="highlight">
-<pre><span></span><span class="k">def</span> <span class="n">exists</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">p</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">Boolean</span>
+<pre><span></span><span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">bound</span><span class="o">)</span> <span class="kc">false</span>
 </pre></div>
-<ol class="org-ol">
-<li>Finally, using forall or exists, write a function map which transforms a given set into another one by applying to each of its elements the given function. map has the following signature:</li>
-</ol>
+</div>
+</li>
+<li><a id="orgb9eb52e"></a>The Short-Circuit<br>
+<div class="outline-text-5" id="text-orgb9eb52e">
+<p>As soon as an element is in <code>s</code> and passes <code>p</code> we can return true.</p>
+<div class="highlight">
+<pre><span></span><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">s</span><span class="o">(</span><span class="n">a</span><span class="o">)</span> <span class="o">&amp;&</span> <span class="n">p</span><span class="o">(</span><span class="n">a</span><span class="o">))</span> <span class="kc">true</span>
+</pre></div>
+<p>The rest of the method looks the same as <code>forall</code>.</p>
+</div>
+</li>
+<li><a id="org8bfd83e"></a>The Whole Thing<br>
+<div class="outline-text-5" id="text-org8bfd83e">
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="n">exists</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">p</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="n">iter</span><span class="o">(</span><span class="n">a</span><span class="k">:</span> <span class="kt">int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">bound</span><span class="o">)</span> <span class="kc">false</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">s</span><span class="o">(</span><span class="n">a</span><span class="o">)</span> <span class="o">&amp;&</span> <span class="n">p</span><span class="o">(</span><span class="n">a</span><span class="o">))</span> <span class="kc">true</span>
+    <span class="k">else</span> <span class="n">iter</span><span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span>
+  <span class="o">}</span>
+  <span class="n">iter</span><span class="o">(-</span><span class="n">bound</span><span class="o">)</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="outline-4" id="outline-container-org3fd82dd">
+<h4 id="org3fd82dd">Map</h4>
+<div class="outline-text-4" id="text-org3fd82dd">
+<blockquote>
+<p>Finally, using forall or exists, write a function map which transforms a given set into another one by applying to each of its elements the given function. map has the following signature:</p>
+</blockquote>
+<p>Once again, rather than re-using the previous methods exactly I'm going to use their spirit. This time I'll use the accumulator pattern to turn the inner function to a tail-recursive one.</p>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="n">iter</span><span class="o">(</span><span class="n">a</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">accumulator</span><span class="k">:</span> <span class="kt">Set</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span><span class="k">:</span> <span class="kt">Set</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span>
+</pre></div>
+</div>
+<ul class="org-ul">
+<li><a id="orge4c6cab"></a>Base Case<br>
+<div class="outline-text-5" id="text-orge4c6cab">
+<p>Since we have an <code>accumulator</code> that holds the set of mapped values, when we reach the end we just return it.</p>
+<div class="highlight">
+<pre><span></span><span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">bound</span><span class="o">)</span> <span class="n">accumulator</span>
+</pre></div>
+</div>
+</li>
+<li><a id="orge5ac958"></a>Updating the Accumulator<br>
+<div class="outline-text-5" id="text-orge5ac958">
+<p>If the next element is in <code>s</code> we need to add the mapped value for the element to the accumulator and make the next recursive call. Alternatively you could just update the accumulator, but then you'd have an extra variable.</p>
+<div class="highlight">
+<pre><span></span><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">s</span><span class="o">(</span><span class="n">a</span><span class="o">))</span> <span class="n">iter</span><span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">accumulator</span> <span class="o">+</span> <span class="n">f</span><span class="o">(</span><span class="n">a</span><span class="o">))</span>
+</pre></div>
+</div>
+</li>
+<li><a id="orge1a5073"></a>The Recursive Call<br>
+<div class="outline-text-5" id="text-orge1a5073">
+<p>This is like the other methods except we have to pass the accumulator.</p>
+<div class="highlight">
+<pre><span></span><span class="k">else</span> <span class="n">iter</span><span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">accumulator</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><a id="org394cbce"></a>Calling the Inner Function<br>
+<div class="outline-text-5" id="text-org394cbce">
+<p>To initialize the accumulator, I pass in an empty set of type integer (by creating a set with an integer and then empyting it).</p>
+<div class="highlight">
+<pre><span></span><span class="n">iter</span><span class="o">(-</span><span class="n">bound</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="n">empty</span><span class="o">)</span>
+</pre></div>
 <div class="highlight">
 <pre><span></span><span class="k">def</span> <span class="n">map</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">f</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span>
 </pre></div>
 <p>Extra Hints</p>
 <p>Be attentive in the video lectures on how to write anonymous functions in Scala. Sets are represented as functions. Think about what it means for an element to belong to a set, in terms of function evaluation. For example, how do you represent a set that contains all numbers between 1 and 100? Most of the solutions for this assignment can be written as one-liners. If you have more, you probably need to rethink your solution. In other words, this assignment needs more thinking (whiteboard, pen and paper) than coding ;-). If you are having some trouble with terminology, have a look at the <a href="https://docs.scala-lang.org/glossary/">glossary</a>.</p>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>

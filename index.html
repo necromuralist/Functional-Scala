@@ -341,55 +341,65 @@ lazy val appleTweets: TweetSet
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="posts/course-1/sets/#org704dba9">Representation</a>
+<li><a href="posts/course-1/sets/#org02f6241">Representation</a>
 <ul>
-<li><a href="posts/course-1/sets/#orgf7f096d">Basic Functions on Sets</a></li>
-<li><a href="posts/course-1/sets/#org20aee4c">Define the functions union, intersect, and diff, which takes two sets, and return, respectively, their union, intersection and differences. diff(s, t) returns a set which contains all the elements of the set s that are not in the set t. These functions have the following signatures:</a>
+<li><a href="posts/course-1/sets/#orgd8fd47e">Basic Functions on Sets</a></li>
+<li><a href="posts/course-1/sets/#org850a3b1">Define the functions union, intersect, and diff, which takes two sets, and return, respectively, their union, intersection and differences. diff(s, t) returns a set which contains all the elements of the set s that are not in the set t. These functions have the following signatures:</a>
 <ul>
-<li><a href="posts/course-1/sets/#orgef4ef59">Union</a></li>
-<li><a href="posts/course-1/sets/#org952d14e">Define the function filter which selects only the elements of a set that are accepted by a given predicate p. The filtered elements are returned as a new set. The signature of filter is as follows:</a></li>
+<li><a href="posts/course-1/sets/#orgd4f036e">Union</a></li>
+<li><a href="posts/course-1/sets/#org970a206">Intersect</a></li>
+<li><a href="posts/course-1/sets/#org2582992">Difference</a></li>
+<li><a href="posts/course-1/sets/#org974fee9">Filter</a></li>
 </ul>
 </li>
-<li><a href="posts/course-1/sets/#org3c1c1d3">Queries and Transformations on Sets</a></li>
+<li><a href="posts/course-1/sets/#org530f59a">Queries and Transformations on Sets</a>
+<ul>
+<li><a href="posts/course-1/sets/#orgb88e3e0">For All</a></li>
+<li><a href="posts/course-1/sets/#orgf51e41b">Exists</a></li>
+<li><a href="posts/course-1/sets/#org3fd82dd">Map</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <p>In this assignment, you will work with a functional representation of sets based on the mathematical notion of <a href="https://www.wikiwand.com/en/Characteristic_function">characteristic functions</a>. The goal is to gain practice with higher-order functions.</p>
-<div class="outline-2" id="outline-container-org704dba9">
-<h2 id="org704dba9">Representation</h2>
-<div class="outline-text-2" id="text-org704dba9">
+<div class="outline-2" id="outline-container-org02f6241">
+<h2 id="org02f6241">Representation</h2>
+<div class="outline-text-2" id="text-org02f6241">
 <p>We will work with sets of integers.</p>
 <p>As an example to motivate our representation, how would you represent the set of all negative integers? You cannot list them all… one way would be to say: if you give me an integer, I can tell you whether it’s in the set or not: for 3, I say ‘no’; for -1, I say yes.</p>
 <p>Mathematically, we call the function which takes an integer as argument and which returns a boolean indicating whether the given integer belongs to a set, the <i>characteristic function</i> of the set. For example, we can characterize the set of negative integers by the characteristic function <code>(x: Int) =&gt; x &lt; 0</code>.</p>
 <p>Therefore, we choose to represent a set by its characteristic function and define a type alias for this representation:</p>
 <div class="highlight">
-<pre><span></span>type FunSet = Int =&gt; Boolean
+<pre><span></span><span class="k">type</span> <span class="kt">FunSet</span> <span class="o">=</span> <span class="nc">Int</span> <span class="k">=&gt;</span> <span class="nc">Boolean</span>
 </pre></div>
 <p>Using this representation, we define a function that tests for the presence of a value in a set:</p>
 <div class="highlight">
-<pre><span></span>def contains(s: FunSet, elem: Int): Boolean = s(elem)
+<pre><span></span><span class="k">def</span> <span class="n">contains</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">elem</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="n">s</span><span class="o">(</span><span class="n">elem</span><span class="o">)</span>
 </pre></div>
+<p>This takes a <code>FunSet</code> method and checks if the element is in the set it represents.</p>
 </div>
-<div class="outline-3" id="outline-container-orgf7f096d">
-<h3 id="orgf7f096d">Basic Functions on Sets</h3>
-<div class="outline-text-3" id="text-orgf7f096d">
+<div class="outline-3" id="outline-container-orgd8fd47e">
+<h3 id="orgd8fd47e">Basic Functions on Sets</h3>
+<div class="outline-text-3" id="text-orgd8fd47e">
 <p>Let’s start by implementing basic functions on sets. Define a function which creates a singleton set from one integer value: the set represents the set of the one given element. Its signature is as follows:</p>
 <div class="highlight">
-<pre><span></span>def singletonSet(elem: Int): FunSet = {
-  Set(elem)
-}
+<pre><span></span><span class="k">def</span> <span class="n">singletonSet</span><span class="o">(</span><span class="n">elem</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="nc">Set</span><span class="o">(</span><span class="n">elem</span><span class="o">)</span>
+<span class="o">}</span>
 </pre></div>
+<p>This is not a straight-forward method. Although it looks like we're returning a <code>Set</code>, we're actually returning a <code>FunSet</code>, so the object being returned won't have any set methods (other than the ability to check that an element is a member of it as in the <code>contains</code> method above).</p>
 <p>Now that we have a way to create singleton sets, we want to define a function that allow us to build bigger sets from smaller ones.</p>
 </div>
 </div>
-<div class="outline-3" id="outline-container-org20aee4c">
-<h3 id="org20aee4c">Define the functions union, intersect, and diff, which takes two sets, and return, respectively, their union, intersection and differences. diff(s, t) returns a set which contains all the elements of the set s that are not in the set t. These functions have the following signatures:</h3>
-<div class="outline-text-3" id="text-org20aee4c"></div>
-<div class="outline-4" id="outline-container-orgef4ef59">
-<h4 id="orgef4ef59">Union</h4>
-<div class="outline-text-4" id="text-orgef4ef59">
+<div class="outline-3" id="outline-container-org850a3b1">
+<h3 id="org850a3b1">Define the functions union, intersect, and diff, which takes two sets, and return, respectively, their union, intersection and differences. diff(s, t) returns a set which contains all the elements of the set s that are not in the set t. These functions have the following signatures:</h3>
+<div class="outline-text-3" id="text-org850a3b1"></div>
+<div class="outline-4" id="outline-container-orgd4f036e">
+<h4 id="orgd4f036e">Union</h4>
+<div class="outline-text-4" id="text-orgd4f036e">
 <p>This took me a while to figure out, but what you're returning here is a <code>FunSet</code> which is a function that takes an integer and returns a boolean, so you aren't actually returning a union of the sets, but a function which tells you whether an element is in the union of the two sets.</p>
 <div class="highlight">
 <pre><span></span><span class="cm">/**</span>
@@ -403,54 +413,206 @@ lazy val appleTweets: TweetSet
 <span class="k">def</span> <span class="n">union</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">t</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span> <span class="o">=</span>
   <span class="o">(</span><span class="n">element</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">s</span><span class="o">(</span><span class="n">element</span><span class="o">)</span> <span class="o">||</span> <span class="n">t</span><span class="o">(</span><span class="n">element</span><span class="o">)</span>
 </pre></div>
+<p>So to use this you would pass it two <code>FunSet</code> objects and then use the returned object to check if it has elements in it.</p>
 <div class="highlight">
-<pre><span></span><span class="k">def</span> <span class="n">intersect</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">t</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span>
-<span class="k">def</span> <span class="n">diff</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">t</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span>
+<pre><span></span><span class="k">val</span> <span class="n">set_1</span> <span class="k">=</span> <span class="n">singletonSet</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">set_2</span> <span class="k">=</span> <span class="n">singletonSet</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">unionized</span> <span class="k">=</span> <span class="n">union</span><span class="o">(</span><span class="n">set_1</span><span class="o">,</span> <span class="n">set_2</span><span class="o">)</span>
+<span class="n">assert</span><span class="o">(</span><span class="n">contains</span><span class="o">(</span><span class="n">unionized</span><span class="o">,</span> <span class="mi">1</span><span class="o">))</span>
+<span class="n">assert</span><span class="o">(</span><span class="n">contains</span><span class="o">(</span><span class="n">unionized</span><span class="o">,</span> <span class="mi">2</span><span class="o">))</span>
 </pre></div>
 </div>
 </div>
-<div class="outline-4" id="outline-container-org952d14e">
-<h4 id="org952d14e">Define the function filter which selects only the elements of a set that are accepted by a given predicate p. The filtered elements are returned as a new set. The signature of filter is as follows:</h4>
-<div class="outline-text-4" id="text-org952d14e">
+<div class="outline-4" id="outline-container-org970a206">
+<h4 id="org970a206">Intersect</h4>
+<div class="outline-text-4" id="text-org970a206">
+<p>This uses the same trick as the <code>union</code> method - we just need to change the logical operations.</p>
 <div class="highlight">
-<pre><span></span><span class="k">def</span> <span class="n">filter</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">p</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span>
+<pre><span></span><span class="k">def</span> <span class="n">intersect</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">t</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span> <span class="o">=</span>
+  <span class="o">(</span><span class="n">element</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">s</span><span class="o">(</span><span class="n">element</span><span class="o">)</span> <span class="o">&amp;&</span> <span class="n">t</span><span class="o">(</span><span class="n">element</span><span class="o">)</span>
+</pre></div>
+<p>In this case we want to create a method that checks that both set <code>s</code> and set <code>t</code> have the element passed to it.</p>
+</div>
+</div>
+<div class="outline-4" id="outline-container-org2582992">
+<h4 id="org2582992">Difference</h4>
+<div class="outline-text-4" id="text-org2582992">
+<p>With sets, the <code>diff</code> method tells us if an element is in the first set but not in the second.</p>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="n">diff</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">t</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span> <span class="o">=</span>
+  <span class="o">(</span><span class="n">element</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">s</span><span class="o">(</span><span class="n">element</span><span class="o">)</span> <span class="o">&amp;&</span> <span class="o">!</span><span class="n">t</span><span class="o">(</span><span class="n">element</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<div class="outline-4" id="outline-container-org974fee9">
+<h4 id="org974fee9">Filter</h4>
+<div class="outline-text-4" id="text-org974fee9">
+<blockquote>
+<p>Define the function filter which selects only the elements of a set that are accepted by a given predicate p. The filtered elements are returned as a new set.</p>
+</blockquote>
+<p>Once again, despite the way the problem is stated, we aren't returning a set of elements but a function that checks that an element is both in the set and returns <code>true</code> when passed to the function that's given.</p>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="n">filter</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">p</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span> <span class="o">=</span>
+  <span class="o">(</span><span class="n">element</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">s</span><span class="o">(</span><span class="n">element</span><span class="o">)</span> <span class="o">&amp;&</span> <span class="n">p</span><span class="o">(</span><span class="n">element</span><span class="o">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-org3c1c1d3">
-<h3 id="org3c1c1d3">Queries and Transformations on Sets</h3>
-<div class="outline-text-3" id="text-org3c1c1d3">
+<div class="outline-3" id="outline-container-org530f59a">
+<h3 id="org530f59a">Queries and Transformations on Sets</h3>
+<div class="outline-text-3" id="text-org530f59a"></div>
+<div class="outline-4" id="outline-container-orgb88e3e0">
+<h4 id="orgb88e3e0">For All</h4>
+<div class="outline-text-4" id="text-orgb88e3e0">
 <p>In this part, we are interested in functions used to make requests on elements of a set. The first function tests whether a given predicate is true for all elements of the set. This forall function has the following signature:</p>
 <div class="highlight">
 <pre><span></span><span class="k">def</span> <span class="n">forall</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">p</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">Boolean</span>
 </pre></div>
-<p>Note that there is no direct way to find which elements are in a set. contains only allows to know whether a given element is included. Thus, if we wish to do something to all elements of a set, then we have to iterate over all integers, testing each time whether it is included in the set, and if so, to do something with it. Here, we consider that an integer x has the property -1000 &lt;= x &lt;= 1000 in order to limit the search space.</p>
-<p>Implement forall using linear recursion. For this, use a helper function nested in forall. Its structure is as follows (replace the ???):</p>
+<p>Note that there is no direct way to find which elements are in a set. <code>contains</code> only allows us to know whether a given element is included. Thus, if we wish to do something to all elements of a set, then we have to iterate over all integers, testing each time whether it is included in the set, and if so, to do something with it. Here, we consider that an integer x has the property -1000 &lt;= x &lt;= 1000 in order to limit the search space.</p>
+</div>
+<ul class="org-ul">
+<li><a id="orgccc570d"></a>Base Case<br>
+<div class="outline-text-5" id="text-orgccc570d">
+<p>Implement forall using linear recursion. For this, use a helper function nested in <code>forall</code>. In the implementation there is a variable named <code>bound</code> which holds the absolute value for the bounds. Our stopping condition is when we've reached the end of the boundary. Since we need for the method <code>p</code> to return true for all elements in <code>s</code>, if we reach the end then we know that it passed all the elements so our base returns <code>true</code>:</p>
+<div class="highlight">
+<pre><span></span><span class="k">if</span><span class="o">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">bound</span><span class="o">)</span> <span class="kc">true</span>
+</pre></div>
+<p>I'm using <code>&gt;</code> because the call to the inner function is going to increment <code>a</code> by one, so the stopping point is one past the bound.</p>
+</div>
+</li>
+<li><a id="orgf2fe102"></a>Failing Case<br>
+<div class="outline-text-5" id="text-orgf2fe102">
+<p>Since all the elements in <code>s</code> have to return true when passed to <code>p</code>, if any element returns false then we can stop and report that the set doesn't pass.</p>
+<div class="highlight">
+<pre><span></span><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">s</span><span class="o">(</span><span class="n">a</span><span class="o">)</span> <span class="o">&amp;&</span> <span class="o">!</span><span class="n">p</span><span class="o">(</span><span class="n">a</span><span class="o">))</span> <span class="kc">false</span>
+</pre></div>
+</div>
+</li>
+<li><a id="orgded84d4"></a>The Recursive Call<br>
+<div class="outline-text-5" id="text-orgded84d4">
+<p>Our final case is when <code>a</code> is still in bounds and passes <code>p</code>, so we need to make the recursive call with the next integer.</p>
+<div class="highlight">
+<pre><span></span><span class="k">else</span> <span class="n">iter</span><span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><a id="org6c09310"></a>Calling Iter<br>
+<div class="outline-text-5" id="text-org6c09310">
+<p>Since our range of integers is from <code>-bound</code> to <code>bound</code>, we kick the whole thing off by calling the <code>iter</code> method with <code>-bound</code>.</p>
+<div class="highlight">
+<pre><span></span><span class="n">iter</span><span class="o">(-</span><span class="n">bound</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><a id="org45dfc12"></a>The Whole Shebang<br>
+<div class="outline-text-5" id="text-org45dfc12">
+<p>Here's the method all together.</p>
 <div class="highlight">
 <pre><span></span><span class="k">def</span> <span class="n">forall</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">p</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="o">{</span>
   <span class="k">def</span> <span class="n">iter</span><span class="o">(</span><span class="n">a</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(???)</span> <span class="o">???</span>
-    <span class="k">else</span> <span class="k">if</span> <span class="o">(???)</span> <span class="o">???</span>
-    <span class="k">else</span> <span class="n">iter</span><span class="o">(???)</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">bound</span><span class="o">)</span> <span class="kc">true</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">s</span><span class="o">(</span><span class="n">a</span><span class="o">)</span> <span class="o">&amp;&</span> <span class="o">!</span><span class="n">p</span><span class="o">(</span><span class="n">a</span><span class="o">))</span> <span class="kc">false</span>
+    <span class="k">else</span> <span class="n">iter</span><span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span>
   <span class="o">}</span>
-  <span class="n">iter</span><span class="o">(???)</span>
+  <span class="n">iter</span><span class="o">(-</span><span class="n">bound</span><span class="o">)</span>
 <span class="o">}</span>
 </pre></div>
-<ol class="org-ol">
-<li>Using forall, implement a function exists which tests whether a set contains at least one element for which the given predicate is true. Note that the functions forall and exists behave like the universal and existential quantifiers of first-order logic.</li>
-</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="outline-4" id="outline-container-orgf51e41b">
+<h4 id="orgf51e41b">Exists</h4>
+<div class="outline-text-4" id="text-orgf51e41b">
+<blockquote>
+<p>Using <code>forall</code>, implement a function exists which tests whether a set contains at least one element for which the given predicate is true. Note that the functions forall and exists behave like the universal and existential quantifiers of first-order logic.</p>
+</blockquote>
+<p>Although the instructions say to use <code>forall</code> I couldn't see an obvious way to do it so I took the statement to mean "Using <code>forall</code> as inspiration" implement <code>exists</code>.</p>
+</div>
+<ul class="org-ul">
+<li><a id="org9960d0c"></a>The Base Case<br>
+<div class="outline-text-5" id="text-org9960d0c">
+<p>In this case, our method will quit as soon as any element passes so if we reach the end that means that none of them did so we need to return false.</p>
 <div class="highlight">
-<pre><span></span><span class="k">def</span> <span class="n">exists</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">p</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">Boolean</span>
+<pre><span></span><span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">bound</span><span class="o">)</span> <span class="kc">false</span>
 </pre></div>
-<ol class="org-ol">
-<li>Finally, using forall or exists, write a function map which transforms a given set into another one by applying to each of its elements the given function. map has the following signature:</li>
-</ol>
+</div>
+</li>
+<li><a id="orgb9eb52e"></a>The Short-Circuit<br>
+<div class="outline-text-5" id="text-orgb9eb52e">
+<p>As soon as an element is in <code>s</code> and passes <code>p</code> we can return true.</p>
+<div class="highlight">
+<pre><span></span><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">s</span><span class="o">(</span><span class="n">a</span><span class="o">)</span> <span class="o">&amp;&</span> <span class="n">p</span><span class="o">(</span><span class="n">a</span><span class="o">))</span> <span class="kc">true</span>
+</pre></div>
+<p>The rest of the method looks the same as <code>forall</code>.</p>
+</div>
+</li>
+<li><a id="org8bfd83e"></a>The Whole Thing<br>
+<div class="outline-text-5" id="text-org8bfd83e">
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="n">exists</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">p</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="n">iter</span><span class="o">(</span><span class="n">a</span><span class="k">:</span> <span class="kt">int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">bound</span><span class="o">)</span> <span class="kc">false</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">s</span><span class="o">(</span><span class="n">a</span><span class="o">)</span> <span class="o">&amp;&</span> <span class="n">p</span><span class="o">(</span><span class="n">a</span><span class="o">))</span> <span class="kc">true</span>
+    <span class="k">else</span> <span class="n">iter</span><span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span>
+  <span class="o">}</span>
+  <span class="n">iter</span><span class="o">(-</span><span class="n">bound</span><span class="o">)</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="outline-4" id="outline-container-org3fd82dd">
+<h4 id="org3fd82dd">Map</h4>
+<div class="outline-text-4" id="text-org3fd82dd">
+<blockquote>
+<p>Finally, using forall or exists, write a function map which transforms a given set into another one by applying to each of its elements the given function. map has the following signature:</p>
+</blockquote>
+<p>Once again, rather than re-using the previous methods exactly I'm going to use their spirit. This time I'll use the accumulator pattern to turn the inner function to a tail-recursive one.</p>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="n">iter</span><span class="o">(</span><span class="n">a</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">accumulator</span><span class="k">:</span> <span class="kt">Set</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span><span class="k">:</span> <span class="kt">Set</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span>
+</pre></div>
+</div>
+<ul class="org-ul">
+<li><a id="orge4c6cab"></a>Base Case<br>
+<div class="outline-text-5" id="text-orge4c6cab">
+<p>Since we have an <code>accumulator</code> that holds the set of mapped values, when we reach the end we just return it.</p>
+<div class="highlight">
+<pre><span></span><span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">bound</span><span class="o">)</span> <span class="n">accumulator</span>
+</pre></div>
+</div>
+</li>
+<li><a id="orge5ac958"></a>Updating the Accumulator<br>
+<div class="outline-text-5" id="text-orge5ac958">
+<p>If the next element is in <code>s</code> we need to add the mapped value for the element to the accumulator and make the next recursive call. Alternatively you could just update the accumulator, but then you'd have an extra variable.</p>
+<div class="highlight">
+<pre><span></span><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">s</span><span class="o">(</span><span class="n">a</span><span class="o">))</span> <span class="n">iter</span><span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">accumulator</span> <span class="o">+</span> <span class="n">f</span><span class="o">(</span><span class="n">a</span><span class="o">))</span>
+</pre></div>
+</div>
+</li>
+<li><a id="orge1a5073"></a>The Recursive Call<br>
+<div class="outline-text-5" id="text-orge1a5073">
+<p>This is like the other methods except we have to pass the accumulator.</p>
+<div class="highlight">
+<pre><span></span><span class="k">else</span> <span class="n">iter</span><span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">accumulator</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><a id="org394cbce"></a>Calling the Inner Function<br>
+<div class="outline-text-5" id="text-org394cbce">
+<p>To initialize the accumulator, I pass in an empty set of type integer (by creating a set with an integer and then empyting it).</p>
+<div class="highlight">
+<pre><span></span><span class="n">iter</span><span class="o">(-</span><span class="n">bound</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="n">empty</span><span class="o">)</span>
+</pre></div>
 <div class="highlight">
 <pre><span></span><span class="k">def</span> <span class="n">map</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">FunSet</span><span class="o">,</span> <span class="n">f</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">FunSet</span>
 </pre></div>
 <p>Extra Hints</p>
 <p>Be attentive in the video lectures on how to write anonymous functions in Scala. Sets are represented as functions. Think about what it means for an element to belong to a set, in terms of function evaluation. For example, how do you represent a set that contains all numbers between 1 and 100? Most of the solutions for this assignment can be written as one-liners. If you have more, you probably need to rethink your solution. In other words, this assignment needs more thinking (whiteboard, pen and paper) than coding ;-). If you are having some trouble with terminology, have a look at the <a href="https://docs.scala-lang.org/glossary/">glossary</a>.</p>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -469,39 +631,39 @@ lazy val appleTweets: TweetSet
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#orgeca601e">Beginning</a></li>
-<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#orgd981bdb">Middle</a>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org0f7f227">Beginning</a></li>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#orgfa17e06">Middle</a>
 <ul>
-<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#orgf36649b">Abstract and Concrete Methods</a>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org8517477">Abstract and Concrete Methods</a>
 <ul>
-<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org95d79d1">Traits</a></li>
-<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org3248c07">Boy</a></li>
-<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#orgce876df">A Girl</a></li>
-<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org37d7d6a">A Werewolf</a></li>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#orgd66fb2a">Traits</a></li>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org853af7b">Boy</a></li>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org209603c">A Girl</a></li>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#orga85b5b7">A Werewolf</a></li>
 </ul>
 </li>
-<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org564ea48">But There's Also An Abstract Class</a></li>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#orgcb5a846">But There's Also An Abstract Class</a></li>
 </ul>
 </li>
-<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#org2d4a4cd">End</a></li>
+<li><a href="posts/hello-scala/traits-are-closer-to-abstract-classes/#orgf36b26a">End</a></li>
 </ul>
 </div>
 </div>
-<div class="outline-2" id="outline-container-orgeca601e">
-<h2 id="orgeca601e">Beginning</h2>
-<div class="outline-text-2" id="text-orgeca601e">
+<div class="outline-2" id="outline-container-org0f7f227">
+<h2 id="org0f7f227">Beginning</h2>
+<div class="outline-text-2" id="text-org0f7f227">
 <p>Traits are both similar and different from <a href="https://docs.oracle.com/javase/tutorial/java/concepts/interface.html">Interfaces</a> and <a href="https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html">Abstract Classes</a>. Like Interfaces, traits don't take arguments, but unlike interfaces and like Abstract Classes, traits can implement some methods and leave others abstract. Traits also support multiple inheritance and you can add them to objects that are created from Classes that don't extend them in their definition.</p>
 </div>
 </div>
-<div class="outline-2" id="outline-container-orgd981bdb">
-<h2 id="orgd981bdb">Middle</h2>
-<div class="outline-text-2" id="text-orgd981bdb"></div>
-<div class="outline-3" id="outline-container-orgf36649b">
-<h3 id="orgf36649b">Abstract and Concrete Methods</h3>
-<div class="outline-text-3" id="text-orgf36649b"></div>
-<div class="outline-4" id="outline-container-org95d79d1">
-<h4 id="org95d79d1">Traits</h4>
-<div class="outline-text-4" id="text-org95d79d1">
+<div class="outline-2" id="outline-container-orgfa17e06">
+<h2 id="orgfa17e06">Middle</h2>
+<div class="outline-text-2" id="text-orgfa17e06"></div>
+<div class="outline-3" id="outline-container-org8517477">
+<h3 id="org8517477">Abstract and Concrete Methods</h3>
+<div class="outline-text-3" id="text-org8517477"></div>
+<div class="outline-4" id="outline-container-orgd66fb2a">
+<h4 id="orgd66fb2a">Traits</h4>
+<div class="outline-text-4" id="text-orgd66fb2a">
 <div class="highlight">
 <pre><span></span>trait Child {
   def speak(): Unit = println("Never. I must be seen but not heard.")
@@ -511,9 +673,9 @@ lazy val appleTweets: TweetSet
 <p>This trait has a concrete method (<code>speak</code>) and an abstract method <code>come_to_me</code>.</p>
 </div>
 </div>
-<div class="outline-4" id="outline-container-org3248c07">
-<h4 id="org3248c07">Boy</h4>
-<div class="outline-text-4" id="text-org3248c07">
+<div class="outline-4" id="outline-container-org853af7b">
+<h4 id="org853af7b">Boy</h4>
+<div class="outline-text-4" id="text-org853af7b">
 <p>If you don't implement the <code>come_to_me</code> method then the next definition will be rejected by the compiler.</p>
 <div class="highlight">
 <pre><span></span>class Boy(name: String) extends Child {
@@ -531,9 +693,9 @@ I, Alphonse, will be there at once.
 
 </pre></div>
 </div>
-<div class="outline-4" id="outline-container-orgce876df">
-<h4 id="orgce876df">A Girl</h4>
-<div class="outline-text-4" id="text-orgce876df">
+<div class="outline-4" id="outline-container-org209603c">
+<h4 id="org209603c">A Girl</h4>
+<div class="outline-text-4" id="text-org209603c">
 <p>You can also implement the <code>speak</code> method, but since it's concrete you need to override it instead of just implement it.</p>
 <div class="highlight">
 <pre><span></span>class Girl extends Child {
@@ -552,9 +714,9 @@ As if.
 
 </pre></div>
 </div>
-<div class="outline-4" id="outline-container-org37d7d6a">
-<h4 id="org37d7d6a">A Werewolf</h4>
-<div class="outline-text-4" id="text-org37d7d6a">
+<div class="outline-4" id="outline-container-orga85b5b7">
+<h4 id="orga85b5b7">A Werewolf</h4>
+<div class="outline-text-4" id="text-orga85b5b7">
 <p>You can also add a trait to an existing class.</p>
 <div class="highlight">
 <pre><span></span>trait Tail {
@@ -577,9 +739,9 @@ I'm quite happy.
 </pre></div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-org564ea48">
-<h3 id="org564ea48">But There's Also An Abstract Class</h3>
-<div class="outline-text-3" id="text-org564ea48">
+<div class="outline-3" id="outline-container-orgcb5a846">
+<h3 id="orgcb5a846">But There's Also An Abstract Class</h3>
+<div class="outline-text-3" id="text-orgcb5a846">
 <p>Scala also provides an Abstract Class, this is to handle two cases:</p>
 <ul class="org-ul">
 <li>You want to define arguments to the constructor in the base class</li>
@@ -589,9 +751,9 @@ I'm quite happy.
 </div>
 </div>
 </div>
-<div class="outline-2" id="outline-container-org2d4a4cd">
-<h2 id="org2d4a4cd">End</h2>
-<div class="outline-text-2" id="text-org2d4a4cd">
+<div class="outline-2" id="outline-container-orgf36b26a">
+<h2 id="orgf36b26a">End</h2>
+<div class="outline-text-2" id="text-orgf36b26a">
 <p>Being mostly a python programmer I'm not totally certain what Interfaces are for, but luckily, with traits, we can have the best of both Interfaces and Abstract Classes together.</p>
 </div>
 </div>
@@ -610,29 +772,29 @@ I'm quite happy.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="posts/hello-scala/traits-as-interfaces/#orgbef3b7b">Beginning</a></li>
-<li><a href="posts/hello-scala/traits-as-interfaces/#org2938dee">Middle</a>
+<li><a href="posts/hello-scala/traits-as-interfaces/#orge8f3e30">Beginning</a></li>
+<li><a href="posts/hello-scala/traits-as-interfaces/#org7e58b83">Middle</a>
 <ul>
-<li><a href="posts/hello-scala/traits-as-interfaces/#org2e16d1c">Some Traits</a></li>
-<li><a href="posts/hello-scala/traits-as-interfaces/#org7dfa6f9">Create a Cow</a></li>
+<li><a href="posts/hello-scala/traits-as-interfaces/#org9b860ef">Some Traits</a></li>
+<li><a href="posts/hello-scala/traits-as-interfaces/#org5a6c718">Create a Cow</a></li>
 </ul>
 </li>
-<li><a href="posts/hello-scala/traits-as-interfaces/#orgde84147">End</a></li>
+<li><a href="posts/hello-scala/traits-as-interfaces/#orga54de85">End</a></li>
 </ul>
 </div>
 </div>
-<div class="outline-2" id="outline-container-orgbef3b7b">
-<h2 id="orgbef3b7b">Beginning</h2>
-<div class="outline-text-2" id="text-orgbef3b7b">
+<div class="outline-2" id="outline-container-orge8f3e30">
+<h2 id="orge8f3e30">Beginning</h2>
+<div class="outline-text-2" id="text-orge8f3e30">
 <p>This is a look at Scala traits. The traits look sort of like abstract base classes, but they are used here to define "parts" for classes that can then be implemented to create a specific type.</p>
 </div>
 </div>
-<div class="outline-2" id="outline-container-org2938dee">
-<h2 id="org2938dee">Middle</h2>
-<div class="outline-text-2" id="text-org2938dee"></div>
-<div class="outline-3" id="outline-container-org2e16d1c">
-<h3 id="org2e16d1c">Some Traits</h3>
-<div class="outline-text-3" id="text-org2e16d1c">
+<div class="outline-2" id="outline-container-org7e58b83">
+<h2 id="org7e58b83">Middle</h2>
+<div class="outline-text-2" id="text-org7e58b83"></div>
+<div class="outline-3" id="outline-container-org9b860ef">
+<h3 id="org9b860ef">Some Traits</h3>
+<div class="outline-text-3" id="text-org9b860ef">
 <p>These are some traits to make up an animal. Viewed in this context, the name "traits" makes sense - each trait defines a different aspect of the animal class.</p>
 <div class="highlight">
 <pre><span></span>trait Tail {
@@ -669,9 +831,9 @@ I'm quite happy.
 </pre></div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-org7dfa6f9">
-<h3 id="org7dfa6f9">Create a Cow</h3>
-<div class="outline-text-3" id="text-org7dfa6f9">
+<div class="outline-3" id="outline-container-org5a6c718">
+<h3 id="org5a6c718">Create a Cow</h3>
+<div class="outline-text-3" id="text-org5a6c718">
 <div class="highlight">
 <pre><span></span>val cow = new Cow()
 cow.wag
@@ -692,9 +854,9 @@ moo
 </div>
 </div>
 </div>
-<div class="outline-2" id="outline-container-orgde84147">
-<h2 id="orgde84147">End</h2>
-<div class="outline-text-2" id="text-orgde84147">
+<div class="outline-2" id="outline-container-orga54de85">
+<h2 id="orga54de85">End</h2>
+<div class="outline-text-2" id="text-orga54de85">
 <p>So that's traits. There's a lot more to them, I'm sure, but that's enoug for now.</p>
 </div>
 </div>
@@ -713,29 +875,29 @@ moo
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#org4f0e613">Beginning</a></li>
-<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#org1e0ad97">Middle</a>
+<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#org4d2e75d">Beginning</a></li>
+<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#org85d9e7d">Middle</a>
 <ul>
-<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#org53627f3">The Traditional Ipython Block</a></li>
-<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#org59868a6">The Jupyter Block</a></li>
+<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#org4a5df70">The Traditional Ipython Block</a></li>
+<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#orge6406fb">The Jupyter Block</a></li>
 </ul>
 </li>
-<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#orgbeae471">End</a></li>
+<li><a href="posts/exploring/ob-ipython-with-scala-a-test/#org3c91346">End</a></li>
 </ul>
 </div>
 </div>
-<div class="outline-2" id="outline-container-org4f0e613">
-<h2 id="org4f0e613">Beginning</h2>
-<div class="outline-text-2" id="text-org4f0e613">
+<div class="outline-2" id="outline-container-org4d2e75d">
+<h2 id="org4d2e75d">Beginning</h2>
+<div class="outline-text-2" id="text-org4d2e75d">
 <p>This is a test of using <a href="https://github.com/gregsexton/ob-ipython">ob-ipython</a> with the scala kernel (provided by <a href="https://almond.sh/">Almond</a>, so that has to be installed first).</p>
 </div>
 </div>
-<div class="outline-2" id="outline-container-org1e0ad97">
-<h2 id="org1e0ad97">Middle</h2>
-<div class="outline-text-2" id="text-org1e0ad97"></div>
-<div class="outline-3" id="outline-container-org53627f3">
-<h3 id="org53627f3">The Traditional Ipython Block</h3>
-<div class="outline-text-3" id="text-org53627f3">
+<div class="outline-2" id="outline-container-org85d9e7d">
+<h2 id="org85d9e7d">Middle</h2>
+<div class="outline-text-2" id="text-org85d9e7d"></div>
+<div class="outline-3" id="outline-container-org4a5df70">
+<h3 id="org4a5df70">The Traditional Ipython Block</h3>
+<div class="outline-text-3" id="text-org4a5df70">
 <div class="highlight">
 <pre><span></span>println("testing")
 </pre></div>
@@ -746,9 +908,9 @@ testing
 <p>Surprisingly, that worked (although it's very slow).</p>
 </div>
 </div>
-<div class="outline-3" id="outline-container-org59868a6">
-<h3 id="org59868a6">The Jupyter Block</h3>
-<div class="outline-text-3" id="text-org59868a6">
+<div class="outline-3" id="outline-container-orge6406fb">
+<h3 id="orge6406fb">The Jupyter Block</h3>
+<div class="outline-text-3" id="text-orge6406fb">
 <p>According to the documentation for <code>ob-ipython</code> it's being transitioned over to using <code>jupyter</code> instead of <code>ipython</code> so there's a new type of source-block to use.</p>
 <div class="highlight">
 <pre><span></span>val x = 5
@@ -762,9 +924,9 @@ x is 5
 </div>
 </div>
 </div>
-<div class="outline-2" id="outline-container-orgbeae471">
-<h2 id="orgbeae471">End</h2>
-<div class="outline-text-2" id="text-orgbeae471">
+<div class="outline-2" id="outline-container-org3c91346">
+<h2 id="org3c91346">End</h2>
+<div class="outline-text-2" id="text-org3c91346">
 <p>Not very exciting, in what it does (other than work). I'll stick with ob-ipython for now and see if <code>emacs-jupyter</code> works as well - in my previous experiment with it it didn't seem to be quite ready.</p>
 </div>
 </div>
@@ -1069,38 +1231,36 @@ Toppings: ArrayBuffer()
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="posts/course-1/recursion/#org3e45d89">Begin</a></li>
-<li><a href="posts/course-1/recursion/#org3bb9c97">Middle</a>
+<li><a href="posts/course-1/recursion/#orgc3e7d98">Begin</a></li>
+<li><a href="posts/course-1/recursion/#orga62b29f">Middle</a>
 <ul>
-<li><a href="posts/course-1/recursion/#org83afb1a">Exercise 1: Pascal’s Triangle</a>
+<li><a href="posts/course-1/recursion/#org7e46da3">Exercise 1: Pascal’s Triangle</a>
 <ul>
-<li><a href="posts/course-1/recursion/#org4b0ea9a">Pascal Tester</a></li>
-<li><a href="posts/course-1/recursion/#org3e82d44">Naively Recursive Version</a></li>
-<li><a href="posts/course-1/recursion/#org3a420d3">Tail-Recursion Version</a></li>
+<li><a href="posts/course-1/recursion/#orgd5c008c">Pascal Tester</a></li>
+<li><a href="posts/course-1/recursion/#org88858be">Naively Recursive Version</a></li>
+<li><a href="posts/course-1/recursion/#org6ee6ed0">Tail-Recursion Version</a></li>
 </ul>
 </li>
-<li><a href="posts/course-1/recursion/#org69faa94">Exercise 2: Parentheses Balancing</a></li>
-<li><a href="posts/course-1/recursion/#org9139507">Exercise 3: Counting Change</a></li>
+<li><a href="posts/course-1/recursion/#orgb3eec96">Exercise 2: Parentheses Balancing</a></li>
+<li><a href="posts/course-1/recursion/#org41ab029">Exercise 3: Counting Change</a></li>
 </ul>
 </li>
-<li><a href="posts/course-1/recursion/#orgb26bd85">End</a></li>
+<li><a href="posts/course-1/recursion/#org24e2f42">End</a></li>
 </ul>
 </div>
 </div>
-<div class="outline-2" id="outline-container-org3e45d89">
-<h2 id="org3e45d89">Begin</h2>
-<div class="outline-text-2" id="text-org3e45d89">
-<div class="highlight">
-<pre><span></span>import scala.collection.mutable.Stack
-</pre></div>
+<div class="outline-2" id="outline-container-orgc3e7d98">
+<h2 id="orgc3e7d98">Begin</h2>
+<div class="outline-text-2" id="text-orgc3e7d98">
+<p>This is a set of exercises to implement methods using recursion - and tail recursion when possible.</p>
 </div>
 </div>
-<div class="outline-2" id="outline-container-org3bb9c97">
-<h2 id="org3bb9c97">Middle</h2>
-<div class="outline-text-2" id="text-org3bb9c97"></div>
-<div class="outline-3" id="outline-container-org83afb1a">
-<h3 id="org83afb1a">Exercise 1: Pascal’s Triangle</h3>
-<div class="outline-text-3" id="text-org83afb1a">
+<div class="outline-2" id="outline-container-orga62b29f">
+<h2 id="orga62b29f">Middle</h2>
+<div class="outline-text-2" id="text-orga62b29f"></div>
+<div class="outline-3" id="outline-container-org7e46da3">
+<h3 id="org7e46da3">Exercise 1: Pascal’s Triangle</h3>
+<div class="outline-text-3" id="text-org7e46da3">
 <p>The following pattern of numbers is called Pascal’s triangle.</p>
 <pre class="example">
     1
@@ -1112,9 +1272,9 @@ Toppings: ArrayBuffer()
 <p>The numbers at the edge of the triangle are all 1, and each number inside the triangle is the sum of the two numbers above it. Write a function that computes the elements of Pascal’s triangle by means of a recursive process.</p>
 <p>Do this exercise by implementing the pascal function in Main.scala, which takes a column c and a row r, counting from 0 and returns the number at that spot in the triangle. For example, <code>pascal(0,2)=1</code>, <code>pascal(1,2)=2</code>, and <code>pascal(1,3)=3</code>.</p>
 </div>
-<div class="outline-4" id="outline-container-org4b0ea9a">
-<h4 id="org4b0ea9a">Pascal Tester</h4>
-<div class="outline-text-4" id="text-org4b0ea9a">
+<div class="outline-4" id="outline-container-orgd5c008c">
+<h4 id="orgd5c008c">Pascal Tester</h4>
+<div class="outline-text-4" id="text-orgd5c008c">
 <div class="highlight">
 <pre><span></span>def test_pascal(function_under_test: (Int, Int) =&gt; Int): Unit = {  
   assert(function_under_test(0, 0) == 1)
@@ -1147,9 +1307,9 @@ Toppings: ArrayBuffer()
 </pre></div>
 </div>
 </div>
-<div class="outline-4" id="outline-container-org3e82d44">
-<h4 id="org3e82d44">Naively Recursive Version</h4>
-<div class="outline-text-4" id="text-org3e82d44">
+<div class="outline-4" id="outline-container-org88858be">
+<h4 id="org88858be">Naively Recursive Version</h4>
+<div class="outline-text-4" id="text-org88858be">
 <div class="highlight">
 <pre><span></span>def pascal_1(c: Int, r: Int): Int = c match {
       case 0 =&gt; {
@@ -1168,12 +1328,11 @@ Toppings: ArrayBuffer()
 </pre></div>
 <pre class="example">
 6 - 7a489557-893d-47dd-9459-92a57291515b
-
 </pre></div>
 </div>
-<div class="outline-4" id="outline-container-org3a420d3">
-<h4 id="org3a420d3">Tail-Recursion Version</h4>
-<div class="outline-text-4" id="text-org3a420d3">
+<div class="outline-4" id="outline-container-org6ee6ed0">
+<h4 id="org6ee6ed0">Tail-Recursion Version</h4>
+<div class="outline-text-4" id="text-org6ee6ed0">
 <div class="highlight">
 <pre><span></span>def pascal(c: Int, r: Int): Int = {
     @annotation.tailrec
@@ -1196,13 +1355,12 @@ Toppings: ArrayBuffer()
 </pre></div>
 <pre class="example">
 8 - 9656bc37-fd80-4110-9d6f-f7e77b546f8f
-
 </pre></div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-org69faa94">
-<h3 id="org69faa94">Exercise 2: Parentheses Balancing</h3>
-<div class="outline-text-3" id="text-org69faa94">
+<div class="outline-3" id="outline-container-orgb3eec96">
+<h3 id="orgb3eec96">Exercise 2: Parentheses Balancing</h3>
+<div class="outline-text-3" id="text-orgb3eec96">
 <p>Write a recursive function which verifies the balancing of parentheses in a string, which we represent as a List[Char] not a String. For example, the function should return true for the following strings:</p>
 <ul class="org-ul">
 <li>(if (zero? x) max (/ 1 x))</li>
@@ -1258,9 +1416,9 @@ Toppings: ArrayBuffer()
 </pre></div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-org9139507">
-<h3 id="org9139507">Exercise 3: Counting Change</h3>
-<div class="outline-text-3" id="text-org9139507">
+<div class="outline-3" id="outline-container-org41ab029">
+<h3 id="org41ab029">Exercise 3: Counting Change</h3>
+<div class="outline-text-3" id="text-org41ab029">
 <p>Write a recursive function that counts how many different ways you can make change for an amount, given a list of coin denominations. For example, there are 3 ways to give change for 4 if you have coins with denomination 1 and 2: 1+1+1+1, 1+1+2, 2+2.</p>
 <p>Do this exercise by implementing the countChange function inMain.scala. This function takes an amount to change, and a list of unique denominations for the coins. Its signature is as follows:</p>
 <div class="highlight">
@@ -1271,8 +1429,11 @@ Toppings: ArrayBuffer()
 </div>
 </div>
 </div>
-<div class="outline-2" id="outline-container-orgb26bd85">
-<h2 id="orgb26bd85">End</h2>
+<div class="outline-2" id="outline-container-org24e2f42">
+<h2 id="org24e2f42">End</h2>
+<div class="outline-text-2" id="text-org24e2f42">
+<p>I only got 9/10 for this - there's two test cases that I haven't passed yet.</p>
+</div>
 </div>
 </div>
 </article>
