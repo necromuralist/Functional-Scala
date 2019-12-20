@@ -2,24 +2,66 @@
 .. title: Object-Oriented Sets
 .. slug: object-oriented-sets
 .. date: 2019-12-17 20:47:53 UTC-08:00
-.. tags: 
-.. category: 
+.. tags: scala,sets
+.. category: Sets
 .. link: 
-.. description: 
+.. description: The object-oriented sets assignment.
 .. type: text
 
 #+END_COMMENT
+#+OPTIONS: ^:{}
+#+TOC: headlines 3
 In this assignment you will work with an object-oriented representations based on binary trees.
-Object-Oriented Sets
 
-For this part, you will earn credit by completing the TweetSet.scala file. This file defines an abstract class TweetSet with two concrete subclasses,Empty which represents an empty set, and NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet), which represents a non-empty set as a binary tree rooted at elem. The tweets are indexed by their text bodies: the bodies of all tweets on the left are lexicographically smaller than elem and all bodies of elements on the right are lexicographically greater.
+* Object-Oriented Sets
+
+For this part, you will earn credit by completing the =TweetSet.scala= file. This file defines an abstract class =TweetSet= with two concrete subclasses, =Empty= which represents an empty set, and =NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet)=, which represents a non-empty set as a binary tree rooted at =elem=. The tweets are indexed by their text bodies: the bodies of all tweets on the left are lexicographically smaller than =elem= and all bodies of elements on the right are lexicographically greater.
 
 Note also that these classes are immutable: the set-theoretic operations do not modify this but should return a new set.
 
-Before tackling this assignment, we suggest you first study the already implemented methods contains and incl for inspiration.
-1 Filtering
+Before tackling this assignment, we suggest you first study the already implemented methods =contains= and =incl= for inspiration.
+** Contains and incl
+*** Contains
+   In the =Empty= class:
 
-Implement filtering on tweet sets. Complete the stubs for the methods filter and filterAcc. filter takes as argument a function, the predicate, which takes a tweet and returns a boolean. filter then returns the subset of all the tweets in the original set for which the predicate is true. For example, the following call:
+#+begin_src scala
+  def contains(tweet: Tweet): Boolean = false
+#+end_src
+
+Since this is an =Empty= set, =contains= is always false.
+
+In the =NonEmpty= class:
+#+begin_src scala
+  def contains(x: Tweet): Boolean =
+    if (x.text < elem.text) left.contains(x)
+    else if (elem.text < x.text) right.contains(x)
+    else true
+#+end_src
+
+=left= and =right= are =TweetSets= that are passed into the =NonEmpty= constructor. =elem= is the root of the tree and is also passed into the constructor by it has type =Tweet=. If the text of =x= is lexicographically smaller than the root (=elem=) text, then it can only be in the left tree so we call its =contains= method (which we have to implement) to check if the element is in the tree. Otherwise, if the text of =x= is greater than the root then we check if the right tree has it. If neither case is true, then =x's= text is equal to our root's text so we know that it's contained in our tree so we return true.
+*** Incl
+   This is a little more mysterious, mostly because of the incredibly poor naming choice for the method - is it /include/? /includes/? /incline/? According to the docstring for this method, it returns a new =TweetSet= which contains all the elements of the current set and the tweet given.
+
+**** In class =Empty=
+#+begin_src scala
+  def incl(tweet: Tweet): TweetSet = new NonEmpty(tweet, new Empty, new Empty)
+#+end_src
+
+Since we started with an empty set adding a tweet sets the root for a new non-empty tree.
+
+**** In =NonEmpty=
+
+In this case we start with a non-empty set so if the text is less than our root we create a new non-empty tree with the element added to our left tree, if it is greater than our root we add it to out right tree, and if it is the same we just return a copy of the tree.
+#+begin_src scala
+  def incl(x: Tweet): TweetSet = {
+    if (x.text < elem.text) new NonEmpty(elem, left.incl(x), right)
+    else if (elem.text < x.text) new NonEmpty(elem, left, right.incl(x))
+    else this
+  }
+#+end_src
+** Filtering
+
+Implement filtering on tweet sets. Complete the stubs for the methods =filter= and =filterAcc=. =filter= takes as argument a function, the predicate, which takes a tweet and returns a boolean. =filter= then returns the subset of all the tweets in the original set for which the predicate is true. For example, the following call:
 
 #+begin_src jupyter-scala
 tweets.filter(tweet => tweet.retweets > 10)
@@ -27,7 +69,7 @@ tweets.filter(tweet => tweet.retweets > 10)
 
 applied to a set tweets of two tweets, say, where the first tweet was not retweeted and the second tweet was retweeted 20 times should return a set containing only the second tweet.
 
-Hint: start by defining the helper method filterAcc which takes an accumulator set as a second argument. This accumulator contains the ongoing result of the filtering.
+Hint: start by defining the helper method =filterAcc= which takes an accumulator set as a second argument. This accumulator contains the ongoing result of the filtering.
 
 #+begin_src jupyter-scala
 /** This method takes a predicate and returns a subset of all the elements
@@ -38,7 +80,7 @@ def filterAcc(p: Tweet => Boolean, acc: TweetSet): TweetSet
 #+end_src
 
 The definition of filter in terms of filterAcc should then be straightforward.
-2 Taking Unions
+** Taking Unions
 
 Implement union on tweet sets. Complete the stub for the method union. The method union takes another set that, and computes a new set which is the union of this and that, i.e. a set that contains exactly the elements that are either in this or in that, or in both.
 
